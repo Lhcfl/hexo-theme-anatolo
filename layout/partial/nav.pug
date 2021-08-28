@@ -1,0 +1,24 @@
+.page-top.animated.fadeInDown
+  .nav
+    each cur, lst in theme.menu
+      li 
+        if is_current(cur)
+          a.current(href= cur)= __(lst)
+        else
+          a(href=cur)= __(lst)
+
+
+  .information
+    .nav_right_btn
+      if theme.rightbtn.back
+        li
+          if is_post()
+            a.fa.fa-chevron-left(onclick="window.history.go(-1)") 
+          else
+            a.fa.fa-chevron-left(onclick="window.history.go(-1)" style="display:none;") 
+      if theme.rightbtn.search
+        li
+          a.fa.fa-search(onclick="openWindow();")
+    .avatar
+      if theme.rightbtn.avatar
+        img(src=theme.avatar)

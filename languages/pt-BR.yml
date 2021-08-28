@@ -1,0 +1,32 @@
+prev: Anterior
+next: Próximo
+prev_post: Post Anterior
+next_post: Próximo post
+Home: Home
+Albums: Álbums
+Categories: Categorias
+Archive: Arquivo
+Pages: Pages
+Tags: Tags
+About: About
+Guestbook: Livre d'or
+Links: Links
+Comments: Comments
+author: Author
+
+article:
+    read: 'read'
+    about: 'About'
+    words: 'words'
+
+time:
+    minu: min
+    senc: sec
+    
+insight:
+    hint: 'Search...'
+    posts: 'Posts'
+    pages: 'Pages'
+    categories: 'Categories'
+    tags: 'Tags'
+    untitled: '(Untitled)'

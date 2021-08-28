@@ -1,0 +1,22 @@
+extends partial/layout
+
+block site_title
+    !=  __('Tags') + " · " + config.title
+
+block description
+    - var desc = page.desc || strip_html(page.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 150);
+    meta(name="description", content=desc)
+
+block content
+        if theme.useTagCloud
+            .autopagerize_page_element: .content
+                .tag_box
+                    script(type="text/javascript" charset="utf-8" src="/js/tagcloud.js")
+                    script(type="text/javascript" charset="utf-8" src="/js/tagcanvas.js")
+                    #myCanvasContainer.widget.tagcloud(align='center')
+                        canvas#resCanvas()
+                            != tagcloud()
+        else 
+            .archive.animated.fadeInDown
+                .autopagerize_page_element: .content
+                    p!= list_tags(site.tags, {class: {ul: 'ululul', li: 'tag_round', a: 'tag_btn', count: 'tag_btn is-grey'}, style: false, separator: ' | '})

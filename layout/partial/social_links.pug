@@ -1,0 +1,38 @@
+ul.social-links
+    if theme.github
+        li
+            a(href= theme.github)
+                i.fa.fa-github
+    if theme.mail
+        li
+            //- a(href= "javascript:alert(\"" + theme.mail +"\")" )
+            a(href= "mailto:" + theme.mail )
+                i.fa.fa-envelope
+    if theme.QQ
+        li
+            a(href= "http://sighttp.qq.com/authd?IDKEY=" + theme.QQ)
+                i.fa.fa-qq
+    if theme.zhihu
+        li
+            a(href= theme.zhihu)
+                i.fa.fa-mortar-board
+    if theme.twitter
+        li
+            a(href= theme.twitter)
+                i.fa.fa-twitter
+    if theme.instagram
+        li
+            a(href= theme.instagram)
+                i.fa.fa-instagram
+    if theme.rss
+        li
+            a(href= url_for(theme.rss))
+                i.fa.fa-rss
+    if theme.weibo
+        li
+            a(href=theme.weibo)
+                i.fa.fa-weibo
+    if theme.facebook
+        li
+            a(href= theme.facebook)
+                i.fa.fa-facebook

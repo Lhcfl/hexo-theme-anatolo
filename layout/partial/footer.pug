@@ -1,0 +1,19 @@
+.footer
+  .p 
+    span  #{theme.footbar.copyright} 
+    i.fa.fa-star
+    span  #{theme.author}
+
+  .by_farbox
+    span Powered by 
+    a(href="https://hexo.io/zh-cn/", target="_blank") Hexo 
+    span  & 
+    span Anatolo 
+    
+  .beian
+    if theme.footbar.beian
+      a(href="http://www.beian.miit.gov.cn/", target="_blank") #{theme.beian}
+      span(style="height:10px;margin-left: 10px;") |
+    if theme.footbar.gongan
+      img(src = url_for('images/gongan.png'), style="height:10px;margin-left: 10px;position: relative;top: 1px;")
+      span(style="margin-left: 2px;") #{theme.gongan}

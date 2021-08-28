@@ -1,0 +1,33 @@
+prev: Previous
+next: Next
+prev_post: Previous
+next_post: Next
+Home: Home
+Albums: Albums
+Categories: Categories
+Archives: Archives
+Page: Page
+Tags: Tags
+TOC: Menu
+About: About
+Guestbook: Guestbook
+Comments: Comments
+Links: Links
+author: 作者
+
+article:
+    read: 'read'
+    about: 'About'
+    words: 'words'
+
+time:
+    minu: min
+    senc: sec
+    
+insight:
+    hint: 'Search...'
+    posts: 'Posts'
+    pages: 'Pages'
+    categories: 'Categories'
+    tags: 'Tags'
+    untitled: '(Untitled)'

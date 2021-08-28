@@ -1,0 +1,19 @@
+doctype
+html(lang="zh-CN")
+  head
+    include head
+
+  body
+    include nav
+    include sidebar
+    .main
+      block content
+    
+
+    script(src= url_for('js/jquery-migrate-1.2.1.min.js'))
+    script(src= url_for('js/jquery.appear.js'))
+    script(src=url_for("/js/add-bookmark.js"))
+    if theme.rightbtn.search
+      include search
+    if theme.Baidutongji
+      script(src=url_for("/js/baidu-tongji.js"))

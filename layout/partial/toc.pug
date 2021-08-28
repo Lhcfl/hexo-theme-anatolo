@@ -1,0 +1,7 @@
+if page.toc && theme.tocMaxDepth > 0
+    - var toctext = toc(page.content,{class: "toclist",list_number: true, max_depth: theme.tocMaxDepth})
+    details.ltr(open)
+        summary= __("TOC")
+        .tocmenu
+            p!= toctext
+    
