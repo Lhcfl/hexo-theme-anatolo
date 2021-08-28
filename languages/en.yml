@@ -13,16 +13,16 @@ About: About
 Guestbook: Guestbook
 Comments: Comments
 Links: Links
-author: 作者
+author: Author
 
 article:
-    read: 'read'
-    about: 'About'
-    words: 'words'
+    read: ' read'
+    about: 'About '
+    words: ' words'
 
 time:
-    minu: min
-    senc: sec
+    minu: ' min '
+    senc: ' sec '
     
 insight:
     hint: 'Search...'
