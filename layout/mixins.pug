@@ -46,7 +46,7 @@ mixin make_post(item, is_detail)
 					span
 						- var words = word_count(item.content)
 						- var needtime = duration((words / 300.0) * 60, 'seconds')
-						- var timestr = time(needtime, "m") == '0' ? time(needtime, "s"+__("time.senc")) : time(needtime, "m"+__("time.minu")+"s"+__("time.senc"))
+						- var timestr = (time(needtime, "m") == '0' ? "" : (time(needtime, "m") + __('time.minu'))) + time(needtime, "s") + __("time.senc")
 						= __("article.about") + words + __("article.words") + ", " + timestr + __("article.read")
 
 
