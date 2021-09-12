@@ -1,5 +1,7 @@
 # hexo-theme-Anatolo
 
+[demo](https://lhcfl.github.io/Anatolo-demo)
+
 ## 关于主题
 
 基于ben02的[Anatole主题](https://github.com/Ben02/hexo-theme-Anatole)进行了大量修改，增添和优化。  
