@@ -1,6 +1,6 @@
 # hexo-theme-Anatolo
 
-[demo](https://lhcfl.github.io/Anatolo-demo)
+[demo](https://lhcfl.github.io/Anatolodemo)
 
 ## 关于主题
 
