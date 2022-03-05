@@ -1,6 +1,6 @@
 # hexo-theme-Anatolo
 
-Please pull request when you find a bug, I'm busy in study
+Please pull request when you find a bug, I'm so buzy..
 发现bug请提个pr，我高三修不了了（
 
 [demo](https://lhcfl.github.io/Anatolodemo)
