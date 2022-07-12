@@ -1,9 +1,7 @@
 # hexo-theme-Anatolo
 
-Please pull request when you find a bug, I'm so buzy..
-发现bug请提个pr，我高三修不了了（
-
 [demo](https://lhcfl.github.io/Anatolodemo)
+[博客样例](https://lhcfl.github.io)
 
 [国内镜像](https://gitee.com/Lhcfl/hexo-theme-anatolo)
 
