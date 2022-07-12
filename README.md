@@ -67,4 +67,11 @@ npm install hexo-renderer-stylus --save
 修改hexo根目录下的 `_config.yml` ： `theme: Anatolo`
 
 
+### 更新
+在Anatolo的目录下
+```
+git pull origin master
+
+```
+
 
