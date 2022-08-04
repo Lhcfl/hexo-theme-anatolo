@@ -1,9 +1,7 @@
 # hexo-theme-Anatolo
 
-Please pull request when you find a bug, I'm so buzy..
-发现bug请提个pr，我高三修不了了（
-
 [demo](https://lhcfl.github.io/Anatolodemo)
+[博客样例](https://lhcfl.github.io)
 
 [国内镜像](https://gitee.com/Lhcfl/hexo-theme-anatolo)
 
@@ -68,5 +66,12 @@ npm install hexo-renderer-stylus --save
 复制`_config.example.yml`为`_config.yml`  
 修改hexo根目录下的 `_config.yml` ： `theme: Anatolo`
 
+
+### 更新
+在Anatolo的目录下
+```
+git pull origin master
+
+```
 
 

@@ -1,5 +1,5 @@
 /**
- * Tag list page generator
+ * Tags list page generator
  */
 module.exports = function(hexo) {
     hexo.extend.generator.register('tags', function(locals) {
