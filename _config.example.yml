@@ -4,16 +4,17 @@ author: Yourname
 description: A simple and beautiful blog
 
 # icon
-# 如果尺寸不当请修改style.styl
+# If the is size is incorrect, please edit /source.css/style.styl
 favicon: /images/favicon.webp
 avatar: /images/logo.webp
 logo_dir: /images/logo@2x.webp
-logo_style: width:200px;
+logo_style: width:220px;
 
 copyright:
   show: true
   default: "本文采用CC-BY-SA-3.0协议，转载请注明出处"
   show_author: true
+
 # 你可以在文章中对文章进行单独设置copyright
 # 例如: 
 # copyright: "本文著作权归作者所有"
