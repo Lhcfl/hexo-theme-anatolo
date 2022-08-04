@@ -37,8 +37,8 @@ mixin make_post(item, is_detail)
 							a.tag(href=config.root + item.path, title= item.name)= item.name + " "
 						- });
 					if item.tags
-						i.fa.fa-tag
 						- item.tags.sort('posts').each(function(item) {
+							i.fa.fa-tag
 							a.tag(href=config.root + item.path, title= item.name)= item.name + " "
 						- });
 
