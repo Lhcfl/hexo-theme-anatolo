@@ -17,6 +17,9 @@
 
 由于我不会css，pug和javascript，许多代码是能用就行，
 
+## 使用方式
+参见 https://github.com/Lhcfl/hexo-theme-anatolo/wiki
+
 ## 改进
 - 我在学世界语所以主题改名为Anatolo（
 - 增加了文章概要的选项
