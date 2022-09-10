@@ -79,6 +79,13 @@ valine:
   avatar: mm # avatar style https://github.com/xCss/Valine/wiki/avatar-setting-for-valine
   placeholder: hello, world # comment box placeholder
 
+gitment:
+  enable: false
+  # id: '页面 ID' # 可选。默认为 location.href
+  owner: '你的 GitHub ID'
+  repo: '存储评论的 repo'
+  client_id: '你的 client ID'
+  client_secret: '你的 client secret'
 
 # 百度统计设置
 # 请访问 https://tongji.baidu.com/ 
