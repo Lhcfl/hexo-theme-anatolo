@@ -86,6 +86,7 @@ if theme.gitment
         script(src="https://imsun.github.io/gitment/dist/gitment.browser.js")
         script.
             var git_ment = {
+                id: '#{page.title}',
                 owner: '#{theme.gitment.owner}',
                 repo: '#{theme.gitment.repo}',
                 oauth: {
@@ -96,3 +97,21 @@ if theme.gitment
             if ('#{theme.gitment.id}' != '') git_ment.id = '#{theme.gitment.id}';
             var gitment = new Gitment(git_ment);
             gitment.render('gitment_container')
+
+if theme.gitalk
+    if theme.gitalk.enable == true
+        a#comments
+        div#gitalk_container
+        link(rel="stylesheet", href="https://unpkg.com/gitalk/dist/gitalk.css")
+        script(src="https://unpkg.com/gitalk/dist/gitalk.min.js")
+        script.
+            const gitalk = new Gitalk({
+                clientID: '#{theme.gitalk.client_id}',
+                clientSecret: '#{theme.gitalk.client_secret}',
+                repo: '#{theme.gitalk.repo}',      // The repository of store comments,
+                owner: '#{theme.gitalk.owner}',
+                admin: ['#{theme.gitalk.owner}'],
+                id: '#{page.title}',      // Ensure uniqueness and length less than 50
+                distractionFreeMode: false  // Facebook-like distraction free mode
+            })
+            gitalk.render('gitalk_container')
