@@ -17,6 +17,8 @@ copyright:
 
 # 你可以在文章中对文章进行单独设置copyright
 # 例如: 
+# ---
+# title: xxx
 # copyright: "本文著作权归作者所有"
 # author: "Li Hua and Han Meimei"
 # ---
