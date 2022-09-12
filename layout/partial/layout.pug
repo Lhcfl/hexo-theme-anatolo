@@ -1,5 +1,5 @@
 doctype
-html(lang="zh-CN")
+html(lang="zh-CN",id= ("theme-"+ (theme.defaultTheme == "dark-mode"?"dark-mode":"light-mode")))
   head
     include head
 
@@ -9,7 +9,7 @@ html(lang="zh-CN")
     .main
       block content
     
-
+    script(src= url_for('js/darkLightToggle.js'))
     script(src= url_for('js/jquery-migrate-1.2.1.min.js'))
     script(src= url_for('js/jquery.appear.js'))
     script(src=url_for("/js/add-bookmark.js"))

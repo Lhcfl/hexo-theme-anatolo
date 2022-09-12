@@ -3,6 +3,15 @@
 html {
     background-color: #fff;
     -webkit-font-smoothing: antialiased;
+    transition: all 0.2s ease-out;
+}
+
+html[id='theme-dark-mode'] {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+html[id='theme-dark-mode'] img{
+    filter: invert(1) hue-rotate(180deg);
 }
 
 body {

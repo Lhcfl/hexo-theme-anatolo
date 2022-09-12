@@ -19,6 +19,9 @@
       if theme.rightbtn.search
         li
           a.fa.fa-search(onclick="openWindow();")
+      if theme.rightbtn.darkLightToggle
+        li
+          a.fa.fa-sun-o(onclick="darkLightToggle();")
     .avatar
       if theme.rightbtn.avatar
         img(src=theme.avatar)
