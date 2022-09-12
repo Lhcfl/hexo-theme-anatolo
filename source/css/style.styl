@@ -147,6 +147,7 @@ a:hover, a:active {
         padding: 18px 30px;
         float: left;
         font-size: 14px;
+
         li {
             position: relative;
             display: initial;
@@ -187,6 +188,7 @@ a:hover, a:active {
             float: left;
             padding-top: 5px;
             margin-right: 0px;
+
             li {
                 display: initial;
                 padding-right: 30px;
@@ -878,19 +880,27 @@ a.btn {
         white-space: nowrap;
         overflow-x: scroll;
         overflow-y: hidden;
+
         .information {
-            background-color: #fff 
+            background-color: #fff;
             position: absolute;
             right: 0;
+
             .nav_right_btn {
                 display: none;
             }
         }
+
         .information:hover {
             .nav_right_btn {
                 display: block;
             }
         }
+    }
+
+    .page-top::-webkit-scrollbar {
+        -webkit-appearance: none;
+        width: 7px;
     }
 
     .post-title h3 {
