@@ -147,7 +147,6 @@ a:hover, a:active {
         padding: 18px 30px;
         float: left;
         font-size: 14px;
-
         li {
             position: relative;
             display: initial;
@@ -187,10 +186,10 @@ a:hover, a:active {
         .nav_right_btn {
             float: left;
             padding-top: 5px;
-            margin-right: 10px;
+            margin-right: 0px;
             li {
                 display: initial;
-                padding-right: 5px;
+                padding-right: 30px;
             }
         }
     }
@@ -876,6 +875,22 @@ a.btn {
 
     .page-top {
         width: 100%;
+        white-space: nowrap;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        .information {
+            background-color: #fff 
+            position: absolute;
+            right: 0;
+            .nav_right_btn {
+                display: none;
+            }
+        }
+        .information:hover {
+            .nav_right_btn {
+                display: block;
+            }
+        }
     }
 
     .post-title h3 {
@@ -907,11 +922,4 @@ a.btn {
         height: auto;
         max-height: max-content;
     }
-}
-
-#gitalk_container {
-    padding: 10px;
-}
-#gitment_container {
-    padding: 10px;
 }
