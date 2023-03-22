@@ -14,8 +14,11 @@ mixin make_post(item, is_detail)
 		else
 			.post-content
 				if theme.useSummary
-					- var summary = item.excerpt || item.content
-					p!= truncate(strip_html(summary), {length: 160})
+					if item.summary
+						p!= item.summary
+					else
+						- var summary = item.excerpt || item.content
+						p!= truncate(strip_html(summary), {length: 160})
 				else
 					.card
 						if item.excerpt
