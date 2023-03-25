@@ -832,7 +832,7 @@ a.btn {
     display: inline-block;
     text-align: left;
     overflow-y: auto;
-    max-height: 250px;
+    max-height: calc(100vh - 600px);
 }
 
 .toclist::-webkit-scrollbar {
@@ -846,8 +846,9 @@ a.btn {
     background-color: #4786d6;
 }
 
-.toclist-item {
-    list-style: none;
+
+.in-page.toc-container {
+    display: none;
 }
 
 @media screen and (max-width: 960px) {
@@ -930,6 +931,31 @@ a.btn {
 
     .toclist {
         height: auto;
-        max-height: max-content;
+        max-height: 100%;
+        height: calc(100vh - 90px);
+    }
+
+    .in-sidebar.toc-container {
+        display: none;
+    }
+    .in-page.toc-container {
+        display: block;
+        border-left: 1px solid #f0f0f0;
+        position: fixed;
+        bottom: 0px;
+        right: 0;
+        background-color: #fff;
+        z-index: 999;
+        .toc-toggle summary {
+            background: #4786d6;
+            color: #fff;
+            padding: 5px 10px;
+        } 
+        .toc-toggle[open] summary {
+            color: #4786d6;
+            background: #fff;
+            padding: 4px;
+            text-align: center;
+        }
     }
 }
