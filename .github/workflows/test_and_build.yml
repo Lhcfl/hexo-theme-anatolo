@@ -37,14 +37,11 @@ jobs:
           npm install
           npm install hexo-renderer-pug --save
           npm install hexo-renderer-stylus --save
+          npx hexo new "Anatolo简介"
+          cat ../README.md >> ./sourse/_posts/Anatolo简介.md
           git clone https://github.com/Lhcfl/hexo-theme-anatolo.git themes/Anatolo
           cd themes/Anatolo
           cp _config.example.yml _config.yml
-      
-      - name: Update Readme
-        run: |
-          hexo new "Anatolo简介"
-          cat ../README.md >> ./sourse/_posts/Anatolo简介.md
       
       - name: Generate Test # 生成 Hexo 单元测试
         run: |
