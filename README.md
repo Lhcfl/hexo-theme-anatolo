@@ -15,8 +15,6 @@
 
 如果有任何建议欢迎issue，也可以提出pr。
 
-由于我不会css，pug和javascript，许多代码是能用就行，
-
 ## 使用方式
 参见 https://github.com/Lhcfl/hexo-theme-anatolo/wiki
 
@@ -36,7 +34,7 @@
 - 增加了Gitalk评论支持
 
 ## 已知bug ~~（feature）~~
-- （急需修复）站点位于子目录时，大部分链接都会错误工作
+- 暗黑模式未完工，切换时可能屏闪
 - 原主题的葡萄牙语支持无法更新
 - TOC放置可能不够美观
 - 当Nav栏放置过多链接时可能导致右侧按钮下移
