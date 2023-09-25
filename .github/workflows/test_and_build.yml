@@ -1,0 +1,63 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - master
+      - main
+
+jobs:
+  unit_test_and_build_blog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Configure Git # 配置Git
+        env:
+          DEPLOY_PRI: ${{ secrets.DEPLOY_PRI }}
+          GIT_USERNAME: ${{ github.repository_owner }}
+          GIT_EMAIL: ${{ github.repository_owner }}@user.github.com
+        run: |
+          sudo timedatectl set-timezone "Asia/Shanghai"
+          mkdir -p ~/.ssh/
+          echo "$DEPLOY_PRI" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          git config --global user.name $GIT_USERNAME
+          git config --global user.email $GIT_EMAIL
+      
+      - name: Configure Hexo Unit Test # 配置 Hexo 单元测试
+        run: |
+          git clone https://github.com/hexojs/hexo-theme-unit-test.git unit_test
+          cp ./.github/asserts/hexo_config.yml unit_test/_config.yml
+          cd unit_test
+          npm install
+          npm install hexo-renderer-pug --save
+          npm install hexo-renderer-stylus --save
+          git clone https://github.com/Lhcfl/hexo-theme-anatolo.git themes/Anatolo
+          cd themes/Anatolo
+          cp _config.example.yml _config.yml
+      
+      - name: Update Readme
+        run: |
+          hexo new "Anatolo简介"
+          cat ../README.md >> ./sourse/_posts/Anatolo简介.md
+      
+      - name: Generate Test # 生成 Hexo 单元测试
+        run: |
+          cd unit_test
+          npx hexo g
+
+      - name: Commit And Push Blog # 提交到Git仓库
+        env:
+          GIT_URL: 'git@github.com:Lhcfl/Anatolodemo.git'
+        run: |
+          cd unit_test/public
+          git init
+          git remote add origin $GIT_URL
+          git add -A
+          git commit -m "Test auto generated."
+          git push origin HEAD:master --force
