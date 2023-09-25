@@ -2,7 +2,7 @@
 keywords: Blog,博客,Hexo
 author: Yourname
 description: A simple and beautiful blog
-defaultTheme: dark-mode # light-mode or dark-mode
+defaultTheme: light-mode # light-mode or dark-mode
 
 # icon
 # If the is size is incorrect, please edit /source.css/style.styl
@@ -62,6 +62,7 @@ rightbtn:
   back: true
   search: true       # 从Icarus抠出来的搜索框，关掉可以稍微提高速度
   avatar: true
+  darkLightToggle: true # 切换明亮暗黑主题（还没做好，建议别用）
 
 
 # Some settings
