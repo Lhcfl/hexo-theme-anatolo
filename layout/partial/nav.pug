@@ -1,11 +1,11 @@
 .page-top.animated.fadeInDown
   .nav
-    each cur, lst in theme.menu
+    each link, menu_name in theme.menu
       li 
-        if is_current(cur)
-          a.current(href= cur)= __(lst)
+        if is_current(link)
+          a.current(href= url_for(link))= __(menu_name)
         else
-          a(href=cur)= __(lst)
+          a(href= url_for(link))= __(menu_name)
 
 
   .information
