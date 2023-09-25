@@ -9,8 +9,6 @@ mixin make_post(item, is_detail)
 		if is_detail
 			.post-content
 				p!= item.content
-				if theme.copyright.show
-					.tip!= (item.copyright || theme.copyright.default) + "<br>" + __("author") + ": " + (item.author || theme.author)
 		else
 			.post-content
 				if theme.useSummary
@@ -26,31 +24,34 @@ mixin make_post(item, is_detail)
 						else
 							p!= item.summary || item.content
 				//- 修改了显示缩略的选项
-		.post-footer: .meta
-			.info
-				if is_current('about')
-					span
-				else if is_current('guestbook')
-					span
-				else
-					i.fa.fa-sun-o
-					span.date= date(item.date, 'YYYY-MM-DD')
-					if item.categories
-						- item.categories.sort('posts').each(function(item) {
-							a.tag(href=config.root + item.path, title= item.name)= item.name + " "
-						- });
-					if item.tags
-						- item.tags.sort('posts').each(function(item) {
-							i.fa.fa-tag
-							a.tag(href=config.root + item.path, title= item.name)= item.name + " "
-						- });
+		.post-footer
+			if theme.copyright.show && item.copyright !== 'disabled'
+				.tip!= (item.copyright || theme.copyright.default) + "<br>" + __("author") + ": " + (item.author || theme.author)
+			.meta
+				.info
+					if is_current('about')
+						span
+					else if is_current('guestbook')
+						span
+					else
+						i.fa.fa-sun-o
+						span.date= date(item.date, 'YYYY-MM-DD')
+						if item.categories
+							- item.categories.sort('posts').each(function(item) {
+								a.tag(href=config.root + item.path, title= item.name)= item.name + " "
+							- });
+						if item.tags
+							- item.tags.sort('posts').each(function(item) {
+								i.fa.fa-tag
+								a.tag(href=config.root + item.path, title= item.name)= item.name + " "
+							- });
 
-					span.leancloud_visitors
-					span
-						- var words = word_count(item.content)
-						- var needtime = duration((words / 300.0) * 60, 'seconds')
-						- var timestr = (time(needtime, "m") == '0' ? "" : (time(needtime, "m") + __('time.minu'))) + time(needtime, "s") + __("time.senc")
-						= __("article.about") + words + __("article.words") + ", " + timestr + __("article.read")
+						span.leancloud_visitors
+						span
+							- var words = word_count(item.content)
+							- var needtime = duration((words / 300.0) * 60, 'seconds')
+							- var timestr = (time(needtime, "m") == '0' ? "" : (time(needtime, "m") + __('time.minu'))) + time(needtime, "s") + __("time.senc")
+							= __("article.about") + words + __("article.words") + ", " + timestr + __("article.read")
 
 
 
