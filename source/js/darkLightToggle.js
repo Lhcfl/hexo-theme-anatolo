@@ -104,9 +104,11 @@ function loadStyles(url){
   head.appendChild(link);
 }
 
-const defaultTheme = document.getElementById("default-theme").getAttribute("data");
+function getDefaultTheme() {
+  return document.getElementById("default-theme").getAttribute("data");
+}
 
-const url_for = (url) => {
+function url_for(url) {
   const root = document.getElementById("site_root_url").getAttribute("data");
   if (url[0] !== '/') {
     url = '/' + url;
@@ -122,12 +124,12 @@ function setTheme() {
   if (document.getElementById('themecss')){
     document.getElementById('themecss').remove();
   }
-  if (localStorage["themeChanged"] && defaultTheme == "light") {
+  if (localStorage["themeChanged"] && getDefaultTheme() == "light") {
     loadStyles(url_for("css/theme/dark.css"));
-  } else if (localStorage["themeChanged"] && defaultTheme == "dark") {
+  } else if (localStorage["themeChanged"] && getDefaultTheme() == "dark") {
     loadStyles(url_for("css/theme/light.css"));
   } else {
-    loadStyles(url_for(`css/theme/${defaultTheme}.css`));
+    loadStyles(url_for(`css/theme/${getDefaultTheme()}.css`));
   }
 }
 

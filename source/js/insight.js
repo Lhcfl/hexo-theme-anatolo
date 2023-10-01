@@ -186,7 +186,8 @@ function Showsearch() {
 
         function gotoLink($item) {
             if ($item && $item.length) {
-                location.href = $item.attr('data-url');
+                routeTo($item.attr('data-url'));
+                closeWindow();
             }
         }
 
@@ -247,10 +248,13 @@ function Showsearch() {
 
 (function($, CONFIG) {
     Showsearch();
+    document.getElementsByClassName('ins-search')[0].onclick = closeWindow;
 })(jQuery, window.INSIGHT_CONFIG);
 
 function openWindow() {
     var $main = $('.ins-search');
+    $main.removeClass('fadeOut');
+    $main.addClass('animated fadeIn');
     $main.addClass('show');
     $main.find('.ins-search-input').focus();
 }
@@ -260,6 +264,8 @@ function closeWindow() {
     $('.navbar-main').css('pointer-events', 'none');
     setTimeout(function() {
         $('.navbar-main').css('pointer-events', 'auto');
+        $main.removeClass('show');
     }, 400);
-    $main.removeClass('show');
+    $main.removeClass('fadeIn');
+    $main.addClass('fadeOut');
 }
