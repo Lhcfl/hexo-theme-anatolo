@@ -1,0 +1,23 @@
+primary = 22, 22, 22
+secondary = 255, 255, 255
+
+// primary = 255, 255, 255
+// secondary = 0, 0, 0
+
+mix_color(name, color1, color2)
+  for lightness in range(50, 1000, 50)
+    \-\-{name}-{lightness}: lightness * 0.001 * rgb(color1) + (1000 - lightness) * 0.001 * rgb(color2)
+
+gen_color(name, color1, color2)
+  \-\-{name}-rgb: color1
+  \-\-{name}: rgb(color1)
+  \-\-{name}-high: 0.9 * rgb(color1) + 0.1 * rgb(color2)
+  \-\-{name}-midium: 0.7 * rgb(color1) + 0.3 * rgb(color2)
+  \-\-{name}-low-mid: 0.5 * rgb(color1) + 0.5 * rgb(color2)
+  \-\-{name}-low: 0.2 * rgb(color1) + 0.8 * rgb(color2)
+  \-\-{name}-very-low: 0.05 * rgb(color1) + 0.95 * rgb(color2)
+  mix_color(name, color1, color2)
+
+:root
+  gen_color('primary', primary, secondary)
+  gen_color('secondary', secondary, primary)

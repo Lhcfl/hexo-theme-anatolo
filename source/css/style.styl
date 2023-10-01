@@ -1,26 +1,29 @@
-@charset 'UTF-8'site-border = 1px solid #e2e2e2;
+cssrgba(color, opacity)
+    s("rgba(%s, %s)", color, opacity)
+
+@charset 'UTF-8'site-border = 1px solid var(--primary-100);
 
 html {
-    background-color: #fff;
+    background-color: var(--secondary);
     -webkit-font-smoothing: antialiased;
     transition: all 0.2s ease-out;
 }
 
 html[id='theme-dark-mode'] {
-    filter: invert(1) hue-rotate(180deg);
+    // filter: invert(1) hue-rotate(180deg);
 }
 
 html[id='theme-dark-mode'] img {
-    filter: invert(1) hue-rotate(180deg);
+    // filter: invert(1) hue-rotate(180deg);
 }
 
 body {
-    color: rgba(0, 0, 0, 0.9);
+    color: var(--primary-high)
     font-family: 'PingHei', 'PingFang SC', Helvetica Neue, 'Work Sans', 'Hiragino Sans GB', 'Microsoft YaHei', SimSun, sans-serif;
     font-size: 15px;
     width: 100%;
     margin: 0 auto 30px auto;
-    background-color: #fff;
+    background-color: var(--secondary);
 }
 
 p {
@@ -40,7 +43,7 @@ a:link, a:visited {
     -o-transition: all 0.15s linear;
     -ms-transition: all 0.15s linear;
     transition: all 0.15s linear;
-    color: #424242;
+    color: var(--secondary-300);
 }
 
 a:hover, a:active {
@@ -138,7 +141,7 @@ a:hover, a:active {
     position: fixed;
     right: 0;
     z-index: 3;
-    background-color: #fff;
+    background-color: var(--secondary);
     height: 60px;
     border-bottom: site-border;
 
@@ -155,7 +158,7 @@ a:hover, a:active {
         }
 
         a {
-            color: #5A5A5A;
+            color: var(--secondary-350);
         }
 
         a:hover {
@@ -163,7 +166,7 @@ a:hover, a:active {
         }
 
         a.current {
-            color: #5A5A5A;
+            color: var(--secondary-350);
             padding-bottom: 20px;
             border-bottom: 2px solid #4786D6;
         }
@@ -201,7 +204,7 @@ a:hover, a:active {
     width: 30%;
     -webkit-background-size: cover;
     background-size: cover;
-    background-color: #fff;
+    background-color: var(--secondary);
     height: 100%;
     transition: 0.8s;
     top: 0;
@@ -216,7 +219,7 @@ a:hover, a:active {
 
         .description {
             font-size: 14px;
-            color: #565654;
+            color: var(--secondary-350);
         }
 
         .logo {
@@ -235,7 +238,7 @@ a:hover, a:active {
 
             a {
                 text-decoration: none;
-                color: #464646;
+                color: var(--secondary-350);
                 font-size: 2rem;
                 font-weight: bold;
             }
@@ -259,7 +262,7 @@ a:hover, a:active {
         }
 
         a {
-            color: #565654;
+            color: var(--secondary-350);
         }
 
         a:hover {
@@ -285,7 +288,7 @@ a:hover, a:active {
 }
 
 .post {
-    background-color: #FFF;
+    background-color: var(--secondary);
     margin: 30px;
 
     .post-title {
@@ -302,7 +305,7 @@ a:hover, a:active {
             font-size: 28px;
             line-height: 1;
             font-weight: 600;
-            color: #5f5f5f;
+            color: var(--secondary-350);
         }
 
         h3 {
@@ -310,7 +313,7 @@ a:hover, a:active {
             letter-spacing: 1px;
             line-height: 1;
             font-weight: 600;
-            color: #111111;
+            color: var(--primary-high);
             font-size: 22px;
             margin: 0;
         }
@@ -318,7 +321,7 @@ a:hover, a:active {
         a {
             text-decoration: none;
             letter-spacing: 1px;
-            color: #5f5f5f;
+            color: var(--secondary-350);
 
             &:hover {
                 text-decoration: underline;
@@ -338,35 +341,35 @@ a:hover, a:active {
         }
 
         h1 {
-            color: #5F5F5F;
+            color: var(--secondary-350);
             font-size: 22px;
             font-weight: 600;
         }
 
         h2 {
-            color: #5F5F5F;
+            color: var(--secondary-350);
             font-size: 20px;
         }
 
         h3 {
-            color: #5F5F5F;
+            color: var(--secondary-350);
             font-size: 18px;
             font-weight: 600;
         }
 
         h4 {
-            color: #5F5F5F;
+            color: var(--secondary-350);
             font-size: 17px;
         }
 
         h5 {
-            color: #5F5F5F;
+            color: var(--secondary-350);
             font-size: 16px;
             font-weight: 600;
         }
 
         h6 {
-            color: #5F5F5F;
+            color: var(--secondary-350);
             font-size: 15px;
         }
     }
@@ -376,7 +379,7 @@ a:hover, a:active {
         border-bottom: site-border;
 
         .meta {
-            post-footer-color = #777;
+            post-footer-color = var(--primary-low-mid);
             max-width: 100%;
             height: 25px;
             color: post-footer-color;
@@ -425,7 +428,7 @@ a:hover, a:active {
 
             a {
                 text-decoration: none;
-                color: rgba(0, 0, 0, 0.44);
+                color: cssrgba(var(--primary-rgb), 0.44);
                 font-weight: 400;
 
                 &:hover {
@@ -501,10 +504,10 @@ a:hover, a:active {
     position: absolute;
     width: 100%;
     padding-bottom: 5px;
-    background: #fff;
+    background: var(--secondary);
 
     a {
-        color: #A6A6A6;
+        color: var(--secondary-650);
     }
 
     a:hover {
@@ -536,7 +539,7 @@ a:hover, a:active {
 
     .listing-title {
         font-size: 24px;
-        color: #666666;
+        color: var(--secondary-400);
         font-weight: 600;
         line-height: 2.2em;
     }
@@ -549,11 +552,11 @@ a:hover, a:active {
 
             .post-time {
                 float: right;
-                color: #C5C5C5;
+                color: var(--secondary-800);
             }
 
             a {
-                color: #8F8F8F;
+                color: var(--secondary-550);
 
                 &:hover {
                     color: #4786D6;
@@ -573,11 +576,11 @@ a:hover, a:active {
     width: 32px;
     height: 32px;
     border-radius: 300px;
-    background-color: #3E3E3E;
+    background-color: var(--secondary-250);
     margin-right: 5px;
 
     a {
-        color: #fff;
+        color: var(--secondary);
         padding: 11px;
         font-size: 12px;
     }
@@ -596,7 +599,7 @@ a:hover, a:active {
     margin-right: 5px;
 
     a {
-        color: #fff;
+        color: var(--secondary);
         padding: 9px;
     }
 
@@ -613,7 +616,7 @@ a:hover, a:active {
     margin-right: 5px;
 
     a {
-        color: #fff;
+        color: var(--secondary);
         padding: 9px;
     }
 
@@ -646,11 +649,11 @@ a:hover, a:active {
 
 /* Comment style */
 .comment-count {
-    color: #666;
+    color: var(--secondary-400);
 }
 
 .tab-community {
-    color: #666;
+    color: var(--secondary-400);
 }
 
 .read_more {
@@ -671,7 +674,7 @@ a:hover, a:active {
 
 /* button style */
 a.btn {
-    color: #868686;
+    color: var(--secondary-550);
     font-weight: 400;
 }
 
@@ -679,13 +682,13 @@ a.btn {
     display: inline-block;
     position: relative;
     outline: 0;
-    color: rgba(0, 0, 0, 0.44);
-    background: rgba(0, 0, 0, 0);
+    color: cssrgba(var(--primary-rgb), 0.44);
+    background: cssrgba(var(--primary-rgb), 0);
     font-size: 14px;
     text-align: center;
     text-decoration: none;
     cursor: pointer;
-    border: 1px solid rgba(0, 0, 0, 0.15);
+    border: 1px solid cssrgba(var(--primary-rgb), 0.15);
     white-space: nowrap;
     font-weight: 400;
     font-style: normal;
@@ -702,7 +705,7 @@ a.btn {
     text-align: center;
     text-decoration: none;
     cursor: pointer;
-    border: 1px solid #464545;
+    border: 1px solid var(--secondary-250);
     white-space: nowrap;
     font-weight: 400;
     font-style: normal;
@@ -745,13 +748,13 @@ a.btn {
                 position: relative;
                 padding: 0.5em 1.25em;
                 outline: 0;
-                color: rgba(0, 0, 0, 0.44);
-                background: rgba(0, 0, 0, 0);
+                color: cssrgba(var(--primary-rgb), 0.44);
+                background: cssrgba(var(--primary-rgb), 0);
                 font-size: 14px;
                 text-align: center;
                 text-decoration: none;
                 cursor: pointer;
-                border: 1px solid rgba(0, 0, 0, 0.15);
+                border: 1px solid cssrgba(var(--primary-rgb), 0.15);
                 white-space: nowrap;
                 font-weight: 400;
                 font-style: normal;
@@ -762,13 +765,13 @@ a.btn {
                     position: relative;
                     padding: 0.5em 1.25em;
                     outline: 0;
-                    color: #fff;
+                    color: var(--secondary);
                     background: #3CBD10;
                     font-size: 14px;
                     text-align: center;
                     text-decoration: none;
                     cursor: pointer;
-                    border: 1px solid rgba(0, 0, 0, 0.15);
+                    border: 1px solid cssrgba(var(--primary-rgb), 0.15);
                     white-space: nowrap;
                     font-weight: 400;
                     font-style: normal;
@@ -796,7 +799,7 @@ a.btn {
 .tag_btn {
     align-items: center;
     border-radius: 100px;
-    color: #4a4a4a;
+    color: var(--secondary-250);
     display: inline-flex;
     font-size: 0.9rem;
     height: 2em;
@@ -809,14 +812,14 @@ a.btn {
 
     .is-grey {
         padding-right: 0.75em;
-        background-color: #e0e0e0;
+        background-color: var(--secondary-850);
     }
 }
 
 /* TOC style */
 .tocmenu {
     align-items: center;
-    border-top: 1px solid #f0f0f0;
+    border-top: 1px solid var(--primary-100);
     text-align: center;
     font-size: 13px;
     margin: 0 auto;
@@ -883,7 +886,7 @@ a.btn {
         overflow-y: hidden;
 
         .information {
-            background-color: #fff;
+            background-color: var(--secondary);
             position: absolute;
             right: 0;
 
@@ -925,7 +928,7 @@ a.btn {
     }
 
     .tocmenu {
-        border-bottom: 1px solid #f0f0f0;
+        border-bottom: 1px solid var(--primary-100);
         position: relative;
     }
 
@@ -940,20 +943,20 @@ a.btn {
     }
     .in-page.toc-container {
         display: block;
-        border-left: 1px solid #f0f0f0;
+        border-left: 1px solid var(--primary-100);
         position: fixed;
         bottom: 0px;
         right: 0;
-        background-color: #fff;
+        background-color: var(--secondary);
         z-index: 999;
         .toc-toggle summary {
             background: #4786d6;
-            color: #fff;
+            color: var(--secondary);
             padding: 5px 10px;
         } 
         .toc-toggle[open] summary {
             color: #4786d6;
-            background: #fff;
+            background: var(--secondary);
             padding: 4px;
             text-align: center;
         }

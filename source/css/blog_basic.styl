@@ -1,3 +1,6 @@
+cssrgba(color, opacity)
+    s("rgba(%s, %s)", color, opacity)
+
 .tip {
     position: relative;
     margin: 2em 0;
@@ -5,7 +8,7 @@
     border-left: 4px solid #f66;
     border-top-right-radius: 2px;
     border-bottom-right-radius: 2px;
-    background-color: #f8f8f8
+    background-color: var(--secondary-950);
 }
 
 .tip br {
@@ -20,7 +23,7 @@
     width: 20px;
     height: 20px;
     border-radius: 100%;
-    color: #fff;
+    color: var(--secondary);
     font-size: 14px;
     line-height: 20px;
     font-weight: bold;
@@ -42,7 +45,7 @@
 
 pre {
     font-size: 15px;
-    background-color: #f0f0f0!important;
+    background-color: var(--secondary-950) !important;
     font-family: "mononoki", "Consolas", 'Roboto Mono', 'Lucida Console', 'Trebuchet MS', 'Courier New', 'Monaco', 'courier', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Jhenghei', 'Microsoft YaHei', monospace!important
 }
 
@@ -51,7 +54,7 @@ figure.highlight {
     margin: 1em 0!important;
     border-radius: 2px!important;
     line-height: 1.1em!important;
-    background-color: #f8f8f8!important;
+    background-color: #f8f8f8 !important;
     overflow-x: auto!important
 }
 
@@ -388,7 +391,7 @@ hr {
     display: block;
     height: 1px;
     border: 0;
-    border-top: 1px solid #efefef;
+    border-top: 1px solid var(--primary-100);
     margin: 3.2em 0;
     padding: 0;
 }
@@ -397,8 +400,8 @@ blockquote {
     box-sizing: border-box;
     margin: 1.6em 0 1.6em 0em;
     padding: 0 0 0 1.6em;
-    border-left: #f66 0.5em solid;
-    background-color: #f8f8f8;
+    border-left: #f66 0.3em solid;
+    background-color: cssrgba(var(--primary-rgb), 0.03);
 }
 
 blockquote p {
@@ -435,8 +438,8 @@ tt {
     font-family: Inconsolata, monospace, sans-serif;
     font-size: 0.95em;
     white-space: pre-wrap;
-    border: 1px solid #E3EDF3;
-    background: rgba(240,240,240,0);
+    border: 1px solid var(--primary-200);
+    background: var(--secondary-950);
     color: #d14;
     border-radius: 2px;
 }

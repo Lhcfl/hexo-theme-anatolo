@@ -17,8 +17,12 @@ meta(content="yes",name="apple-mobile-web-app-capable")
 meta(content="black",name="apple-mobile-web-app-status-bar-style")
 meta(content="telephone=no",name="format-detection")
 
+meta(id="site_root_url", data=url_for('/'))
+html(id="default-theme", data=(theme.defaultTheme == "dark-mode"?"dark":"light"))
+
 meta(name="renderer",content="webkit")
 link(rel="shortcut icon" type="image/x-icon" href=theme.favicon)
+
 link(rel="stylesheet", href= url_for('css/style.css'))
 link(rel="stylesheet", href= url_for('css/blog_basic.css'))
 link(rel="stylesheet", href= url_for('css/font-awesome.min.css'))
