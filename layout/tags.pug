@@ -17,6 +17,6 @@ block content
                         canvas#resCanvas()
                             != tagcloud()
         else 
-            .archive.animated.fadeInDown
+            .archive
                 .autopagerize_page_element: .content
                     p!= list_tags(site.tags, {class: {ul: 'ululul', li: 'tag_round', a: 'tag_btn', count: 'tag_btn is-grey'}, style: false, separator: ' | '})

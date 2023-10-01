@@ -8,6 +8,6 @@ block description
     meta(name="description", content=desc)
 
 block content
-    .archive.animated.fadeInDown
+    .archive
         .autopagerize_page_element: .content
             p!= list_categories(site.categories, {show_count: false})
