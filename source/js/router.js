@@ -23,18 +23,44 @@ function routeTo(url) {
   let whenOK = () => {};
   if (url == window.location.href) return;
   if (isThisSite(url)) {
+    const sidebarheight = document.getElementsByClassName('sidebar')[0].clientHeight - 40;
     $.ajax(url).then(res => {
       // console.log(res);
       function replacePage() {
         const body = res.match(/<main-outlet>([\s\S]*)<\/main-outlet>/)[1];
+        const head = res.match(/<head>([\s\S]*)<\/head>/)[1];
+        const title = head.match(/<title>([\s\S]*)<\/title>/)[1];
+
         document.getElementsByTagName('main-outlet')[0].innerHTML = body;
+        document.title = title;
+
         history.pushState(null, null, url);
         makeLink();
-        window.scrollTo({
-          left: 0,
-          top: 0,
-          behavior: 'smooth'
-        })
+        if (window.innerWidth > 960) {
+          window.scrollTo({
+            left: 0,
+            top: 0,
+            behavior: 'smooth'
+          });
+        } else {
+          if (
+            window.location.href === window.location.origin || 
+            window.location.href.slice(0, -1) === window.location.origin
+          ) {
+            window.scrollTo({
+              left: 0,
+              top: 0,
+              behavior: 'smooth'
+            });
+          } else {
+            window.scrollTo({
+              left: 0,
+              top: sidebarheight,
+              // behavior: 'smooth'
+            });
+          }
+        }
+        
         animated_ok = 0;
         whenOK = () => {};
       }

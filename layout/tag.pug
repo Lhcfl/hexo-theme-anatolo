@@ -12,7 +12,7 @@ block content
         .archive
             ul.list-with-title
                 li
-                    h3= page.tag
+                    h3= __("Tags") + " · " + page.tag
                 include mixins
                 +postList()
                 +make_pager(__('prev'), __('next'))
