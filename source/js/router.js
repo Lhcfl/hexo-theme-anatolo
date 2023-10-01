@@ -21,8 +21,21 @@ function makeLink() {
 function routeTo(url) {
   let animated_ok = 0;
   let whenOK = () => {};
-  if (url == window.location.href) return;
   if (isThisSite(url)) {
+    const splited = url.split('/');
+    if (splited[splited.length - 1] && splited[splited.length - 1].startsWith('#')) {
+      const sid = decodeURI(splited[splited.length - 1]).slice(1);
+      const go = document.getElementById(sid);
+      console.log(go);
+      window.scrollTo({
+        left: 0,
+        top: go.offsetTop + (go.offsetParent?.offsetTop || 0) - 80,
+        behavior: 'smooth'
+      });
+      history.replaceState(null, null, url);
+      return;
+    }
+    if (url == window.location.href) return;
     const sidebarheight = document.getElementsByClassName('sidebar')[0].clientHeight - 40;
     $.ajax(url).then(res => {
       // console.log(res);
