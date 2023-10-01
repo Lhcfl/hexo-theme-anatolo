@@ -18,7 +18,7 @@ meta(content="black",name="apple-mobile-web-app-status-bar-style")
 meta(content="telephone=no",name="format-detection")
 
 meta(id="site_root_url", data=url_for('/'))
-html(id="default-theme", data=(theme.defaultTheme == "dark-mode"?"dark":"light"))
+meta(id="default-theme", data=(theme.defaultTheme == "dark-mode"?"dark":"light"))
 
 meta(name="renderer",content="webkit")
 link(rel="shortcut icon" type="image/x-icon" href=theme.favicon)
