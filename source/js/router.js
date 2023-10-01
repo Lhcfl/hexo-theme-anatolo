@@ -26,7 +26,7 @@ function routeTo(url) {
     if (splited[splited.length - 1] && splited[splited.length - 1].startsWith('#')) {
       const sid = decodeURI(splited[splited.length - 1]).slice(1);
       const go = document.getElementById(sid);
-      console.log(go);
+      // console.log(go);
       window.scrollTo({
         left: 0,
         top: go.offsetTop + (go.offsetParent?.offsetTop || 0) - 80,
