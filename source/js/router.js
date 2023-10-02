@@ -59,7 +59,7 @@ function replacePage(callback, pushState = true) {
       }, title, url);
     }
 
-    historyStates[document.location.href] = {
+    historyStates[document.location.href] = historyStates[document.location.href] || {
       url: document.location.href,
       body,
       title,
@@ -142,11 +142,15 @@ function routeTo(url) {
     if (url == window.location.href) return;
     
     replacePage(async () => {
-      res = await $.ajax(url);
-      const body = res.match(/<main-outlet>([\s\S]*)<\/main-outlet>/)[1];
-      const head = res.match(/<head>([\s\S]*)<\/head>/)[1];
-      const title = head.match(/<title>([\s\S]*)<\/title>/)[1];
-      return {url, body, title};
+      if (historyStates[url]) {
+        return historyStates[url];
+      } else {
+        res = await $.ajax(url);
+        const body = res.match(/<main-outlet>([\s\S]*)<\/main-outlet>/)[1];
+        const head = res.match(/<head>([\s\S]*)<\/head>/)[1];
+        const title = head.match(/<title>([\s\S]*)<\/title>/)[1];
+        return {url, body, title};
+      }
     });
     
   } else {
