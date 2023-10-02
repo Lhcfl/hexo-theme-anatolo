@@ -1,26 +1,26 @@
 meta(charset="utf-8")
-meta(name="X-UA-Compatible", content="IE=edge")
+meta(name="X-UA-Compatible" content="IE=edge")
 meta(name="author", content= theme.author)
 title
-    block site_title
-        = config.title
+  block site_title
+    = config.title
 block description
-    meta(name="description", content= theme.description ? theme.description : 'A Blog Powered By Hexo')
+  meta(name="description", content= theme.description ? theme.description : 'A Blog Powered By Hexo')
 
 if page.keywords
-    meta(name="keywords", content= page.keywords)
+  meta(name="keywords", content= page.keywords)
 else
-    meta(name="keywords" content= theme.keywords)
+  meta(name="keywords" content= theme.keywords)
 
-meta(content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0",name="viewport")
-meta(content="yes",name="apple-mobile-web-app-capable")
-meta(content="black",name="apple-mobile-web-app-status-bar-style")
-meta(content="telephone=no",name="format-detection")
+meta(content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport")
+meta(content="yes" name="apple-mobile-web-app-capable")
+meta(content="black" name="apple-mobile-web-app-status-bar-style")
+meta(content="telephone=no" name="format-detection")
 
 meta(id="site_root_url", data=url_for('/'))
 meta(id="default-theme", data=(theme.defaultTheme == "dark-mode"?"dark":"light"))
 
-meta(name="renderer",content="webkit")
+meta(name="renderer" content="webkit")
 link(rel="shortcut icon" type="image/x-icon" href=theme.favicon)
 
 link(rel="stylesheet", href= url_for('css/theme/' + (theme.defaultTheme == "dark-mode"?"dark":"light") + '.css'))
@@ -41,3 +41,7 @@ script(src= url_for('js/darkLightToggle.js'))
 script(src= url_for("js/add-bookmark.js"))
 if theme.Baidutongji
   script(src=url_for("js/baidu-tongji.js"))
+
+
+include comments
++require_comment_scripts()

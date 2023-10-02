@@ -32,3 +32,4 @@ block content
           li.next.pagbuttons
             a.btn(role="navigation",href=url_for(next), title=page.next.title)!= __('next_post')
     include partial/comments
+    +make_comments()
