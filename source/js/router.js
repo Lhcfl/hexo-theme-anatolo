@@ -67,6 +67,13 @@ function replacePage(callback, pushState = true) {
   
   
     makeLink();
+
+    if (window.loadComment) {
+      try {
+        window.loadComment();
+      } catch (err) {}
+    }
+
     if (!scrollY) {
       if (window.innerWidth > 960) {
         window.scrollTo({

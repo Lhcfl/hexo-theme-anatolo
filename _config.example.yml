@@ -74,6 +74,8 @@ tocMaxDepth: 6       # if you set 0, toc will close. The maximum is 6.
 
   
 # Comment
+always_enable_comments: false # Always enable comments
+
 duoshuo: 
 disqus: 
 gentie: 

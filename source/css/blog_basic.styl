@@ -23,6 +23,7 @@ cssrgba(color, opacity)
     width: 20px;
     height: 20px;
     border-radius: 100%;
+    transition: color 0.8s;
     color: var(--secondary);
     font-size: 14px;
     line-height: 20px;
@@ -178,7 +179,7 @@ figure.highlight.cpp .code:after {
 }
 
 pre {
-    color: #525252!important
+    color: var(--primary-700)!important
 }
 
 pre .function .keyword,
@@ -439,7 +440,8 @@ tt {
     font-size: 0.95em;
     white-space: pre-wrap;
     border: 1px solid var(--primary-200);
-    background: var(--secondary-950);
+    background-color: var(--secondary-950);
+    transition: background-color 0.8s, border 0.8s;
     color: #d14;
     border-radius: 2px;
 }
