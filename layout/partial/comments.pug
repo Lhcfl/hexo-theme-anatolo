@@ -93,9 +93,10 @@ if theme.always_enable_comments || page.comments
       script(src="https://imsun.github.io/gitment/dist/gitment.browser.js")
       script.
         function loadComment() { 
-          if (!site.getThis()?.title) return;
+          const id = site.getThis()?.title || '#{page.title}';
+          if (!id) return;
           var git_ment = {
-            id: site.getThis()?.title,
+            id,
             owner: '#{theme.gitment.owner}',
             repo: '#{theme.gitment.repo}',
             oauth: {
@@ -117,14 +118,15 @@ if theme.always_enable_comments || page.comments
       script(src="https://unpkg.com/gitalk/dist/gitalk.min.js")
       script.
         function loadComment() { 
-          if (!site.getThis()?.title) return;
+          const id = site.getThis()?.title || '#{page.title}';
+          if (!id) return;
           const gitalk = new Gitalk({
             clientID: '#{theme.gitalk.client_id}',
             clientSecret: '#{theme.gitalk.client_secret}',
             repo: '#{theme.gitalk.repo}',      // The repository of store comments,
             owner: '#{theme.gitalk.owner}',
             admin: ['#{theme.gitalk.owner}'],
-            id: site.getThis()?.title,      // Ensure uniqueness and length less than 50
+            id,      // Ensure uniqueness and length less than 50
             distractionFreeMode: false  // Facebook-like distraction free mode
           })
           gitalk.render('gitalk_container')
