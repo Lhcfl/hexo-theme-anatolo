@@ -57,7 +57,7 @@ module.exports = function(hexo) {
       }
       htmls.push(`<div class="${classNames.tag_group}">`);
       tag_dict[id].sort((tag1, tag2) => tag1.name < tag2.name ? -1 : 1).forEach(tag => {
-        htmls.push(`<a class="${classNames.a}" href="/${tag.path}" rel="tag">${classNames.before}${htmlSafe(tag.name)}<span class="${classNames.count}">${tag.length}</span></a>`);
+        htmls.push(`<a class="${classNames.a}" href="${this.url_for(tag.path)}" rel="tag">${classNames.before}${htmlSafe(tag.name)}<span class="${classNames.count}">${tag.length}</span></a>`);
       });
       htmls.push(`</div>`)
     });
