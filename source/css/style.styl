@@ -644,13 +644,17 @@ a:hover, a:active {
         .listing-post {
             padding-bottom: 5px;
 
+            display: flex;
+
             .post-time {
+                flex: 0 0 50px;
                 float: right;
                 color: var(--secondary-800);
                 transition: color 0.8s;
             }
 
             a {
+                flex: 1 1 100%;
                 color: var(--secondary-550);
 
                 &:hover {
