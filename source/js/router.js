@@ -22,6 +22,18 @@ function makeLink() {
   }
 }
 
+function preparePage() {
+  makeLink();
+
+  if (window.loadComment) {
+    try {
+      window.loadComment();
+    } catch (err) {}
+  }
+
+  make_friends_list();
+}
+
 /**
  * Change Page
  * @param {async () => {body: string, title:string}} callback 
@@ -64,15 +76,8 @@ function replacePage(callback, pushState = true) {
       body,
       title,
     };
-  
-  
-    makeLink();
 
-    if (window.loadComment) {
-      try {
-        window.loadComment();
-      } catch (err) {}
-    }
+    preparePage();
 
     if (!scrollY) {
       if (window.innerWidth > 960) {

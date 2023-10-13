@@ -10,6 +10,9 @@ block description
 block content
     .autopagerize_page_element: .content: .post-page
         include mixins
+        if page.friends
+          - var result = JSON.stringify(page.friends);
+          meta#FRIENDS_JSON(data= result)
         +make_post(page, true)
         include partial/comments
         +make_comments()
