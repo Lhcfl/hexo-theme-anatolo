@@ -46,7 +46,7 @@ jobs:
       - name: Generate Test # 生成 Hexo 单元测试
         run: |
           cd unit_test
-          npx hexo g
+          npx hexo g -b
 
       - name: Commit And Push Blog # 提交到Git仓库
         env:

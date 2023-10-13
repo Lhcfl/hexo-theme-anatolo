@@ -1,100 +1,100 @@
 mixin make_post(item, is_detail)
-	.post.animated
-		.post-title
-			h3
-				if is_detail
-					a= item.title
-				else
-					a(href= url_for(item.path))= item.title
-		if is_detail
-			.post-content
-				p!= item.content
-		else
-			.post-content
-				if theme.useSummary
-					if item.summary
-						p!= item.summary
-					else
-						- var summary = item.excerpt || item.content
-						p!= truncate(strip_html(summary), {length: 160})
-				else
-					.card
-						if item.excerpt
-							p!= item.excerpt
-						else
-							p!= item.summary || item.content
-				//- 修改了显示缩略的选项
-		.post-footer
-			if is_detail
-				if (item.copyright || theme.copyright.show) && item.copyright !== 'disabled'
-				  if theme.copyright.show_author || item.author
-						.tip!= (item.copyright || theme.copyright.default) + "<br>" + __("author") + ": " + (item.author || theme.author)
-					else
-						.tip!= item.copyright || theme.copyright.default
-			.meta
-				.info
-					if is_current('about')
-						span
-					else if is_current('guestbook')
-						span
-					else
-						i.fa.fa-sun-o
-						span.date= date(item.date, 'YYYY-MM-DD')
-						if item.categories
-							- item.categories.sort('posts').each(function(item) {
-								a.tag(href=config.root + item.path, title= item.name)= item.name + " "
-							- });
-						if item.tags
-							- item.tags.sort('posts').each(function(item) {
-								i.fa.fa-tag
-								a.tag(href=config.root + item.path, title= item.name)= item.name + " "
-							- });
+  .post.animated
+    .post-title
+      h3
+        if is_detail
+          a= item.title
+        else
+          a(href= url_for(item.path))= item.title
+    if is_detail
+      .post-content
+        p!= item.content
+    else
+      .post-content
+        if theme.useSummary
+          if item.summary
+            p!= item.summary
+          else
+            - var summary = item.excerpt || item.content
+            p!= truncate(strip_html(summary), {length: 160})
+        else
+          .card
+            if item.excerpt
+              p!= item.excerpt
+            else
+              p!= item.summary || item.content
+        //- 修改了显示缩略的选项
+    .post-footer
+      if is_detail
+        if (item.copyright || theme.copyright.show) && item.copyright !== 'disabled'
+          if theme.copyright.show_author || item.author
+            .tip!= (item.copyright || theme.copyright.default) + "<br>" + __("author") + ": " + (item.author || theme.author)
+          else
+            .tip!= item.copyright || theme.copyright.default
+      .meta
+        .info
+          if is_current('about')
+            span
+          else if is_current('guestbook')
+            span
+          else
+            i.fa.fa-sun-o
+            span.date= date(item.date, 'YYYY-MM-DD')
+            if item.categories
+              - item.categories.sort('posts').each(function(item) {
+                a.tag(href=config.root + item.path, title= item.name)= item.name + " "
+              - });
+            if item.tags
+              - item.tags.sort('posts').each(function(item) {
+                i.fa.fa-tag
+                a.tag(href=config.root + item.path, title= item.name)= item.name + " "
+              - });
 
-						span.leancloud_visitors
-						span
-							- var words = word_count(item.content)
-							- var needtime = duration((words / 300.0) * 60, 'seconds')
-							- var timestr = (time(needtime, "m") == '0' ? "" : (time(needtime, "m") + __('time.minu'))) + time(needtime, "s") + __("time.senc")
-							= __("article.about") + words + __("article.words") + ", " + timestr + __("article.read")
+            span.leancloud_visitors
+            span
+              - var words = word_count(item.content)
+              - var needtime = duration((words / 300.0) * 60, 'seconds')
+              - var timestr = (time(needtime, "m") == '0' ? "" : (time(needtime, "m") + __('time.minu'))) + time(needtime, "s") + __("time.senc")
+              = __("article.about") + words + __("article.words") + ", " + timestr + __("article.read")
 
 
 
 
 mixin make_pager()
-	- var prev = page.prev_link
-	- var next = page.next_link
-	.pagination
-		ul.clearfix
-			if page.prev
-				li.pre.pagbuttons
-					a.btn(role="navigation",href=url_for(prev))= __('prev')
-			if page.next
-				li.next.pagbuttons
-					a.btn(role="navigation",href=url_for(next))= __('next')
+  - var prev = page.prev_link
+  - var next = page.next_link
+  .pagination
+    ul.clearfix
+      if page.prev
+        li.pre.pagbuttons
+          a.btn(role="navigation",href=url_for(prev))= __('prev')
+      if page.next
+        li.next.pagbuttons
+          a.btn(role="navigation",href=url_for(next))= __('next')
 
 mixin postList()
-	.archive
-		- var year = 0;
-		- var change = false;
-		- var firstYear = true;
-		- page.posts.each(function (item) {
-			- var itemYear = date(item.date, 'YYYY') - 0;
-			- change = year !== itemYear;
-			- year = change ? itemYear : year;
-			if change
-				if firstYear
-					| <div class="listing-title">
-					!= year
-					| </div><ul class="listing">
-					- firstYear = false;
-				else
-					| </ul><div class="listing-title">
-					!= year
-					| </div><ul class="listing">
-			
-			.listing-item
-				.listing-post
-					a(href= url_for(item.path), title= item.title)= item.title
-					div.post-time
-						span.date= date(item.date, 'MM-DD')
-		- })
+  .archive
+    - var year = 0;
+    - var change = false;
+    - var firstYear = true;
+    - page.posts.each(function (item) {
+      - var itemYear = date(item.date, 'YYYY') - 0;
+      - change = year !== itemYear;
+      - year = change ? itemYear : year;
+      if change
+        if firstYear
+          | <div class="listing-title">
+          != year
+          | </div><ul class="listing">
+          - firstYear = false;
+        else
+          | </ul><div class="listing-title">
+          != year
+          | </div><ul class="listing">
+      
+      .listing-item
+        .listing-post
+          a(href= url_for(item.path), title= item.title)= item.title
+          div.post-time
+            span.date= date(item.date, 'MM-DD')
+    - })
