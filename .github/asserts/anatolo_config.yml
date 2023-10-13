@@ -1,0 +1,107 @@
+# Blog config
+keywords: Blog,博客,Hexo
+author: Lhc_fl
+description: A simple and beautiful blog
+defaultTheme: light-mode # light-mode or dark-mode
+
+# icon
+# If the is size is incorrect, please edit /source.css/style.styl
+favicon: /images/favicon.webp
+avatar: /images/logo.webp
+logo_dir: /images/logo@2x.webp
+logo_style: width:220px;
+
+copyright:
+  show: false
+  default: "本文采用CC-BY-SA-3.0协议，转载请注明出处"
+  show_author: true
+
+# 你可以在文章中对文章进行单独设置copyright
+# 例如: 
+# ---
+# title: xxx
+# copyright: "本文著作权归作者所有"
+# author: "Li Hua and Han Meimei"
+# ---
+# ---
+# title: xxx
+# copyright: disabled
+# ---
+
+
+footbar:
+  # Copyright
+  copyright: 
+  # 对于中国用户，如果你有网站备案：
+  beian: 
+  gongan: 
+
+
+# Social Links
+# If you want to add more, go to sidebar.pug
+github: https://github.com/Lhcfl
+mail: lhcfl@outlook.com
+zhihu: 
+QQ: 
+twitter:
+instagram:
+rss:
+facebook:
+weibo:
+
+# Nav menu
+menu:
+  Home: /
+  Archives: /archives
+  Tags: /tags
+  About: /about
+  # Links: /links
+
+# Navbar rightbtn
+rightbtn:
+  back: true
+  search: true       # 从Icarus抠出来的搜索框，关掉可以稍微提高速度
+  avatar: true
+  darkLightToggle: true # 切换明亮暗黑主题（还没做好，建议别用）
+
+
+# Some settings
+useSummary: false    # enable it will use summary of your posts in index
+
+useTagCloud: false   # use tagcloud instead of tag list
+tocMaxDepth: 6       # if you set 0, toc will close. The maximum is 6.
+
+
+  
+# Comment
+always_enable_comments: false # Always enable comments
+
+duoshuo: 
+disqus: 
+gentie: 
+# Valine comments https://valine.js.org
+valine:
+  enable: false # if you want use valine, please set enable: true
+  appid:  # your leancloud appid
+  appkey:  # your leancloud appkey
+  notify: false # true/false:mail notify !!!Test,Caution. https://github.com/xCss/Valine/wiki/Valine-%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%82%AE%E4%BB%B6%E6%8F%90%E9%86%92%E8%AE%BE%E7%BD%AE
+  verify: false # true/false:verify code
+  avatar: mm # avatar style https://github.com/xCss/Valine/wiki/avatar-setting-for-valine
+  placeholder: hello, world # comment box placeholder
+gitment:
+  enable: false
+  owner: '你的 GitHub ID'
+  repo: '存储评论的 repo'
+  client_id: '你的 client ID'
+  client_secret: '你的 client secret'
+gitalk:
+  enable: false
+  owner: '你的 GitHub ID'
+  repo: '存储评论的 repo'
+  client_id: '你的 client ID'
+  client_secret: '你的 client secret'
+# 百度统计设置
+# 请访问 https://tongji.baidu.com/ 
+# 获取统计JS代码放入 Anatolo/source/js/baidu-tongji.js
+
+Baidutongji: false

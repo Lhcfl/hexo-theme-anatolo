@@ -32,16 +32,16 @@ jobs:
       - name: Configure Hexo Unit Test # 配置 Hexo 单元测试
         run: |
           git clone https://github.com/hexojs/hexo-theme-unit-test.git unit_test
+          git clone https://github.com/Lhcfl/hexo-theme-anatolo.git unit_test/themes/Anatolo
+          cp ./.github/asserts/anatolo_config.yml unit_test/unit_test/themes/Anatolo/_config.yml
           cp ./.github/asserts/hexo_config.yml unit_test/_config.yml
+          cp ./.github/asserts/_posts/* unit_test/source/_posts/
           cd unit_test
           npm install
           npm install hexo-renderer-pug --save
           npm install hexo-renderer-stylus --save
           npx hexo new "Anatolo简介"
           cat ../README.md >> ./source/_posts/Anatolo简介.md
-          git clone https://github.com/Lhcfl/hexo-theme-anatolo.git themes/Anatolo
-          cd themes/Anatolo
-          cp _config.example.yml _config.yml
       
       - name: Generate Test # 生成 Hexo 单元测试
         run: |
@@ -56,5 +56,5 @@ jobs:
           git init
           git remote add origin $GIT_URL
           git add -A
-          git commit -m "Test auto generated."
+          git commit -m "Auto generated."
           git push origin HEAD:master --force
