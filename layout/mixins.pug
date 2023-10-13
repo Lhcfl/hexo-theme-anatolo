@@ -27,7 +27,7 @@ mixin make_post(item, is_detail)
 		.post-footer
 			if is_detail
 				if (item.copyright || theme.copyright.show) && item.copyright !== 'disabled'
-				  if theme.copyright.show_author
+				  if theme.copyright.show_author || item.author
 						.tip!= (item.copyright || theme.copyright.default) + "<br>" + __("author") + ": " + (item.author || theme.author)
 					else
 						.tip!= item.copyright || theme.copyright.default
