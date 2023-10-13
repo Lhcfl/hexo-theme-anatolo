@@ -1,3 +1,4 @@
+# See explaination in 
 # Blog config
 keywords: Blog,博客,Hexo
 author: Yourname
@@ -5,32 +6,34 @@ description: A simple and beautiful blog
 defaultTheme: light-mode # light-mode or dark-mode
 
 # icon
-# If the is size is incorrect, please edit /source.css/style.styl
+# If the is size is incorrect, please edit /source/css/style.styl
 favicon: /images/favicon.webp
 avatar: /images/logo.webp
 logo_dir: /images/logo@2x.webp
 logo_style: width:220px;
 
+# Site-wide copyright settings
 copyright:
+  # If `show` is set to true, a copyright statement will be added to the bottom of each article. You can set this individually in the header of each post. For more information, please refer to the documentation
+  # For example: 
+  # ---
+  # title: xxx
+  # copyright: "All rights reserved"
+  # author: "Li Hua and Han Meimei"
+  # ---
+  # ---
+  # title: xxx
+  # copyright: disabled
+  # ---
   show: true
+  # Default copyright statement
   default: "本文采用CC-BY-SA-3.0协议，转载请注明出处"
+  # Show article author in the copyright statement
   show_author: true
 
-# 你可以在文章中对文章进行单独设置copyright
-# 例如: 
-# ---
-# title: xxx
-# copyright: "本文著作权归作者所有"
-# author: "Li Hua and Han Meimei"
-# ---
-# ---
-# title: xxx
-# copyright: disabled
-# ---
-
-
+# Site footbar
 footbar:
-  # Copyright
+  # Copyright statement.You can also use it as a footnote
   copyright: 全站CC-BY-SA-3.0
   # 对于中国用户，如果你有网站备案：
   beian: 
@@ -38,7 +41,7 @@ footbar:
 
 
 # Social Links
-# If you want to add more, go to sidebar.pug
+# If you want to add more, go to `social_links.pug`
 github: https://github.com/Lhcfl
 mail: yourname@example.com
 zhihu: 
@@ -60,16 +63,16 @@ menu:
 # Navbar rightbtn
 rightbtn:
   back: true
-  search: true       # 从Icarus抠出来的搜索框，关掉可以稍微提高速度
+  search: true          # Thanks to Icarus for the search box code
   avatar: true
-  darkLightToggle: true # 切换明亮暗黑主题（还没做好，建议别用）
+  darkLightToggle: true # A toggle switch for dark/light theme
 
 
-# Some settings
-useSummary: false    # enable it will use summary of your posts in index
+# Other settings
+useSummary: false       # Opening it will use the automatically generated summary instead of the <!-- more --> you can configure to preview the article.
 
-useTagCloud: false   # use tagcloud instead of tag list
-tocMaxDepth: 6       # if you set 0, toc will close. The maximum is 6.
+useTagCloud: false      # Use tagcloud instead of tag list
+tocMaxDepth: 6          # If you set 0, toc will not be generated. The maximum is 6.
 
 
   
@@ -90,18 +93,18 @@ valine:
   placeholder: hello, world # comment box placeholder
 gitment:
   enable: false
-  owner: '你的 GitHub ID'
-  repo: '存储评论的 repo'
-  client_id: '你的 client ID'
-  client_secret: '你的 client secret'
+  owner: 'Your GitHub ID'
+  repo: 'Repo to store comments'
+  client_id: 'Your client ID'
+  client_secret: 'Your client secret'
 gitalk:
   enable: false
-  owner: '你的 GitHub ID'
-  repo: '存储评论的 repo'
-  client_id: '你的 client ID'
-  client_secret: '你的 client secret'
+  owner: 'Your GitHub ID'
+  repo: 'Repo to store comments'
+  client_id: 'Your client ID'
+  client_secret: 'Your client secret'
+
 # 百度统计设置
 # 请访问 https://tongji.baidu.com/ 
 # 获取统计JS代码放入 Anatolo/source/js/baidu-tongji.js
-
 Baidutongji: false
