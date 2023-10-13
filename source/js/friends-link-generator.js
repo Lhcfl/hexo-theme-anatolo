@@ -1,6 +1,11 @@
 function make_friends_list() {
   try {
-    const friends = JSON.parse(document.getElementById('FRIENDS_JSON').getAttribute('data'));
+    let friends = undefined;
+    try {
+      friends = JSON.parse(document.getElementById('FRIENDS_JSON').getAttribute('data'));
+    } catch (err) {
+      return;
+    }
     if (!friends) return;
     const escapeHTML = (str) => String(str).replace(
       /[&<>'"]/g,
