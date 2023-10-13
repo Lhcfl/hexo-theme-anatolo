@@ -122,10 +122,7 @@ function replacePage(callback, pushState = true) {
       whenOK = () => renderPage(res.url, res.body, res.title, res.scrollY);
     }
   }).catch(err => {
-    $(".main.animated").removeClass('fadeOutDown');
-    $(".main.animated").addClass('fadeInDown');
-    console.error(err);
-    alert(JSON.stringify(err));
+    window.location.href = res.url;
   });
 }
 
