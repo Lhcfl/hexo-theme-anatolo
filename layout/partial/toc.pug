@@ -1,14 +1,17 @@
 mixin make_toc(in_sidebar)
-    if page.toc && theme.tocMaxDepth > 0
-        - var toctext = toc(page.content, {class: "toclist", list_number: false, max_depth: theme.tocMaxDepth})
-        if in_sidebar
-            .toc-container.in-sidebar.animated.fadeInDown
-                details.ltr(open)
-                    summary= __("TOC")
-                    .tocmenu!= toctext
-        else
-            .toc-container.in-page.animated.fadeInDown
-                details.ltr.toc-toggle
-                    summary= __("TOC")
-                    .tocmenu!= toctext
-    
+  if page.toc && theme.tocMaxDepth > 0
+    - var toctext = toc(page.content, {class: "toclist", list_number: false, max_depth: theme.tocMaxDepth})
+    if in_sidebar
+      .toc-container.in-sidebar.animated.fadeInDown
+        details.ltr(open)
+          summary= __("TOC")
+          .toclist-container
+            .tocmenu!= toctext
+    else
+      .toc-mobile
+        .toc-button
+          span= __("TOC")
+        .toc-container.in-page.animated.fadeInDown
+          .toclist-container
+            .tocmenu!= toctext
+  

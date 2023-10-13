@@ -938,25 +938,23 @@ a.btn {
     position: relative;
 }
 
+.toclist-container
+    overflow-y: auto;
+    max-height: calc(100vh - 600px);
+    &::-webkit-scrollbar-thumb
+        color: #4786d6;
+        background-color: #4786d6;
+    &::-webkit-scrollbar
+        width: 2px;
+        color: #4786d6;
+        height: auto;
+
 .toclist {
     /* width: max-content; */
     border-top: none;
     padding: 0px 30px;
     display: inline-block;
     text-align: left;
-    overflow-y: auto;
-    max-height: calc(100vh - 600px);
-}
-
-.toclist::-webkit-scrollbar {
-    width: 2px;
-    color: #4786d6;
-    height: auto;
-}
-
-.toclist::-webkit-scrollbar-thumb {
-    color: #4786d6;
-    background-color: #4786d6;
 }
 
 
@@ -1041,12 +1039,28 @@ a.btn {
     .tocmenu {
         border-bottom: 1px solid var(--primary-100);
         position: relative;
+        text-align: left;
     }
 
-    .toclist {
+    .toc-mobile {
+        .toc-button {
+            position: fixed
+            z-index: 900
+            background: #4786d6
+            color: var(--secondary)
+            padding: 8px 15px;
+            bottom 0
+            right: 0
+        }
+        &:hover {
+            .in-page.toc-container{
+                right 0
+            }
+        }
+    }
+    .toclist-container {
         height: auto;
-        max-height: 100%;
-        height: calc(100vh - 150px);
+        max-height: calc(100vh - 110px);
     }
 
     .in-sidebar.toc-container {
@@ -1054,11 +1068,12 @@ a.btn {
     }
     .in-page.toc-container {
         display: block;
-        border-left: 1px solid var(--primary-100);
+        border-left: 1px solid v3r(--primary-100);
         position: fixed;
         bottom: 0px;
-        right: 0;
-        transition: background-color 0.8s;
+        right: -300px;
+        width: 300px;
+        transition: all 0.4s;
         background-color: var(--secondary);
         z-index: 999;
         .toc-toggle summary {
