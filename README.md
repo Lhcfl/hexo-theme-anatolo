@@ -6,6 +6,9 @@
 
 [国内镜像](https://gitee.com/Lhcfl/hexo-theme-anatolo)
 
+- [主题文档 中文](https://lhcfl.github.io/Anatolodemo/2023/10/13/Anatolo%E6%95%99%E7%A8%8B/)
+- [Documentation English](https://lhcfl.github.io/Anatolodemo/2023/10/13/Anatolo%20Tutorial/)
+
 ## 关于主题
 
 基于ben02的[Anatole主题](https://github.com/Ben02/hexo-theme-Anatole)进行了大量修改，增添和优化。  
