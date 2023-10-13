@@ -26,8 +26,11 @@ mixin make_post(item, is_detail)
 				//- 修改了显示缩略的选项
 		.post-footer
 			if is_detail
-				if theme.copyright.show && item.copyright !== 'disabled'
-					.tip!= (item.copyright || theme.copyright.default) + "<br>" + __("author") + ": " + (item.author || theme.author)
+				if (item.copyright || theme.copyright.show) && item.copyright !== 'disabled'
+				  if theme.copyright.show_author
+						.tip!= (item.copyright || theme.copyright.default) + "<br>" + __("author") + ": " + (item.author || theme.author)
+					else
+						.tip!= item.copyright || theme.copyright.default
 			.meta
 				.info
 					if is_current('about')
