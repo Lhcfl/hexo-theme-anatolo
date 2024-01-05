@@ -446,90 +446,80 @@ tt {
     border-radius: 2px;
 }
 
+kbd {
+    display: inline-block;
+    margin-bottom: 0.4em;
+    padding: 1px 8px;
+    border: var(--primary-200) 1px solid;
+    color: var(--primary-700);
+    font-size: 0.9em;
+    font-weight: bold;
+    background: var(--primary-50);
+    border-radius: 4px;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 0 white inset;
+}
 
-/**
-                      pre {
-                        -moz-box-sizing: border-box;
-                        box-sizing: border-box;
-                        margin: 1.6em 0;
-                        border: 1px solid #E3EDF3;
-                        width: 100%;
-                        padding: 10px;
-                        font-family: Inconsolata, monospace, sans-serif;
-                        font-size: 0.9em;
-                        white-space: pre;
-                        overflow: auto;
-                        background: #F7FAFB;
-                        border-radius: 3px; }
+table {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 1em 0;
+    width: 100%;
+    max-width: 100%;
+    border-width: 1px;
+    border-style: solid;
+    background-color: transparent;
+}
 
-                        pre code, tt {
-                          font-size: inherit;
-                          white-space: -moz-pre-wrap;
-                          white-space: pre-wrap;
-                          background: transparent;
-                          border: none;
-                          color: #333;
-                          padding: 0; }
+table, table tr, table tr td, table tr th {
+    border-color: transparent;
+}
 
-                          kbd {
-                            display: inline-block;
-                            margin-bottom: 0.4em;
-                            padding: 1px 8px;
-                            border: #ccc 1px solid;
-                            color: #666;
-                            text-shadow: #fff 0 1px 0;
-                            font-size: 0.9em;
-                            font-weight: bold;
-                            background: #f4f4f4;
-                            border-radius: 4px;
-                            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 0 white inset; }
+table th {
+    color: var(--primary-700);
+    background-color: rgba(63, 185, 237, 0.15);
+}
 
-                            table {
-                              -moz-box-sizing: border-box;
-                              box-sizing: border-box;
-                              margin: 1em 0;
-                              width: 100%;
-                              max-width: 100%;
-                              border-width: 1px;
-                              border-style: solid;
-                              background-color: transparent; }
+tr th {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    text-align: left;
+}
 
-                              table, table tr, table tr td, table tr th {
-                                border-color: #e5e5e5; }
+tr th, tr td {
+    padding: 5px 20px;
+    border-right: 1px solid;
+    font-size: 1rem;
+}
 
-                                table th {
-                                  color: #666666;
-                                  background-color: #fdfdfd; }
+tr th:last-child, tr td:last-child {
+    border-right: 0px;
+}
 
-                                  tr th {
-                                    border-bottom-width: 1px;
-                                    border-bottom-style: solid;
-                                    text-align: left; }
+table th {
+    font-weight: bold;
+}
 
-                                    tr th, tr td {
-                                      padding: 5px 20px;
-                                      border-right: 1px solid;
-                                      font-size: 1rem; }
+table tbody > tr:nth-child(odd) > td, table tbody > tr:nth-child(odd) > th {
+    background-color: var(--secondary-950);
+}
 
-                                      tr th:last-child, tr td:last-child {
-                                        border-right: 0px; }
+.gist {
+    font-size: 12px;
+}
 
-                                        table th {
-                                          font-weight: bold; }
+.gist table {
+    margin: 0;
+    width: auto;
+}
 
-                                          table tbody > tr:nth-child(odd) > td, table tbody > tr:nth-child(odd) > th {
-                                            background-color: #f9f9f9; }
+.gist table pre {
+    font-size: 12px;
+}
 
-                                            .gist {
-                                              font-size: 12px; }
-                                              .gist table {
-                                                margin: 0;
-                                                width: auto; }
-                                                .gist table pre {
-                                                  font-size: 12px; }
-                                                  .gist table .line-numbers {
-                                                    font-size: 12px; }
-**/
+.gist table .line-numbers {
+    font-size: 12px;
+}
+
 
 .toc {
     border: 1px solid #f0f0f0;
