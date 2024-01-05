@@ -3,7 +3,7 @@
     "version": "0.0.0",
     "private": true,
     "dependencies": {
-        "hexo": "^3.0.0",
+        "hexo": "6.3.0",
         "hexo-generator-archive": "^0.1.0",
         "hexo-generator-category": "^0.1.0",
         "hexo-generator-feed": "^1.0.1",
@@ -15,8 +15,6 @@
         "hexo-renderer-sass": "^0.1.2",
         "hexo-renderer-stylus": "^0.2.3",
         "hexo-server": "^0.1.2",
-        "live2d-widget-model-tororo": "^1.0.5",
-        "hexo-helper-live2d": "^3.1.1",
         "hexo-tag-aplayer": "^3.0.4"
     }
 }

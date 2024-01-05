@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
 
       - name: Configure Git # 配置Git
         env:
@@ -37,6 +37,7 @@ jobs:
           cp ./.github/asserts/hexo_config.yml unit_test/_config.yml
           cp ./.github/asserts/_posts/* unit_test/source/_posts/
           cd unit_test
+          git reset fc6304b78d02995c74315616c5776ef8727468d7 --hard
           npm install
           npm install hexo-renderer-pug --save
           npm install hexo-renderer-stylus --save
