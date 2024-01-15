@@ -21,7 +21,7 @@ meta(id="site_root_url", data=url_for('/'))
 meta(id="default-theme", data=(theme.defaultTheme == "dark-mode"?"dark":"light"))
 
 meta(name="renderer" content="webkit")
-link(rel="shortcut icon" type="image/x-icon" href=theme.favicon)
+link(rel="shortcut icon" type="image/x-icon" href=url_for(theme.favicon))
 
 link(rel="stylesheet", href= url_for('css/theme/' + (theme.defaultTheme == "dark-mode"?"dark":"light") + '.css'))
 link(rel="stylesheet", href= url_for('css/style.css'))
