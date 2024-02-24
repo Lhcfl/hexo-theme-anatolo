@@ -1,4 +1,4 @@
-require('../includes/tasks/welcome');
+require('../includes/tasks/welcome')(hexo);
 require('../includes/generators/insight')(hexo);
 require('../includes/generators/site_json')(hexo);
 require('../includes/generators/tags')(hexo);
