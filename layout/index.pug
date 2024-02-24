@@ -5,6 +5,6 @@ block content
             include mixins
             +make_post(item, false)
         - })
-        if site.posts.length>config.index_generator.per_page
+        if site.posts.length>config.index_generator.per_page && ( config.per_page != 0 || config.index_generator.per_page != 0 )
             include mixins
             +make_pager(__('prev'), __('next'))
