@@ -4,4 +4,5 @@ block content
     include mixins
     each item in page.posts.data
       +make_post(item, false)
-    +make_pager(__('prev'), __('next'))
+    if site.posts.length > config.index_generator.per_page && ( config.per_page != 0 || config.index_generator.per_page != 0 )
+      +make_pager(__('prev'), __('next'))
