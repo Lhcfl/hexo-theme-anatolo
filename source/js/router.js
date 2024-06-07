@@ -4,7 +4,9 @@ class AnatoloRouter {
   /** @typedef {{url: string, body: string, title: string, scrollY?: number}} RouterState  */
   /** @type {Map<string, RouterState | undefined>} */
   routerStates = new Map();
-  animating;
+  __animating = new AnatoloRef(false);
+  __loading = new AnatoloRef(false);
+
   constructor() {
     window.history.scrollRestoration = 'manual';
     Anatolo.on('page-load', () => this.handlePage());
@@ -35,27 +37,20 @@ class AnatoloRouter {
   }
   /** @param {boolean} status  */
   set loading(status) {
-    this.__loading = status;
-    this.animating = true;
+    this.__loading.value = status;
+    this.__animating.value = true;
     if (status === true) {
       $('.main.animated').removeClass('fadeInDown').addClass('fadeOutDown');
-      Anatolo.emit('start-fadeout');
-      setTimeout(() => {
-        this.animating = false;
-        Anatolo.emit('end-fadeout');
-      }, 250);
     }
     if (status === false) {
       $('.main.animated').addClass('fadeInDown').removeClass('fadeOutDown');
-      Anatolo.emit('start-fadein');
-      setTimeout(() => {
-        this.animating = false;
-        Anatolo.emit('end-fadein');
-      }, 250);
     }
+    setTimeout(() => {
+      this.__animating.value = false;
+    }, 250);
   }
   get loading() {
-    return this.__loading;
+    return this.__loading.value;
   }
   getRouterState() {
     return {
@@ -109,7 +104,7 @@ class AnatoloRouter {
     const sidebarheight = document.getElementsByClassName('sidebar')[0].clientHeight - 40;
     this.cacheRouterState();
 
-    if (this.animating) await Anatolo.getMsg('end-fadeout');
+    await this.__animating.unitl(false);
 
     $('main-outlet').html(body);
     document.title = title;

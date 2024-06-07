@@ -6,14 +6,14 @@ const Utils = new Proxy(
   {
     get(target, name) {
       return async (...args) => {
-        if (target[name] == null) await Anatolo.getMsg(`utils-${name}-ok`);
-        return target[name](args);
+        if (target[name] == null) target[name] = new AnatoloRef(null);
+        return await target[name].unitlNot(null);
       };
     },
     /** @param {(...args) => any} target  */
     set(target, name, fn) {
-      target[name] = fn;
-      Anatolo.emit('utils-registered');
+      if (target[name] == null) target[name] = new AnatoloRef(null);
+      target[name].value = fn;
     },
   },
 );

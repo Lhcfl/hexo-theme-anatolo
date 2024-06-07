@@ -2,8 +2,63 @@
 /// <reference types="@types/jquery" />
 /// <reference path="./utils/index.js" />
 
+class AnatoloRef {
+  _val;
+  /** @type {Array<{fn: (val)=>void, time: number}>} */
+  _watchers = [];
+  constructor(val) {
+    this._val = val;
+  }
+  get value() {
+    return this._val;
+  }
+  set value(val) {
+    this._val = val;
+    for (const watcher of this._watchers) {
+      watcher.fn();
+      watcher.time--;
+    }
+    this._watchers = this._watchers.filter((w) => w.time > 0);
+  }
+  /** @param {(val)=>void} fn  */
+  watch(fn, time = Infinity) {
+    this._watchers.push({
+      fn,
+      time,
+    });
+  }
+  watchOnce(fn) {
+    this._watchers.push({
+      fn,
+      time: 1,
+    });
+  }
+  async nextVal() {
+    return new Promise((res) => {
+      this.watchOnce(() => res(this.value));
+    });
+  }
+  _checkin(vals) {
+    for (const val of vals) {
+      if (val == null && this._val == null) return true;
+      if (this._val === val) return true;
+    }
+    return false;
+  }
+  /** until value in vals */
+  async unitl(...vals) {
+    while (!this._checkin(vals)) await this.nextVal();
+    return this.value;
+  }
+  /** until value not in vals */
+  async unitlNot(...vals) {
+    while (this._checkin(vals)) await this.nextVal();
+    return this.value;
+  }
+}
+
 class AnatoloManager extends EventEmitter3 {
-  commentConfig;
+  commentConfig = new AnatoloRef(null);
   /** @type { AnatoloRouter } */
   router;
   loadComment = async () => {};
@@ -28,14 +83,12 @@ class AnatoloManager extends EventEmitter3 {
     return (await this.site.thisPage())?.title ?? document.querySelector('title').textContent;
   }
   setCommentConfig(config) {
-    this.commentConfig = config;
-    this.emit('comment-config-ok');
+    this.commentConfig.value = config;
   }
   async getCommentConfig() {
-    if (!this.commentConfig) await Anatolo.getMsg('comment-config-ok');
-    return this.commentConfig;
+    return await this.commentConfig.unitlNot(null);
   }
-  /** @param {()=>void)} fn  */
+  /** @param {()=>void} fn  */
   nextTick(fn) {
     setTimeout(fn, 0);
   }
@@ -53,16 +106,20 @@ class AnatoloManager extends EventEmitter3 {
       return root + url;
     }
   }
+  ref(val) {
+    return new AnatoloRef(val);
+  }
 }
 class AnatoloSite {
   base;
   root;
+  __loaded = new AnatoloRef(false);
   constructor() {
     this.base = Anatolo.base;
     this.root = Anatolo.root;
     this.load();
     Anatolo.once('site-loaded', () => {
-      this.__loaded = true;
+      this.__loaded.value = true;
     });
   }
   getUrl() {
@@ -73,9 +130,9 @@ class AnatoloSite {
     return path;
   }
   async load() {
-    this.__loaded = false;
+    this.__loaded.value = false;
     this.__data = await $.ajax(Anatolo.url_for('site.json'));
-    this.__loaded = true;
+    this.__loaded.value = true;
     this.__urlmap = new Map();
     for (const key of ['pages', 'posts', 'tags', 'categories']) {
       for (const page of this.__data[key] ?? []) {
@@ -86,7 +143,7 @@ class AnatoloSite {
     Anatolo.emit('site-loaded');
   }
   async waitLoad() {
-    if (!this.__loaded) await Anatolo.getMsg('site-loaded');
+    await this.__loaded.unitl(true);
   }
   async thisPage() {
     await this.waitLoad();
