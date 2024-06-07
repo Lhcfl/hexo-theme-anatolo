@@ -50,6 +50,9 @@ class AnatoloRouter {
       }, 250);
     }
   }
+  get loading() {
+    return this.__loading;
+  }
   getRouterState() {
     return {
       url: document.location.href,
@@ -102,7 +105,7 @@ class AnatoloRouter {
     const sidebarheight = document.getElementsByClassName('sidebar')[0].clientHeight - 40;
     this.cacheRouterState();
 
-    await Anatolo.getMsg('end-fadeout');
+    if (this.loading) await Anatolo.getMsg('end-fadeout');
 
     $('main-outlet').html(body);
     document.title = title;
