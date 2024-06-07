@@ -94,28 +94,28 @@
 //   },
 // };
 
-function loadStyles(url){
-	var link = document.createElement("link");
-  link.id = "themecss"
-  link.rel = "stylesheet";
-  link.type = "text/css";
+function loadStyles(url) {
+  var link = document.createElement('link');
+  link.id = 'themecss';
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
   link.href = url;
-  var head = document.getElementsByTagName("head")[0];
+  var head = document.getElementsByTagName('head')[0];
   head.appendChild(link);
 }
 
 function getDefaultTheme() {
-  return document.getElementById("default-theme").getAttribute("data");
+  return document.getElementById('default-theme').getAttribute('data');
 }
 
 function setTheme() {
-  if (document.getElementById('themecss')){
+  if (document.getElementById('themecss')) {
     document.getElementById('themecss').remove();
   }
-  if (localStorage["themeChanged"] && getDefaultTheme() == "light") {
-    loadStyles(url_for("css/theme/dark.css"));
-  } else if (localStorage["themeChanged"] && getDefaultTheme() == "dark") {
-    loadStyles(url_for("css/theme/light.css"));
+  if (localStorage['themeChanged'] && getDefaultTheme() == 'light') {
+    loadStyles(url_for('css/theme/dark.css'));
+  } else if (localStorage['themeChanged'] && getDefaultTheme() == 'dark') {
+    loadStyles(url_for('css/theme/light.css'));
   } else {
     loadStyles(url_for(`css/theme/${getDefaultTheme()}.css`));
   }
@@ -124,11 +124,10 @@ function setTheme() {
 setTheme();
 
 function darkLightToggle() {
-  if (!localStorage["themeChanged"]) {
-    localStorage.setItem("themeChanged", true);
+  if (!localStorage['themeChanged']) {
+    localStorage.setItem('themeChanged', true);
   } else {
-    localStorage.removeItem("themeChanged");
+    localStorage.removeItem('themeChanged');
   }
   setTheme();
 }
-

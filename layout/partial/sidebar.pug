@@ -5,15 +5,15 @@ include toc
   .sidebar-top
     .logo-title
       .title
-        img(src= url_for(theme.logo_dir),style=theme.logo_style, alt="favicon")
+        img(src=url_for(theme.logo_dir), style=theme.logo_style, alt="favicon")
         h3(title="")
           a(href="/")= config.title
         if theme.description
           .description
             p!= theme.description
       include social_links
-    
+
     include toc
     +make_toc(true)
-  
+
   include footer

@@ -7,24 +7,26 @@ function make_friends_list() {
       return;
     }
     if (!friends) return;
-    const escapeHTML = (str) => String(str).replace(
-      /[&<>'"]/g,
-      tag =>
-        ({
-          '&': '&amp;',
-          '<': '&lt;',
-          '>': '&gt;',
-          "'": '&#39;',
-          '"': '&quot;'
-        }[tag] || tag)
-    );
-    friends.forEach(f => {
+    const escapeHTML = (str) =>
+      String(str).replace(
+        /[&<>'"]/g,
+        (tag) =>
+          ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            "'": '&#39;',
+            '"': '&quot;',
+          })[tag] || tag,
+      );
+    friends.forEach((f) => {
       const container = document.getElementById(f.id);
       if (container) {
-        container.innerHTML = 
+        container.innerHTML =
           '<div class="friend-links-list">' +
-          f.list.map(friend => {
-            return `<div class="friend-link-container">
+          f.list
+            .map((friend) => {
+              return `<div class="friend-link-container">
                 <aside class="friend-link-avatar">
                     <img src="${escapeHTML(friend.avatar)}" href="${escapeHTML(friend.href)}">
                 </aside>
@@ -36,8 +38,9 @@ function make_friends_list() {
                         ${escapeHTML(friend.description)}
                     </div>
                 </div>
-            </div>`
-          }).join("") +
+            </div>`;
+            })
+            .join('') +
           '</div>';
       }
     });
@@ -46,6 +49,6 @@ function make_friends_list() {
   }
 }
 
-addEventListener("DOMContentLoaded", (event) => {make_friends_list()});
-
-
+addEventListener('DOMContentLoaded', (event) => {
+  make_friends_list();
+});

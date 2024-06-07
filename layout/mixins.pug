@@ -5,7 +5,7 @@ mixin make_post(item, is_detail)
         if is_detail
           a= item.title
         else
-          a(href= url_for(item.path))= item.title
+          a(href=url_for(item.path))= item.title
     if is_detail
       .post-content
         p!= item.content
@@ -15,8 +15,8 @@ mixin make_post(item, is_detail)
           if item.summary
             p!= item.summary
           else
-            - var summary = item.excerpt || item.content
-            p!= truncate(strip_html(summary), {length: 160})
+            - var summary = item.excerpt || item.content;
+            p!= truncate(strip_html(summary), { length: 160 })
         else
           .card
             if item.excerpt
@@ -39,46 +39,43 @@ mixin make_post(item, is_detail)
             span
           else
             i.fa.fa-sun-o
-            span.date= date(item.date, 'YYYY-MM-DD')
+            span.date= date(item.date, "YYYY-MM-DD")
             if item.categories
               - item.categories.sort('posts').each(function(item) {
-                a.tag(href=config.root + item.path, title= item.name)= item.name + " "
+                a.tag(href=config.root + item.path, title=item.name)= item.name + " "
               - });
             if item.tags
               - item.tags.sort('posts').each(function(item) {
                 i.fa.fa-tag
-                a.tag(href=config.root + item.path, title= item.name)= item.name + " "
+                a.tag(href=config.root + item.path, title=item.name)= item.name + " "
               - });
 
             span.leancloud_visitors
             span
-              - var words = word_count(item.content)
-              - var needtime = duration((words / 300.0) * 60, 'seconds')
-              - var timestr = (time(needtime, "m") == '0' ? "" : (time(needtime, "m") + __('time.minu'))) + time(needtime, "s") + __("time.senc")
+              - var words = word_count(item.content);
+              - var needtime = duration((words / 300.0) * 60, "seconds");
+              - var timestr = (time(needtime, "m") == "0" ? "" : time(needtime, "m") + __("time.minu")) + time(needtime, "s") + __("time.senc");
               = __("article.about") + words + __("article.words") + ", " + timestr + __("article.read")
 
-
-
-
-mixin make_pager()
-  - var prev = page.prev_link
-  - var next = page.next_link
+mixin make_pager
+  - var prev = page.prev_link;
+  - var next = page.next_link;
   .pagination
     ul.clearfix
       if page.prev
         li.pre.pagbuttons
-          a.btn(role="navigation",href=url_for(prev))= __('prev')
+          a.btn(role="navigation", href=url_for(prev))= __("prev")
       if page.next
         li.next.pagbuttons
-          a.btn(role="navigation",href=url_for(next))= __('next')
+          a.btn(role="navigation", href=url_for(next))= __("next")
 
-mixin postList()
+mixin postList
   .archive
     - var year = 0;
     - var change = false;
     - var firstYear = true;
     - page.posts.each(function (item) {
-      - var itemYear = date(item.date, 'YYYY') - 0;
+      - var itemYear = date(item.date, "YYYY") - 0;
       - change = year !== itemYear;
       - year = change ? itemYear : year;
       if change
@@ -91,10 +88,10 @@ mixin postList()
           | </ul><div class="listing-title">
           != year
           | </div><ul class="listing">
-      
+
       .listing-item
         .listing-post
-          a(href= url_for(item.path), title= item.title)= item.title
-          div.post-time
-            span.date= date(item.date, 'MM-DD')
+          a(href=url_for(item.path), title=item.title)= item.title
+          .post-time
+            span.date= date(item.date, "MM-DD")
     - })

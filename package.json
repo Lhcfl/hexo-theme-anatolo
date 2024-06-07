@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "format:stylus": "yarn stylus-supremacy format ./source/css/**/*.styl -r --options .supermacy.yml",
-        "format:pretty": "prettier --write ./{includes,languages,layout,scripts,source}/**/*.{pug,js}",
+        "format:pretty": "prettier --write ./{includes,languages,layout,scripts,source}/**/*.{pug,js,css}",
         "lint": "eslint . --ext .js --fix --ignore-path .gitignore",
         "format": "yarn format:stylus && yarn format:pretty"
     },
@@ -13,6 +13,7 @@
         "hexo-renderer-stylus": "^0.2.3"
     },
     "devDependencies": {
+        "@prettier/plugin-pug": "^3.0.0",
         "eslint": "^9.4.0",
         "prettier": "^3.3.1",
         "stylus-supremacy": "^2.17.5"

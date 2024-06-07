@@ -1,8 +1,8 @@
-mixin require_comment_scripts()
+mixin require_comment_scripts
   if theme.valine
     if theme.valine.enable == true
-      script(src='//cdn1.lncld.net/static/js/3.0.4/av-min.js')
-      script(src='//cdn.jsdelivr.net/gh/xcss/valine@latest/dist/Valine.min.js')
+      script(src="//cdn1.lncld.net/static/js/3.0.4/av-min.js")
+      script(src="//cdn.jsdelivr.net/gh/xcss/valine@latest/dist/Valine.min.js")
       script.
         function loadComment() { 
           var valine = new Valine({
@@ -20,13 +20,13 @@ mixin require_comment_scripts()
           })    
         }
 
-  if theme.gitment 
+  if theme.gitment
     if theme.gitment.enable == true
-      link(rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css")
+      link(rel="stylesheet", href="https://imsun.github.io/gitment/style/default.css")
       script(src="https://imsun.github.io/gitment/dist/gitment.browser.js")
       script.
-        function loadComment() { 
-          const id = site.getThis()?.title || '#{page.title}';
+        function loadComment() {
+          const id = site.getThis()?.title || "#{page.title}";
           if (!id) {
             if (retry > 0) {
               setTimeout(() => loadComment(retry - 1), 1000);
@@ -35,16 +35,16 @@ mixin require_comment_scripts()
           }
           var git_ment = {
             id,
-            owner: '#{theme.gitment.owner}',
-            repo: '#{theme.gitment.repo}',
+            owner: "#{theme.gitment.owner}",
+            repo: "#{theme.gitment.repo}",
             oauth: {
-              client_id: '#{theme.gitment.client_id}',
-              client_secret: '#{theme.gitment.client_secret}',
+              client_id: "#{theme.gitment.client_id}",
+              client_secret: "#{theme.gitment.client_secret}",
             },
-          }
-          if ('#{theme.gitment.id}' != '') git_ment.id = '#{theme.gitment.id}';
+          };
+          if ("#{theme.gitment.id}" != "") git_ment.id = "#{theme.gitment.id}";
           var gitment = new Gitment(git_ment);
-          gitment.render('gitment_container')
+          gitment.render("gitment_container");
         }
 
   if theme.gitalk
@@ -52,8 +52,8 @@ mixin require_comment_scripts()
       link(rel="stylesheet", href=url_for("css/comments/gittalk.css"))
       script(src="https://unpkg.com/gitalk/dist/gitalk.min.js")
       script.
-        function loadComment(retry = 3) { 
-          const id = site.getThis()?.title || '#{page.title}';
+        function loadComment(retry = 3) {
+          const id = site.getThis()?.title || "#{page.title}";
           if (!id) {
             if (retry > 0) {
               setTimeout(() => loadComment(retry - 1), 1000);
@@ -61,98 +61,100 @@ mixin require_comment_scripts()
             return;
           }
           const gitalk = new Gitalk({
-            clientID: '#{theme.gitalk.client_id}',
-            clientSecret: '#{theme.gitalk.client_secret}',
-            repo: '#{theme.gitalk.repo}',      // The repository of store comments,
-            owner: '#{theme.gitalk.owner}',
-            admin: ['#{theme.gitalk.owner}'],
-            id,      // Ensure uniqueness and length less than 50
-            distractionFreeMode: false  // Facebook-like distraction free mode
-          })
-          gitalk.render('gitalk_container')
+            clientID: "#{theme.gitalk.client_id}",
+            clientSecret: "#{theme.gitalk.client_secret}",
+            repo: "#{theme.gitalk.repo}", // The repository of store comments,
+            owner: "#{theme.gitalk.owner}",
+            admin: ["#{theme.gitalk.owner}"],
+            id, // Ensure uniqueness and length less than 50
+            distractionFreeMode: false, // Facebook-like distraction free mode
+          });
+          gitalk.render("gitalk_container");
         }
 
-mixin make_comments()
-  if theme.always_enable_comments || page.comments 
-    script(src= url_for('js/visitors.js'))
+mixin make_comments
+  if theme.always_enable_comments || page.comments
+    script(src=url_for("js/visitors.js"))
 
     if theme.duoshuo
       a#comments
-      .ds-thread(data-thread-key=page.path, data-title=page.title, data-url=page.permalink, data-author-key='1')
+      .ds-thread(data-thread-key=page.path, data-title=page.title, data-url=page.permalink, data-author-key="1")
       script.
-        var duoshuoQuery = {short_name:"#{theme.duoshuo}"};
+        var duoshuoQuery = { short_name: "#{theme.duoshuo}" };
         function loadComment() {
-          var ds = document.createElement('script');
-          ds.type = 'text/javascript';ds.async = true;
-          ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-          ds.charset = 'UTF-8';
-          (document.getElementsByTagName('head')[0] 
-          || document.getElementsByTagName('body')[0]).appendChild(ds);
-        };
+          var ds = document.createElement("script");
+          ds.type = "text/javascript";
+          ds.async = true;
+          ds.src = (document.location.protocol == "https:" ? "https:" : "http:") + "//static.duoshuo.com/embed.js";
+          ds.charset = "UTF-8";
+          (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(ds);
+        }
         loadComment();
-
 
     if theme.disqus
       a#comments
       #disqus_thread
       script.
-        var disqus_shortname = '#{theme.disqus}';
-        var disqus_identifier = '#{page.path}';
-        var disqus_title = '#{page.title}';
-        var disqus_url = '#{config.url}/#{page.path}';
-        (function() {
-          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        var disqus_shortname = "#{theme.disqus}";
+        var disqus_identifier = "#{page.path}";
+        var disqus_title = "#{page.title}";
+        var disqus_url = "#{config.url}/#{page.path}";
+        (function () {
+          var dsq = document.createElement("script");
+          dsq.type = "text/javascript";
+          dsq.async = true;
+          dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+          (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(dsq);
         })();
-      script(id='dsq-count-scr' src='//#{theme.disqus}.disqus.com/count.js' async)
+      script#dsq-count-scr(src="//#{theme.disqus}.disqus.com/count.js", async)
 
     if theme.gentie
       a#comments
       #cloud-tie-wrapper.cloud-tie-wrapper
-      script(src='https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js')
+      script(src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js")
       script.
         function loadComment() {
-          var cloudTieConfig = { url: document.location.href, sourceId: '#{page.path}', productKey: '#{theme.gentie}', target: 'cloud-tie-wrapper' };var yunManualLoad = true;Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
+          var cloudTieConfig = { url: document.location.href, sourceId: "#{page.path}", productKey: "#{theme.gentie}", target: "cloud-tie-wrapper" };
+          var yunManualLoad = true;
+          Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
         }
         loadComment();
 
     if theme.youyan
       a#comments
-      #youyan_thread(class='post')
+      #youyan_thread.post
       script.
         function loadComment() {
-          var YYDiv = document.createElement('div');
-          YYDiv.id = 'uyan_frame';
-          document.getElementById('youyan_thread').appendChild(YYDiv);
+          var YYDiv = document.createElement("div");
+          YYDiv.id = "uyan_frame";
+          document.getElementById("youyan_thread").appendChild(YYDiv);
 
-          var YYScript = document.createElement('script');
-          YYScript.type = 'text/javascript';
+          var YYScript = document.createElement("script");
+          YYScript.type = "text/javascript";
           YYScript.async = true;
-          YYScript.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//v2.uyan.cc/code/uyan.js?uid=' + '#{theme.youyan}';
-          YYScript.charset = 'UTF-8';
-          document.getElementById('youyan_thread').appendChild(YYScript);
+          YYScript.src = (document.location.protocol == "https:" ? "https:" : "http:") + "//v2.uyan.cc/code/uyan.js?uid=" + "#{theme.youyan}";
+          YYScript.charset = "UTF-8";
+          document.getElementById("youyan_thread").appendChild(YYScript);
         }
         loadComment();
-
 
     if theme.valine
       if theme.valine.enable == true
         a#comments
-        #vcomments(style="margin:0 30px;")
+        #vcomments(style="margin: 0 30px")
         script.
           loadComment();
 
-    if theme.gitment 
+    if theme.gitment
       if theme.gitment.enable == true
         a#comments
-        div#gitment_container(style='padding:10px')
+        #gitment_container(style="padding: 10px")
         script.
           loadComment();
 
     if theme.gitalk
       if theme.gitalk.enable == true
         a#comments
-        div#gitalk_container(style='padding:10px')
+        #gitalk_container(style="padding: 10px")
         script.
           loadComment();

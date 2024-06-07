@@ -1,6 +1,6 @@
 mixin make_toc(in_sidebar)
   if page.toc && theme.tocMaxDepth > 0
-    - var toctext = toc(page.content, {class: "toclist", list_number: false, max_depth: theme.tocMaxDepth})
+    - var toctext = toc(page.content, { class: "toclist", list_number: false, max_depth: theme.tocMaxDepth });
     if in_sidebar
       .toc-container.in-sidebar.animated.fadeInDown
         details.ltr(open)
@@ -14,4 +14,3 @@ mixin make_toc(in_sidebar)
         .toc-container.in-page.animated.fadeInDown
           .toclist-container
             .tocmenu!= toctext
-  

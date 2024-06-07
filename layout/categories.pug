@@ -1,13 +1,13 @@
 extends partial/layout
 
 block site_title
-    !=  __('Categories') + " · " + config.title
-    
+  != __("Categories") + " · " + config.title
+
 block description
-    - var desc = page.desc || strip_html(page.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 150);
-    meta(name="description", content=desc)
+  - var desc = page.desc || strip_html(page.content).replace(/^\s*/, "").replace(/\s*$/, "").substring(0, 150);
+  meta(name="description", content=desc)
 
 block content
-    .archive
-        .autopagerize_page_element: .content
-            p!= list_categories(site.categories, {show_count: false})
+  .archive
+    .autopagerize_page_element: .content
+      p!= list_categories(site.categories, { show_count: false })

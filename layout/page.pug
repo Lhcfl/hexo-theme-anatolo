@@ -1,18 +1,18 @@
 extends partial/layout
 
 block site_title
-    != page.title + " · " + config.title
+  != page.title + " · " + config.title
 
 block description
-    - var desc = page.desc || strip_html(page.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 150);
-    meta(name="description", content=desc)
+  - var desc = page.desc || strip_html(page.content).replace(/^\s*/, "").replace(/\s*$/, "").substring(0, 150);
+  meta(name="description", content=desc)
 
 block content
-    .autopagerize_page_element: .content: .post-page
-        include mixins
-        if page.friends
-          - var result = JSON.stringify(page.friends);
-          meta#FRIENDS_JSON(data= result)
-        +make_post(page, true)
-        include partial/comments
-        +make_comments()
+  .autopagerize_page_element: .content: .post-page
+    include mixins
+    if page.friends
+      - var result = JSON.stringify(page.friends);
+      meta#FRIENDS_JSON(data=result)
+    +make_post(page, true)
+    include partial/comments
+    +make_comments

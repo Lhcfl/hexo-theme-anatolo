@@ -3,11 +3,11 @@ extends partial/layout
 include mixins
 
 block site_title
-    != page.title + " · " + config.title
+  != page.title + " · " + config.title
 
 block description
-    - var desc = page.desc || strip_html(page.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 150);
-    meta(name="description", content=desc)
+  - var desc = page.desc || strip_html(page.content).replace(/^\s*/, "").replace(/\s*$/, "").substring(0, 150);
+  meta(name="description", content=desc)
 
 block content
   .autopagerize_page_element: .content: .post-page
@@ -15,21 +15,23 @@ block content
     +make_post(page, true)
     .share
       .evernote
-        a.fa.fa-bookmark(href="",onclick="javascript:join_favorite()", ref="sidebar")
+        a.fa.fa-bookmark(href="", onclick="javascript:join_favorite()", ref="sidebar")
       .weibo
-        a.fa.fa-weibo(href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));")
+        a.fa.fa-weibo(
+          href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"
+        )
       .twitter
-        - var twitter_text = encodeURI(__('Share_text') + "\n\n" + config.title+" · "+page.title+"\n"+config.url+"/"+page.path+"\n")
-        a.fa.fa-twitter(href=url_for("http://twitter.com/intent/tweet?text="+ twitter_text))
+        - var twitter_text = encodeURI(__("Share_text") + "\n\n" + config.title + " · " + page.title + "\n" + config.url + "/" + page.path + "\n");
+        a.fa.fa-twitter(href=url_for("http://twitter.com/intent/tweet?text=" + twitter_text))
     - var prev = page.prev ? page.prev.path : false;
     - var next = page.next ? page.next.path : false;
     .pagination
       ul.clearfix
         if prev
           li.pre.pagbuttons
-            a.btn(role="navigation",href=url_for(prev), title=page.prev.title)!= __('prev_post')
+            a.btn(role="navigation", href=url_for(prev), title=page.prev.title)!= __("prev_post")
         if next
           li.next.pagbuttons
-            a.btn(role="navigation",href=url_for(next), title=page.next.title)!= __('next_post')
+            a.btn(role="navigation", href=url_for(next), title=page.next.title)!= __("next_post")
     include partial/comments
-    +make_comments()
+    +make_comments

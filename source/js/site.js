@@ -1,16 +1,16 @@
 site = {
-  getThis: ()=>{}
-}
+  getThis: () => {},
+};
 
-$.ajax(url_for('site.json')).then(res => {
+$.ajax(url_for('site.json')).then((res) => {
   window.site = res;
-  
+
   site.getThis = () => {
     let path = window.location.pathname;
     if (path.startsWith('/')) path = path.slice(1);
     if (path.slice(-1) !== '/') path += '/';
     path = decodeURI(path);
-    
+
     if (site.pages) {
       for (const page of site.pages) {
         if (page.path.replaceAll('index.html', '') === path) {
@@ -39,5 +39,5 @@ $.ajax(url_for('site.json')).then(res => {
         }
       }
     }
-  }
-})
+  };
+});

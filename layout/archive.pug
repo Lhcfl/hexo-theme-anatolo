@@ -1,16 +1,16 @@
 extends partial/layout
 
 block site_title
-    !=  __('Archives') + " · " + config.title
+  != __("Archives") + " · " + config.title
 
 block description
-    - var desc = __('Archives') + __('Page') + ' - ' + config.title;
-    meta(name="description", content=desc)
+  - var desc = __("Archives") + __("Page") + " - " + config.title;
+  meta(name="description", content=desc)
 
 block content
-    .autopagerize_page_element: .content
-        .archive
-            ul.list-with-title
-                include mixins
-                +postList()
-                +make_pager(__('prev'), __('next'))
+  .autopagerize_page_element: .content
+    .archive
+      ul.list-with-title
+        include mixins
+        +postList
+        +make_pager(__('prev'), __('next'))
