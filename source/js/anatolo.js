@@ -1,5 +1,6 @@
 /// <reference path="./router.js" />
 /// <reference types="@types/jquery" />
+/// <reference path="./utils/index.js" />
 
 class AnatoloManager extends EventEmitter3 {
   commentConfig;

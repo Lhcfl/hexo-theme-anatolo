@@ -1,4 +1,5 @@
-function make_friends_list() {
+/// <reference path="./index.js" />
+Utils.make_friends_list = () => {
   try {
     let friends = undefined;
     try {
@@ -48,7 +49,3 @@ function make_friends_list() {
     console.error(err);
   }
 }
-
-addEventListener('DOMContentLoaded', (event) => {
-  make_friends_list();
-});

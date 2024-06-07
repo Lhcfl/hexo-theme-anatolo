@@ -31,6 +31,7 @@ link(rel="stylesheet", href=url_for("css/insight.css"))
 link(rel="stylesheet", href=url_for("css/search.css"))
 link(rel="alternate", type="application/atom+xml", title="ATOM 1.0", href="/atom.xml")
 
+script(src=url_for("js/utils/index.js"))
 script(src=url_for("js/lib/eventemitter3.umd.min.js"))
 script(
   src="https://code.jquery.com/jquery-3.7.1.min.js",
@@ -40,7 +41,7 @@ script(
 script(src=url_for("js/lib/jquery-migrate-1.2.1.min.js"))
 script(src=url_for("js/lib/jquery.appear.js"))
 script(src=url_for("js/anatolo.js"))
-script(src=url_for("js/friends-link-generator.js"))
+script(src=url_for("js/utils/friends-link-generator.js"))
 script(src=url_for("js/router.js"))
 script(src=url_for("js/darkLightToggle.js"))
 script(src=url_for("js/add-bookmark.js"))

@@ -205,6 +205,7 @@ class AnatoloRouter {
 
   handlePage() {
     Anatolo.loadComment().catch(() => {});
+    Utils.make_friends_list();
   }
 
   onPopState(event) {
