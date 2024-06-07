@@ -1,89 +1,126 @@
-history.scrollRestoration = 'manual';
+/// <reference path="./anatolo.js" />
 
-let historyStates = {};
-
-function isThisSite(url) {
-  return (
-    (url.startsWith('/') && !url.startsWith('//')) ||
-    url.startsWith(url_for('/', true)) ||
-    ('https:' + url).startsWith(url_for('/', true)) ||
-    ('http:' + url).startsWith(url_for('/', true))
-  );
-}
-
-function makeLink() {
-  const links = document.getElementsByTagName('a');
-  for (const link of links) {
-    if (link.onclick) continue;
-    if (link.href && isThisSite(link.href)) {
-      link.onclick = function (event) {
-        event.preventDefault();
-        routeTo(link.href);
-      };
+class AnatoloRouter {
+  /** @typedef {{url: string, body: string, title: string, scrollY?: number}} RouterState  */
+  /** @type {Map<string, RouterState | undefined>} */
+  routerStates = new Map();
+  constructor() {
+    window.history.scrollRestoration = 'manual';
+    Anatolo.on('page-load', () => this.handlePage());
+    window.addEventListener('DOMContentLoaded', () => {
+      Anatolo.emit('page-load');
+    });
+    window.addEventListener('popstate', (ev) => this.onPopState(ev), false);
+    this.makeLink();
+  }
+  isThisSite(url) {
+    if (!url) return false;
+    return (
+      (url.startsWith('/') && !url.startsWith('//')) ||
+      url.startsWith(url_for('/', true)) ||
+      ('https:' + url).startsWith(url_for('/', true)) ||
+      ('http:' + url).startsWith(url_for('/', true))
+    );
+  }
+  /** @param {string | null} hash  */
+  scrollToHash(hash = null) {
+    if (hash == null) hash = window.location.hash;
+    if (!hash) return; // Don't need
+    const sid = decodeURI(hash).slice(1);
+    const go = document.getElementById(sid);
+    if (go) {
+      window.scrollTo({
+        left: 0,
+        top: go.offsetTop + (go.offsetParent?.offsetTop || 0) - 80,
+        behavior: 'smooth',
+      });
     }
   }
-}
-
-function preparePage() {
-  makeLink();
-
-  if (window.loadComment) {
-    try {
-      window.loadComment();
-    } catch (err) {}
+  /** @param {boolean} status  */
+  set loading(status) {
+    this.__loading = status;
+    if (status === true) {
+      $('.main.animated').removeClass('fadeInDown').addClass('fadeOutDown');
+      Anatolo.emit('start-fadeout');
+      setTimeout(() => {
+        Anatolo.emit('end-fadeout');
+      }, 250);
+    }
+    if (status === false) {
+      $('.main.animated').addClass('fadeInDown').removeClass('fadeOutDown');
+      Anatolo.emit('start-fadein');
+      setTimeout(() => {
+        Anatolo.emit('end-fadein');
+      }, 250);
+    }
   }
-
-  make_friends_list();
-}
-
-/**
- * Change Page
- * @param {async () => {body: string, title:string}} callback
- * @param {boolean} pushState
- */
-function replacePage(callback, pushState = true) {
-  const sidebarheight = document.getElementsByClassName('sidebar')[0].clientHeight - 40;
-  let animated_ok = 0;
-  let whenOK = () => {};
-  $('.main.animated').removeClass('fadeInDown');
-  $('.main.animated').addClass('fadeOutDown');
-  setTimeout(() => {
-    animated_ok = 1;
-    whenOK();
-  }, 250);
-
-  function renderPage(url, body, title, scrollY) {
-    $('.main.animated').removeClass('fadeOutDown');
-    $('.main.animated').addClass('fadeInDown');
-    historyStates[document.location.href] = {
+  getRouterState() {
+    return {
       url: document.location.href,
       body: document.getElementsByTagName('main-outlet')[0].innerHTML,
       title: document.title,
       scrollY: window.scrollY,
     };
+  }
+  cacheRouterState() {
+    this.routerStates.set(document.location.href, this.getRouterState());
+  }
+  /** @param {RouterState} state  */
+  updateRouterState(state) {
+    const had = this.routerStates.has(state.url);
+    if (had) {
+      Object.assign(had, state);
+    } else {
+      this.routerStates.set(state.url, state);
+    }
+  }
+  /** @param {string} link  */
+  async queryPageData(link) {
+    const cached = this.routerStates.get(link);
+    if (cached) return cached;
+    const res = await $.ajax(link);
+    if (typeof res !== 'string') {
+      throw {
+        reason: 'NOT HTML',
+        url: link,
+      };
+    }
+    const body = res.match(/<main-outlet>([\s\S]*)<\/main-outlet>/)?.[1];
+    if (!body) {
+      throw {
+        reason: 'NOT HTML',
+        url: link,
+      };
+    }
+    const head = res.match(/<head>([\s\S]*)<\/head>/)?.[1];
+    let title = head?.match(/<title>([\s\S]*)<\/title>/)?.[1];
+    title ??= document.title;
+    return { url: link, body, title };
+  }
+  /**
+   * Change Page
+   * @param {RouterState} _1
+   * @param {boolean} pushState
+   */
+  async replacePage({ body, title, url, scrollY }, pushState = true) {
+    const sidebarheight = document.getElementsByClassName('sidebar')[0].clientHeight - 40;
+    this.cacheRouterState();
 
-    document.getElementsByTagName('main-outlet')[0].innerHTML = body;
+    await Anatolo.getMsg('end-fadeout');
 
+    $('main-outlet').html(body);
     document.title = title;
 
     if (pushState) {
-      history.pushState(
-        {
-          time: new Date(),
-        },
-        title,
-        url,
-      );
+      history.pushState({ time: new Date() }, title, url);
     }
 
-    historyStates[document.location.href] = historyStates[document.location.href] || {
+    this.updateRouterState({
       url: document.location.href,
       body,
       title,
-    };
-
-    preparePage();
-
+    });
+    this.handlePage();
     if (!scrollY) {
       if (window.innerWidth > 960) {
         window.scrollTo({
@@ -102,7 +139,6 @@ function replacePage(callback, pushState = true) {
           window.scrollTo({
             left: 0,
             top: sidebarheight,
-            // behavior: 'smooth'
           });
         }
       }
@@ -112,114 +148,70 @@ function replacePage(callback, pushState = true) {
         top: scrollY,
       });
     }
-
-    animated_ok = 0;
-    whenOK = () => {};
   }
+  /** @param {string} link */
+  async routeTo(link, pushState = true) {
+    console.log(`Route to: ${link}`);
+    if (!link) return;
+    if (this.isThisSite(link)) {
+      const url = new URL(link, window.location.origin);
 
-  callback()
-    .then((res) => {
-      if (animated_ok) {
-        renderPage(res.url, res.body, res.title, res.scrollY);
-      } else {
-        whenOK = () => renderPage(res.url, res.body, res.title, res.scrollY);
-      }
-    })
-    .catch((err) => {
-      if (err && err.reason && err.reason === 'NOT HTML') {
-        window.location.href = err.url;
+      if (pushState && url.pathname === window.location.pathname) {
+        console.log('scroll to hash')
+        history.replaceState({ time: new Date() }, document.title, link);
+        this.scrollToHash(url.hash);
         return;
       }
-      $('.main.animated').removeClass('fadeOutDown');
-      $('.main.animated').addClass('fadeInDown');
-      console.error(err);
-      alert('Something went wrong, please see console...');
-    });
-}
 
-function routeTo(url) {
-  if (isThisSite(url)) {
-    const splited = url.split('/');
-    if (splited[splited.length - 1] && splited[splited.length - 1].startsWith('#')) {
-      const sid = decodeURI(splited[splited.length - 1]).slice(1);
-      const go = document.getElementById(sid);
-      // console.log(go);
-      window.scrollTo({
-        left: 0,
-        top: go.offsetTop + (go.offsetParent?.offsetTop || 0) - 80,
-        behavior: 'smooth',
-      });
-      history.replaceState(null, null, url);
-      return;
+      try {
+        this.loading = true;
+        if (pushState) {
+          this.cacheRouterState();
+        }
+        const res = await this.queryPageData(link);
+        await this.replacePage(res, pushState);
+        this.loading = false;
+        this.scrollToHash(url.hash);
+      } catch (err) {
+        if (err.status === 404) {
+          window.location.href = err.url;
+          return;
+        }
+        if (err?.reason === 'NOT HTML') {
+          window.location.href = err.url;
+          return;
+        }
+        console.error(err);
+        alert(err);
+        await this.replacePage(this.getRouterState(), false);
+      }
+    } else {
+      window.location.href = link;
     }
-    if (url == window.location.href) return;
-
-    replacePage(async () => {
-      if (historyStates[url]) {
-        return historyStates[url];
-      } else {
-        res = await $.ajax(url);
-        if (typeof res !== 'string') {
-          throw {
-            reason: 'NOT HTML',
-            url,
-          };
+  }
+  makeLink() {
+    document.addEventListener("click", (ev) => {
+      let target = ev.target;
+      while (target) {
+        if (target.onclick) return;
+        if (this.isThisSite(target.href)) {
+          ev.preventDefault()
+          ev.stopPropagation();
+          this.routeTo(target.href, true);
         }
-        const body = res.match(/<main-outlet>([\s\S]*)<\/main-outlet>/)[1];
-        if (!body) {
-          throw {
-            reason: 'NOT HTML',
-            url,
-          };
-        }
-        const head = res.match(/<head>([\s\S]*)<\/head>/)[1];
-        let title = document.title;
-        if (head) {
-          title = head.match(/<title>([\s\S]*)<\/title>/)[1];
-        }
-        return { url, body, title };
+        target = target.parentNode
       }
     });
-  } else {
-    window.location.href = url;
+  }
+
+  handlePage() {
+    Anatolo.loadComment().catch(() => {});
+  }
+
+  onPopState(event) {
+    event.preventDefault();
+    this.routeTo(window.location.href, false);
   }
 }
 
-makeLink();
-setInterval(() => makeLink(), 1000);
-
-function onPopState(event) {
-  event.preventDefault();
-
-  // console.log(event);
-  // console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
-
-  replacePage(async () => {
-    if (historyStates[document.location.href]) {
-      return historyStates[document.location.href];
-    } else {
-      res = await $.ajax(document.location.href);
-      if (typeof res !== 'string') {
-        throw {
-          reason: 'No HTML error',
-          url,
-        };
-      }
-      const body = res.match(/<main-outlet>([\s\S]*)<\/main-outlet>/)[1];
-      if (!body) {
-        throw {
-          reason: 'No Body error',
-          url: document.location.href,
-        };
-      }
-      const head = res.match(/<head>([\s\S]*)<\/head>/)[1];
-      let title = document.title;
-      if (head) {
-        title = head.match(/<title>([\s\S]*)<\/title>/)[1];
-      }
-      return { url: document.location.href, body, title };
-    }
-  }, false);
-}
-
-window.addEventListener('popstate', onPopState, false);
+Anatolo.router = new AnatoloRouter();

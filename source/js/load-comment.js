@@ -1,4 +1,6 @@
-async function loadComment(retry = 3) {
+/// <reference path="./anatolo.js" />
+
+Anatolo.loadComment = async (retry = 3) => {
   const config = await Anatolo.getCommentConfig();
   if (!config) return;
   if (config.valine?.enable && window.Valine) {
@@ -43,4 +45,4 @@ async function loadComment(retry = 3) {
     });
     gitalk.render('gitalk_container');
   }
-}
+};

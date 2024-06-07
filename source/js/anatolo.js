@@ -1,6 +1,13 @@
+/// <reference path="./utils/url_for.js" />
+/// <reference path="./router.js" />
+/// <reference types="@types/jquery" />
+
 class AnatoloManager extends EventEmitter3 {
   site;
   commentConfig;
+  /** @type { AnatoloRouter } */
+  router;
+  loadComment = async () => {};
 
   constructor() {
     super();
@@ -24,6 +31,10 @@ class AnatoloManager extends EventEmitter3 {
   async getCommentConfig() {
     if (!this.commentConfig) await Anatolo.getMsg('comment-config-ok');
     return this.commentConfig;
+  }
+  /** @param {()=>void)} fn  */
+  nextTick(fn) {
+    setTimeout(fn, 0);
   }
 }
 class AnatoloSite {
@@ -70,5 +81,6 @@ class AnatoloSite {
   }
 }
 
+/** @type {import("eventemitter3").EventEmitter & AnatoloManager} */
 const Anatolo = new AnatoloManager();
 Anatolo.init();
