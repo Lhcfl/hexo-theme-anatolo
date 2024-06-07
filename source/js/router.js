@@ -174,7 +174,7 @@ class AnatoloRouter {
         await this.replacePage(res, pushState);
         this.loading = false;
         console.log(`Ok.`);
-        this.scrollToHash(url.hash);
+        Anatolo.emit('page-load');
       } catch (err) {
         if (err.status === 404) {
           window.location.href = err.url;
@@ -208,6 +208,7 @@ class AnatoloRouter {
   }
 
   handlePage() {
+    this.scrollToHash();
     Anatolo.loadComment().catch(() => {});
     Utils.make_friends_list();
   }
