@@ -1,13 +1,6 @@
 /// <reference path="./index.js" />
 Utils.make_friends_list = () => {
   try {
-    let friends = undefined;
-    try {
-      friends = JSON.parse(document.getElementById('FRIENDS_JSON').getAttribute('data'));
-    } catch (err) {
-      return;
-    }
-    if (!friends) return;
     const escapeHTML = (str) =>
       String(str).replace(
         /[&<>'"]/g,
@@ -20,32 +13,32 @@ Utils.make_friends_list = () => {
             '"': '&quot;',
           })[tag] || tag,
       );
-    friends.forEach((f) => {
-      const container = document.getElementById(f.id);
-      if (container) {
-        container.innerHTML =
-          '<div class="friend-links-list">' +
-          f.list
-            .map((friend) => {
-              return `<div class="friend-link-container">
-                <aside class="friend-link-avatar">
-                    <img src="${escapeHTML(friend.avatar)}" href="${escapeHTML(friend.href)}">
-                </aside>
-                <div class="friend-link-meta">
-                    <div class="friend-link-title">
-                        <a href="${escapeHTML(friend.href)}">${escapeHTML(friend.title)}</a>
-                    </div>
-                    <div class="friend-link-description">
-                        ${escapeHTML(friend.description)}
-                    </div>
-                </div>
-            </div>`;
-            })
-            .join('') +
-          '</div>';
-      }
+    const friendHTML = ({ avatar, href, title, description }) =>
+      `<div class="friend-link-container"><div class="friend-link-box">
+        <aside class="friend-link-avatar">
+          <img src="${escapeHTML(avatar)}" href="${escapeHTML(href)}">
+        </aside>
+        <div class="friend-link-meta">
+          <div class="friend-link-title">
+            <a href="${escapeHTML(href)}">${escapeHTML(title)}</a>
+          </div>
+          <div class="friend-link-description">
+            ${escapeHTML(description)}
+          </div>
+        </div>
+      </div></div>`;
+
+    $('.friend-link').replaceWith(function () {
+      console.log(this);
+      const friend = $(this);
+      return friendHTML({
+        avatar: friend.attr('avatar'),
+        href: friend.attr('href'),
+        title: friend.attr('title'),
+        description: friend.attr('description'),
+      });
     });
   } catch (err) {
     console.error(err);
   }
-}
+};
