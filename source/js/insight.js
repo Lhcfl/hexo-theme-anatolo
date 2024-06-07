@@ -217,7 +217,7 @@ function Showsearch() {
 
     function gotoLink($item) {
       if ($item && $item.length) {
-        routeTo($item.attr('data-url'));
+        Anatolo.router.routeTo($item.attr('data-url'));
         closeWindow();
       }
     }
