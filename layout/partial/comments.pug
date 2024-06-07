@@ -1,5 +1,5 @@
 - var theme_config = { valine: theme.valine, gitment: theme.gitment, gitalk: theme.gitalk, duoshuo: theme.duoshuo, disqus: theme.disqus, gentie: theme.gentie, youyan: theme.youyan };
-script window.COMMENT_CONFIG = !{ JSON.stringify(theme_config) }
+script Anatolo.setCommentConfig(!{ JSON.stringify(theme_config) })
 
 mixin require_comment_scripts
   if theme.valine

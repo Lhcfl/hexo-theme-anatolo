@@ -1,6 +1,6 @@
 module.exports = (hexo) => {
-    hexo.log.info(`
+  hexo.log.info(`
 =============================================
 Welcome from Anatolo!
 =============================================`);
-}
+};
