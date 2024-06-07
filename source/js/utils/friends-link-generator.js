@@ -29,7 +29,6 @@ Utils.make_friends_list = () => {
       </div></div>`;
 
     $('.friend-link').replaceWith(function () {
-      console.log(this);
       const friend = $(this);
       return friendHTML({
         avatar: friend.attr('avatar'),

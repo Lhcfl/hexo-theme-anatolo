@@ -7,7 +7,7 @@ const Utils = new Proxy(
     get(target, name) {
       return async (...args) => {
         if (target[name] == null) target[name] = new AnatoloRef(null);
-        return await target[name].unitlNot(null);
+        return (await target[name].unitlNot(null))(args);
       };
     },
     /** @param {(...args) => any} target  */
