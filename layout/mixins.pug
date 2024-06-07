@@ -41,14 +41,12 @@ mixin make_post(item, is_detail)
             i.fa.fa-sun-o
             span.date= date(item.date, "YYYY-MM-DD")
             if item.categories
-              - item.categories.sort('posts').each(function(item) {
-                a.tag(href=config.root + item.path, title=item.name)= item.name + " "
-              - });
+              each cat in item.categories.sort('posts').data
+                a.tag(href=config.root + cat.path, title=cat.name)= cat.name + " "
             if item.tags
-              - item.tags.sort('posts').each(function(item) {
+              each tag in item.tags.sort('posts').data
                 i.fa.fa-tag
-                a.tag(href=config.root + item.path, title=item.name)= item.name + " "
-              - });
+                a.tag(href=config.root + tag.path, title=tag.name)= tag.name + " "
 
             span.leancloud_visitors
             span
@@ -74,7 +72,7 @@ mixin postList
     - var year = 0;
     - var change = false;
     - var firstYear = true;
-    - page.posts.each(function (item) {
+    each item in page.posts.data
       - var itemYear = date(item.date, "YYYY") - 0;
       - change = year !== itemYear;
       - year = change ? itemYear : year;
@@ -94,4 +92,3 @@ mixin postList
           a(href=url_for(item.path), title=item.title)= item.title
           .post-time
             span.date= date(item.date, "MM-DD")
-    - })

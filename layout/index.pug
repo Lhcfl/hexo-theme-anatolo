@@ -1,9 +1,7 @@
 extends partial/layout
 block content
   .autopagerize_page_element: .content
-    - page.posts.each(function (item) {
-      include mixins
-      +make_post(item, false)
-    - })
     include mixins
+    each item in page.posts.data
+      +make_post(item, false)
     +make_pager(__('prev'), __('next'))
