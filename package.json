@@ -2,19 +2,19 @@
     "name": "hexo-theme-Anatolo",
     "version": "0.0.0",
     "private": true,
+    "scripts": {
+        "format:stylus": "yarn stylus-supremacy format ./source/css/**/*.styl -r --options .supermacy.yml",
+        "format:pretty": "prettier --write ./{includes,languages,layout,scripts,source}/**/*.{pug,js}",
+        "lint": "eslint . --ext .js --fix --ignore-path .gitignore",
+        "format": "yarn format:stylus && yarn format:pretty"
+    },
     "dependencies": {
-        "hexo": "6.3.0",
-        "hexo-generator-archive": "^0.1.0",
-        "hexo-generator-category": "^0.1.0",
-        "hexo-generator-feed": "^1.0.1",
-        "hexo-generator-index": "^0.1.0",
-        "hexo-generator-tag": "^0.1.0",
-        "hexo-renderer-ejs": "^0.1.0",
         "hexo-renderer-pug": "^0.0.5",
-        "hexo-renderer-marked": "^0.2.4",
-        "hexo-renderer-sass": "^0.1.2",
-        "hexo-renderer-stylus": "^0.2.3",
-        "hexo-server": "^0.1.2",
-        "hexo-tag-aplayer": "^3.0.4"
+        "hexo-renderer-stylus": "^0.2.3"
+    },
+    "devDependencies": {
+        "eslint": "^9.4.0",
+        "prettier": "^3.3.1",
+        "stylus-supremacy": "^2.17.5"
     }
 }

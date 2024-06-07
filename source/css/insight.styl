@@ -1,63 +1,46 @@
-.ins-section-container {
-    position: relative;
-    background: var(--primary-50);
-}
+.ins-section-container
+	position: relative
+	background: var(--primary-50)
 
-.ins-section {
-    font-size: 14px;
-    line-height: 16px;
-}
+.ins-section
+	font-size: 14px
+	line-height: 16px
 
-.ins-section .ins-section-header,
-.ins-section .ins-search-item {
-    padding: 8px 15px;
-}
+	.ins-section-header, .ins-search-item
+		padding: 8px 15px
 
-.ins-section .ins-section-header {
-    color: var(--primary-400);
-    border-bottom: 1px solid var(--primary-100);
-}
+	.ins-section-header
+		color: var(--primary-400)
+		border-bottom: 1px solid var(--primary-100)
 
-.ins-section .ins-slug {
-    margin-left: 5px;
-    color: var(--primary-400);
-}
+	.ins-slug
+		margin-left: 5px
+		color: var(--primary-400)
 
-.ins-section .ins-slug:before {
-    content: '(';
-}
+		&:before
+			content: '('
 
-.ins-section .ins-slug:after {
-    content: ')';
-}
+		&:after
+			content: ')'
 
-.ins-section .ins-search-item header,
-.ins-section .ins-search-item .ins-search-preview {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
+	.ins-search-item
+		&:hover, &.active
+			color: var(--secondary)
+			background: #3273dc
 
-.ins-section .ins-search-item header .ins-title {
-    margin-left: 8px;
-}
+			.ins-slug, .ins-search-preview
+				color: var(--secondary)
 
-.ins-section .ins-search-item .ins-search-preview {
-    height: 15px;
-    font-size: 9px;
-    color: var(--primary-400);
-    margin: 5px 0 0 20px;
-}
+		header, .ins-search-preview
+			overflow: hidden
+			white-space: nowrap
+			text-overflow: ellipsis
 
-.ins-section .ins-search-item:hover,
-.ins-section .ins-search-item.active {
-    color: var(--secondary);
-    background: #3273dc;
-}
+		.ins-search-preview
+			height: 15px
+			font-size: 9px
+			color: var(--primary-400)
+			margin: 5px 0 0 20px
 
-.ins-section .ins-search-item:hover .ins-slug,
-.ins-section .ins-search-item.active .ins-slug,
-.ins-section .ins-search-item:hover .ins-search-preview,
-.ins-section .ins-search-item.active .ins-search-preview {
-    color: var(--secondary);
-}
+	& header .ins-title
+		margin-left: 8px

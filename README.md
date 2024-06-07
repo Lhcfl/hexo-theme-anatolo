@@ -88,4 +88,21 @@ git pull origin master
 
 ```
 
+## 开发
 
+进入Anatolo的目录，执行
+
+```
+yarn
+```
+
+安装所有依赖。
+
+### 代码格式化
+
+对本主题做出修改后，使用下面的命令可以对代码进行格式化
+```
+yarn format
+```
+
+详见 `package.json`
