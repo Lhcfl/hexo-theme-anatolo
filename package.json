@@ -5,7 +5,7 @@
     "scripts": {
         "format:stylus": "yarn stylus-supremacy format ./source/css/**/*.styl -r --options .supermacy.yml",
         "format:pretty": "prettier --write ./{includes,languages,layout,scripts,source}/**/*.{pug,js,css}",
-        "lint": "eslint . --ext .js --fix --ignore-path .gitignore",
+        "lint": "yarn eslint . --fix",
         "format": "yarn format:stylus && yarn format:pretty"
     },
     "dependencies": {

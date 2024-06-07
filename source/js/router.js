@@ -15,12 +15,8 @@ class AnatoloRouter {
   }
   isThisSite(url) {
     if (!url) return false;
-    return (
-      (url.startsWith('/') && !url.startsWith('//')) ||
-      url.startsWith(url_for('/', true)) ||
-      ('https:' + url).startsWith(url_for('/', true)) ||
-      ('http:' + url).startsWith(url_for('/', true))
-    );
+    url += '/';
+    return url.startsWith(Anatolo.root.href) || url.startsWith(Anatolo.base);
   }
   /** @param {string | null} hash  */
   scrollToHash(hash = null) {
@@ -129,7 +125,10 @@ class AnatoloRouter {
           behavior: 'smooth',
         });
       } else {
-        if (window.location.href === url_for('/', true) || window.location.href.slice(0, -1) === url_for('/', true)) {
+        if (
+          window.location.href === Anatolo.url_for('/', true) ||
+          window.location.href.slice(0, -1) === Anatolo.url_for('/', true)
+        ) {
           window.scrollTo({
             left: 0,
             top: 0,
@@ -157,7 +156,7 @@ class AnatoloRouter {
       const url = new URL(link, window.location.origin);
 
       if (pushState && url.pathname === window.location.pathname) {
-        console.log('scroll to hash')
+        console.log('scroll to hash');
         history.replaceState({ time: new Date() }, document.title, link);
         this.scrollToHash(url.hash);
         return;
@@ -190,16 +189,16 @@ class AnatoloRouter {
     }
   }
   makeLink() {
-    document.addEventListener("click", (ev) => {
+    document.addEventListener('click', (ev) => {
       let target = ev.target;
       while (target) {
         if (target.onclick) return;
         if (this.isThisSite(target.href)) {
-          ev.preventDefault()
+          ev.preventDefault();
           ev.stopPropagation();
           this.routeTo(target.href, true);
         }
-        target = target.parentNode
+        target = target.parentNode;
       }
     });
   }

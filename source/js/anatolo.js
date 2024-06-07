@@ -1,16 +1,18 @@
-/// <reference path="./utils/url_for.js" />
 /// <reference path="./router.js" />
 /// <reference types="@types/jquery" />
 
 class AnatoloManager extends EventEmitter3 {
-  site;
   commentConfig;
   /** @type { AnatoloRouter } */
   router;
   loadComment = async () => {};
+  /** @type { AnatoloSite } */
+  site;
 
   constructor() {
     super();
+    this.base = $('#site_root_url').attr('data') ?? '/';
+    this.root = new URL(this.base, window.location.origin);
   }
   init() {
     this.site = new AnatoloSite();
@@ -36,9 +38,27 @@ class AnatoloManager extends EventEmitter3 {
   nextTick(fn) {
     setTimeout(fn, 0);
   }
+  url_for(url, with_origin) {
+    let root = Anatolo.root;
+    if (with_origin) {
+      root = window.location.origin + root;
+    }
+    if (url[0] !== '/') {
+      url = '/' + url;
+    }
+    if (root[root.length - 1] == '/') {
+      return root.slice(0, -1) + url;
+    } else {
+      return root + url;
+    }
+  }
 }
 class AnatoloSite {
+  base;
+  root;
   constructor() {
+    this.base = Anatolo.base;
+    this.root = Anatolo.root;
     this.load();
     Anatolo.once('site-loaded', () => {
       this.__loaded = true;
@@ -53,7 +73,7 @@ class AnatoloSite {
   }
   async load() {
     this.__loaded = false;
-    this.__data = await $.ajax(url_for('site.json'));
+    this.__data = await $.ajax(Anatolo.url_for('site.json'));
     this.__loaded = true;
     this.__urlmap = new Map();
     for (const key of ['pages', 'posts', 'tags', 'categories']) {
