@@ -1,76 +1,21 @@
+- var theme_config = { valine: theme.valine, gitment: theme.gitment, gitalk: theme.gitalk, duoshuo: theme.duoshuo, disqus: theme.disqus, gentie: theme.gentie, youyan: theme.youyan };
+script window.COMMENT_CONFIG = !{ JSON.stringify(theme_config) }
+
 mixin require_comment_scripts
   if theme.valine
     if theme.valine.enable == true
       script(src="//cdn1.lncld.net/static/js/3.0.4/av-min.js")
       script(src="//cdn.jsdelivr.net/gh/xcss/valine@latest/dist/Valine.min.js")
-      script.
-        function loadComment() { 
-          var valine = new Valine({
-            el:'#vcomments',
-            notify:#{theme.valine.notify} || false, 
-            verify:#{theme.valine.verify}|| false, 
-            app_id:'#{theme.valine.appid}',
-            app_key:'#{theme.valine.appkey}',
-            placeholder:'#{theme.valine.placeholder}',
-            path: window.location.pathname,
-            serverURLs: '#{theme.valine.serverURLs}',
-            visitor:true,
-            recordIP:true,
-            avatar:'#{theme.valine.avatar}'
-          })    
-        }
 
   if theme.gitment
     if theme.gitment.enable == true
       link(rel="stylesheet", href="https://imsun.github.io/gitment/style/default.css")
       script(src="https://imsun.github.io/gitment/dist/gitment.browser.js")
-      script.
-        function loadComment() {
-          const id = site.getThis()?.title || "#{page.title}";
-          if (!id) {
-            if (retry > 0) {
-              setTimeout(() => loadComment(retry - 1), 1000);
-            }
-            return;
-          }
-          var git_ment = {
-            id,
-            owner: "#{theme.gitment.owner}",
-            repo: "#{theme.gitment.repo}",
-            oauth: {
-              client_id: "#{theme.gitment.client_id}",
-              client_secret: "#{theme.gitment.client_secret}",
-            },
-          };
-          if ("#{theme.gitment.id}" != "") git_ment.id = "#{theme.gitment.id}";
-          var gitment = new Gitment(git_ment);
-          gitment.render("gitment_container");
-        }
 
   if theme.gitalk
     if theme.gitalk.enable == true
       link(rel="stylesheet", href=url_for("css/comments/gittalk.css"))
       script(src="https://unpkg.com/gitalk/dist/gitalk.min.js")
-      script.
-        function loadComment(retry = 3) {
-          const id = site.getThis()?.title || "#{page.title}";
-          if (!id) {
-            if (retry > 0) {
-              setTimeout(() => loadComment(retry - 1), 1000);
-            }
-            return;
-          }
-          const gitalk = new Gitalk({
-            clientID: "#{theme.gitalk.client_id}",
-            clientSecret: "#{theme.gitalk.client_secret}",
-            repo: "#{theme.gitalk.repo}", // The repository of store comments,
-            owner: "#{theme.gitalk.owner}",
-            admin: ["#{theme.gitalk.owner}"],
-            id, // Ensure uniqueness and length less than 50
-            distractionFreeMode: false, // Facebook-like distraction free mode
-          });
-          gitalk.render("gitalk_container");
-        }
 
 mixin make_comments
   if theme.always_enable_comments || page.comments
@@ -142,19 +87,16 @@ mixin make_comments
       if theme.valine.enable == true
         a#comments
         #vcomments(style="margin: 0 30px")
-        script.
-          loadComment();
+        script loadComment();
 
     if theme.gitment
       if theme.gitment.enable == true
         a#comments
         #gitment_container(style="padding: 10px")
-        script.
-          loadComment();
+        script loadComment();
 
     if theme.gitalk
       if theme.gitalk.enable == true
         a#comments
         #gitalk_container(style="padding: 10px")
-        script.
-          loadComment();
+        script loadComment();
