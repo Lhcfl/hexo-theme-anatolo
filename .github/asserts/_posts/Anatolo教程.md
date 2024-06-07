@@ -212,31 +212,37 @@ author: "无名氏"
 
 ### 友链
 
-你需要在元信息中按如下格式添加友链：
+在你的Markdown中添加像这样的HTML
 
-```yaml
-friends:
-  - id: list_id
-    list: 
-      - avatar: "https://i.loli.net/2020/03/08/VRT2zfWZiLrUJPX.jpg"
-        href: "https://moi-mo.github.io"
-        title: mes ames
-        description: moi的一般通过小站
-      - avatar: "https://avatar.url"
-        href: "https://site.url"
-        title: 友链标题
-        description: 友链描述
-```
-
-其中，`id` 非常重要，因为你要在文章中使用
- 
 ```html
-<div id="list_id"></div>
+<div
+  class="friend-link"
+  avatar="https://头像所在的网址"
+  href="https://友链地址"
+  title="友链标题"
+  description="友链描述"
+></div>
 ```
 
-来应用你声明的友链。友链会在访问网站时通过JS被填充到上述div。（这个设计是不得已而为之，之后可能会改成静态设计）
+来声明一条友链。友链会在访问网站时被动态展开：
 
-我希望Anatolo能拥有更好的可拓展性，因此这样设计，是为了允许你在友链页面填写更多你想写的东西——而不是光溜溜的一片链接。
+
+```js
+// Anatolo/source/js/utils/friends-link-generator.js
+`<div class="friend-link-container"><div class="friend-link-box">
+  <aside class="friend-link-avatar">
+    <img src="${escapeHTML(avatar)}" href="${escapeHTML(href)}">
+  </aside>
+  <div class="friend-link-meta">
+    <div class="friend-link-title">
+      <a href="${escapeHTML(href)}">${escapeHTML(title)}</a>
+    </div>
+    <div class="friend-link-description">
+      ${escapeHTML(description)}
+    </div>
+  </div>
+</div></div>`;
+```
 
 `avatar` `href` `title` `description` 分别是 友链头像、友链地址、友链标题、友链描述。
 
