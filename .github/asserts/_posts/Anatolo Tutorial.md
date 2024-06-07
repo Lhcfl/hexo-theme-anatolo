@@ -1,5 +1,5 @@
 ---
-title: Anatolo Tutorial
+title: "[English] Anatolo Tutorial"
 date: 2023-10-13 15:05:47
 tags:
   - Anatolo Tutorial

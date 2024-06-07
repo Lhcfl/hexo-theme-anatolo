@@ -6,8 +6,7 @@
 
 [国内镜像](https://gitee.com/Lhcfl/hexo-theme-anatolo)
 
-- [主题文档 中文](https://lhcfl.github.io/Anatolodemo/2023/10/13/Anatolo%E6%95%99%E7%A8%8B/)
-- [Documentation English](https://lhcfl.github.io/Anatolodemo/2023/10/13/Anatolo%20Tutorial/)
+- [主题文档 Theme document](https://lhcfl.github.io/Anatolodemo/tags/Anatolo-Tutorial/)
 
 ## 关于主题
 
@@ -19,9 +18,6 @@
 Anatolo设计极致简约，但麻雀虽小，五脏理应俱全。因此，我在[Anatole主题](https://github.com/Ben02/hexo-theme-Anatole)基础上增加了动态请求、帖子目录、黑暗模式、搜索框等多种理应有的功能，并对界面进行了进一步美化，只为让它甄于完美。
 
 如果有任何建议欢迎issue，也可以提出pr。如果对本主题有任何疑问，您也可以发送邮件给我： lhcfl@outlook.com
-
-## 使用方式
-参见 https://github.com/Lhcfl/hexo-theme-anatolo/wiki
 
 ## Todo List
 

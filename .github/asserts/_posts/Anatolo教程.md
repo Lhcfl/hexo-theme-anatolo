@@ -1,5 +1,5 @@
 ---
-title: Anatolo教程
+title: "[简体中文] Anatolo 教程"
 date: 2023-10-13 15:05:47
 tags:
   - Anatolo Tutorial
@@ -44,7 +44,7 @@ npm install hexo-renderer-pug --save
 npm install hexo-renderer-stylus --save
 ```
 
-### 配置
+### ⚠️ 配置
 
 复制 `themes/Anatolo` 下的 `_config.example.yml` ，粘贴为 `_config.yml`  
 修改hexo根目录下的 `_config.yml` ： `theme: Anatolo`
