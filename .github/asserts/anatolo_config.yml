@@ -53,8 +53,9 @@ weibo:
 menu:
   Home: /
   Archives: /archives
+  Catogories: /catogories
   Tags: /tags
-  About: /about
+  About: https://github.com/Lhcfl/hexo-theme-anatolo/blob/master/README.md
   # Links: /links
 
 # Navbar rightbtn
