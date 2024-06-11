@@ -1,18 +1,6 @@
 /// <reference path="./index.js" />
 Utils.make_friends_list = () => {
   try {
-    const escapeHTML = (str) =>
-      String(str).replace(
-        /[&<>'"]/g,
-        (tag) =>
-          ({
-            '&': '&amp;',
-            '<': '&lt;',
-            '>': '&gt;',
-            "'": '&#39;',
-            '"': '&quot;',
-          })[tag] || tag,
-      );
     const friendHTML = ({ avatar, href, title, description }) =>
       `<div class="friend-link-container"><div class="friend-link-box">
         <aside class="friend-link-avatar">

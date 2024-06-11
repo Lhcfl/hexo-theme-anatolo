@@ -1,3 +1,5 @@
+// deprecated
+
 /**
  * Insight search plugin
  * @author PPOffice { @link https://github.com/ppoffice }

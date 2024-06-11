@@ -64,14 +64,13 @@ class AnatoloManager extends EventEmitter3 {
   loadComment = async () => {};
   /** @type { AnatoloSite } */
   site;
+  /** @type { Record<string, any> } */
+  state = {};
 
   constructor() {
     super();
     this.base = $('#site_root_url').attr('data') ?? '/';
     this.root = new URL(this.base, window.location.origin);
-  }
-  init() {
-    this.site = new AnatoloSite();
   }
   async getMsg(ev) {
     return new Promise((res) => {
@@ -110,17 +109,42 @@ class AnatoloManager extends EventEmitter3 {
     return new AnatoloRef(val);
   }
 }
+
+/** @template T */
+class AnatoloDynamicContent {
+  __loaded = new AnatoloRef(false);
+  /** @type {T} */
+  __data;
+  /**
+   * @param {Promise<T> | string} src
+   * @param {(data)=>T} transform
+   */
+  constructor(src, transform = (x) => x) {
+    if (typeof src === 'string') {
+      src = $.ajax(Anatolo.url_for(src));
+    }
+    src.then((res) => {
+      this.__loaded.value = true;
+      this.__data = transform(res);
+    });
+  }
+  async untilLoaded() {
+    await this.__loaded.unitl(true);
+  }
+  async data() {
+    await this.untilLoaded();
+    return this.__data;
+  }
+}
 class AnatoloSite {
   base;
   root;
-  __loaded = new AnatoloRef(false);
+  __urlmap = new Map();
+  __data = new AnatoloDynamicContent('site.json');
   constructor() {
     this.base = Anatolo.base;
     this.root = Anatolo.root;
-    this.load();
-    Anatolo.once('site-loaded', () => {
-      this.__loaded.value = true;
-    });
+    this.convert();
   }
   getUrl() {
     let path = window.location.pathname;
@@ -129,36 +153,24 @@ class AnatoloSite {
     path = decodeURI(path);
     return path;
   }
-  async load() {
-    this.__loaded.value = false;
-    this.__data = await $.ajax(Anatolo.url_for('site.json'));
-    this.__loaded.value = true;
-    this.__urlmap = new Map();
+  async convert() {
+    const data = await this.data();
     for (const key of ['pages', 'posts', 'tags', 'categories']) {
-      for (const page of this.__data[key] ?? []) {
+      for (const page of data[key] ?? []) {
         page.prettyPath = page.path?.replaceAll('index.html', '') || '';
         this.__urlmap.set(page.prettyPath, page);
       }
     }
-    Anatolo.emit('site-loaded');
-  }
-  async waitLoad() {
-    await this.__loaded.unitl(true);
   }
   async thisPage() {
-    await this.waitLoad();
+    await this.data();
     return this.__urlmap.get(this.getUrl());
   }
-  async data() {
-    await this.waitLoad();
-    return this.__data;
-  }
-  reload() {
-    this.__loaded = false;
-    load();
+  data() {
+    return this.__data.data();
   }
 }
 
 /** @type {import("eventemitter3").EventEmitter & AnatoloManager} */
 const Anatolo = new AnatoloManager();
-Anatolo.init();
+Anatolo.site = new AnatoloSite();

@@ -170,10 +170,8 @@ class AnatoloRouter {
           this.cacheRouterState();
         }
         const res = await this.queryPageData(link);
-        console.log(`Fetched Page data: `, res);
         await this.replacePage(res, pushState);
         this.loading = false;
-        console.log(`Ok.`);
         Anatolo.emit('page-load');
       } catch (err) {
         if (err.status === 404) {

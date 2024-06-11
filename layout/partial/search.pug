@@ -1,12 +1,13 @@
 script
-  != '(function(window){var INSIGHT_CONFIG={TRANSLATION:{POSTS:"' + __("insight.posts") + '",PAGES:"' + __("insight.pages") + '",CATEGORIES:"' + __("insight.categories") + '",TAGS:"' + __("insight.tags") + '",UNTITLED:"' + __("insight.untitled") + '",},CONTENT_URL:"' + url_for("/content.json") + '",};window.INSIGHT_CONFIG=INSIGHT_CONFIG})(window);'
-script(src=url_for("js/insight.js"), defer)
+  != '(async function(){ if (Anatolo.search == null) await Anatolo.getMsg("search-init"); Anatolo.search.config = {translation:{posts:"' + __("insight.posts") + '",pages:"' + __("insight.pages") + '",categories:"' + __("insight.categories") + '",tags:"' + __("insight.tags") + '",untitled:"' + __("insight.untitled") + '",} }; })()'
+//- script(src=url_for("js/insight.js"), defer)
+script(src=url_for("js/search.js"), defer)
 .searchbox.ins-search
   .searchbox-container.ins-search-container
     .searchbox-input-wrapper
       input.searchbox-input.ins-search-input(type="text", placeholder=__("insight.hint"))
       span.searchbox-close
-        a.fa.fa-times-circle(onclick="closeWindow();")
+        a.fa.fa-times-circle(onclick="Anatolo.search.closeWindow();")
     .searchbox-result-wrapper.ins-section-wrapper
       .ins-section-container
         p Seraching...
