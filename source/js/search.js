@@ -35,7 +35,6 @@ class AnatoloSearch {
             break;
           case 'Enter':
             const url = $('.ins-selectable.active').data('url');
-            console.log(url);
             if (url) this.gotoLink(url);
             break;
           case 'Escape':
@@ -99,7 +98,7 @@ class AnatoloSearch {
           .append(
             $('<span>')
               .addClass('ins-title')
-              .html(title != null && title !== '' ? title : this.config.translation['UNTITLED']),
+              .html(title != null && title !== '' ? title : this.config.translation['untitled']),
           )
           .append(slug ? $('<span>').addClass('ins-slug').html(slug) : null),
       )
