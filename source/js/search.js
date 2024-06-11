@@ -51,7 +51,7 @@ class AnatoloSearch {
 
     $(document)
       .on('keydown', (e) => {
-        if (e.key == 's') Anatolo.nextTick(() => this.openWindow());
+        if (e.key == 's' && !this.showing) Anatolo.nextTick(() => this.openWindow());
       })
       .on('click', (e) => {
         if (e.target !== this.inputEl[0] && this.showing) {
