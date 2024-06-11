@@ -10,14 +10,19 @@
 
 ## 关于主题
 
-基于ben02的[Anatole主题](https://github.com/Ben02/hexo-theme-Anatole)进行了大量修改，增添和优化。  
-
-搜索框代码来自主题Icarus。二主题都采用MIT License，故本主题也采用之。  
-部分代码参考了Anatole-core
+基于ben02移植的[Anatole主题](https://github.com/Ben02/hexo-theme-Anatole)进行了大量修改，增添和优化。  
 
 Anatolo设计极致简约，但麻雀虽小，五脏理应俱全。因此，我在[Anatole主题](https://github.com/Ben02/hexo-theme-Anatole)基础上增加了动态请求、帖子目录、黑暗模式、搜索框等多种理应有的功能，并对界面进行了进一步美化，只为让它甄于完美。
 
-如果有任何建议欢迎issue，也可以提出pr。如果对本主题有任何疑问，您也可以发送邮件给我： lhcfl@outlook.com
+如果有任何建议欢迎issue，也可以提出pr。
+
+### 鸣谢
+
+搜索框代码大量参考了 [Icarus](https://github.com/ppoffice/hexo-theme-icarus) 的工作
+
+码云功能和一些中国特色功能来自 [Anatole-core](https://github.com/mrcore/hexo-theme-Anatole-Core)
+
+
 
 ## Todo List
 
@@ -30,7 +35,7 @@ Anatolo设计极致简约，但麻雀虽小，五脏理应俱全。因此，我�
 - 暗黑模式支持
 - 增加了文章概要的选项
 - 增加了多语言支持
-- 增加了可选的搜索框
+- 增加了可选的搜索框，依赖Fuse.js允许模糊搜索
 - 增加了可选的标签页和标签云
 - 增加了可选的目录（toc）支持和深度调整
 - 调整了部分选项的可选性
@@ -48,7 +53,7 @@ Anatolo设计极致简约，但麻雀虽小，五脏理应俱全。因此，我�
 - 原主题的葡萄牙语支持无法更新
 - TOC放置可能不够美观
 - 当Nav栏放置过多链接时可能导致右侧按钮下移
-- ~~目前暗黑模式尚未适配评论区，会导致评论区割裂~~ 已完成对GitTalk的支持，其余我不打算支持了，如有需求请自行PR
+- 暗黑模式暂只支持Gittalk，如有需要请自行PR
 
 ## 使用
 
@@ -59,9 +64,7 @@ Clone:
 
 ``` 
 git clone https://gitee.com/Lhcfl/hexo-theme-anatolo.git themes/Anatolo
-
 或者直接下载主题zip包解压至主题目录下，重命名为Anatolo
-
 ```
 
 安装依赖
@@ -69,7 +72,6 @@ git clone https://gitee.com/Lhcfl/hexo-theme-anatolo.git themes/Anatolo
 ```
 npm install hexo-renderer-pug --save
 npm install hexo-renderer-stylus --save
-
 ```
 
 ### 配置
