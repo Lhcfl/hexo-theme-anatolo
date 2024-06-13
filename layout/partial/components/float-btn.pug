@@ -1,0 +1,12 @@
+button#scroll-to-top.float-button.hide(
+  onclick="window.scrollTo({top: 0, behavior: 'smooth'})",
+  type="button",
+  title=__("scroll_to_top")
+)
+  i.fa.fa-angle-up
+
+script.
+  $(document).on("scroll", () => {
+    if (window.scrollY < 200) $("#scroll-to-top.float-button").addClass("hide");
+    else $("#scroll-to-top.float-button").removeClass("hide");
+  });

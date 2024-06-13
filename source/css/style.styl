@@ -932,3 +932,29 @@ a.btn
 
 .friend-link-avatar img
 	width: 64px
+
+.float-button
+	position: fixed
+	width: 50px
+	height: 50px
+	background-color: var(--secondary)
+	border: 1px solid var(--primary-300)
+	right: 10px
+	border-radius: 100%
+	transition: all 0.3s
+
+	&:hover
+		background-color: var(--secondary-950)
+
+	&:active
+		background-color: var(--secondary-900)
+
+	&.hide
+		transform: translateX(100px)
+
+	i
+		font-size: 200%
+		color: var(--primary-500)
+
+	&#scroll-to-top
+		bottom: 50px
