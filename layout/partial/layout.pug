@@ -3,7 +3,10 @@ html(lang="zh-CN")
   head
     include head
 
-  body
+  - var classList = [];
+  - if (!config.highlight.line_number && !config.prismjs.line_number) { classList.push("disable-line-number"); }
+
+  body(class=classList.join(" ")) 
     main-outlet
       include nav
       include sidebar

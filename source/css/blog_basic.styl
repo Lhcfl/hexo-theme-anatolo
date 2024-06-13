@@ -44,8 +44,9 @@ figure.highlight
 	margin: 1em 0 !important
 	border-radius: 2px !important
 	line-height: 1.1em !important
-	background-color: #f8f8f8 !important
+	background-color: var(--secondary-950) !important
 	overflow-x: auto !important
+	padding-left: 1em
 
 	table, tr, td
 		width: 100% !important
@@ -54,76 +55,776 @@ figure.highlight
 		margin: 0 !important
 
 	.gutter
-		display: none !important
+		width: fit-content !important
+		line-height: 1.5em !important
+		font-size: 15px
+		padding: 0em 1em 0em 0em !important
+		user-select: none
+
+		pre
+			color: rgb(212, 148, 75) !important
+
+	body.disable-line-number & .gutter
+		display: none
 
 	.code pre
-		padding: 1.2em 1.4em !important
+		padding: 1.2em 1.4em 1.2em 0 !important
 		line-height: 1.5em !important
 		margin: 0 !important
 
-	&.html, &.js, &.bash, &.css, &.scss, &.diff, &.java, &.xml, &.python, &.json, &.swift, &.ruby, &.perl, &.php, &.c, &.cpp
+	.code:after
+		position: absolute !important
+		top: 0 !important
+		right: 0 !important
+		color: #ccc !important
+		text-align: right !important
+		font-size: 0.75em !important
+		padding: 5px 10px 0 !important
+		line-height: 15px !important
+		height: 15px !important
+		font-weight: 600 !important
+
+	mixcontent(txt)
 		.code:after
-			position: absolute !important
-			top: 0 !important
-			right: 0 !important
-			color: #ccc !important
-			text-align: right !important
-			font-size: 0.75em !important
-			padding: 5px 10px 0 !important
-			line-height: 15px !important
-			height: 15px !important
-			font-weight: 600 !important
+			content: txt
 
-	&.html .code:after
-		content: 'HTML'
+	&.1c
+		mixcontent('1C')
 
-	&.js .code:after
-		content: 'Javascript'
+	&.4d
+		mixcontent('4D')
 
-	&.bash .code:after
-		content: 'BASH'
+	&.sap-abap, &.abap
+		mixcontent('ABAP')
 
-	&.css .code:after
-		content: 'CSS'
+	&.abnf
+		mixcontent('ABNF')
 
-	&.scss .code:after
-		content: 'SCSS'
+	&.accesslog
+		mixcontent('Access logs')
 
-	&.diff .code:after
-		content: 'DIFF'
+	&.ada
+		mixcontent('Ada')
 
-	&.java .code:after
-		content: 'JAVA'
+	&.apex
+		mixcontent('Apex')
 
-	&.xml .code:after
-		content: 'XML'
+	&.arduino, &.ino
+		mixcontent('Arduino (C++ w/Arduino libs)')
 
-	&.python .code:after
-		content: 'Python'
+	&.armasm, &.arm
+		mixcontent('ARM assembler')
 
-	&.json .code:after
-		content: 'JSON'
+	&.avrasm
+		mixcontent('AVR assembler')
 
-	&.swift .code:after
-		content: 'SWIFT'
+	&.actionscript, &.as
+		mixcontent('ActionScript')
 
-	&.ruby .code:after
-		content: 'RUBY'
+	&.alan, &.i
+		mixcontent('Alan IF')
 
-	&.perl .code:after
-		content: 'PERL'
+	&.ln
+		mixcontent('Alan')
 
-	&.php .code:after
-		content: 'PHP'
+	&.angelscript, &.asc
+		mixcontent('AngelScript')
 
-	&.c .code:after
-		content: 'C'
+	&.apache, &.apacheconf
+		mixcontent('Apache')
 
-	&.java .code:after
-		content: 'JAVA'
+	&.applescript, &.osascript
+		mixcontent('AppleScript')
 
-	&.cpp .code:after
-		content: 'CPP'
+	&.arcade
+		mixcontent('Arcade')
+
+	&.asciidoc, &.adoc
+		mixcontent('AsciiDoc')
+
+	&.aspectj
+		mixcontent('AspectJ')
+
+	&.autohotkey
+		mixcontent('AutoHotkey')
+
+	&.autoit
+		mixcontent('AutoIt')
+
+	&.awk, &.mawk, &.nawk, &.gawk
+		mixcontent('Awk')
+
+	&.ballerina, &.bal
+		mixcontent('Ballerina')
+
+	&.bash, &.sh, &.zsh
+		mixcontent('Bash')
+
+	&.basic
+		mixcontent('Basic')
+
+	&.bbcode
+		mixcontent('BBCode')
+
+	&.blade
+		mixcontent('Blade (Laravel)')
+
+	&.bnf
+		mixcontent('BNF')
+
+	&.bqn
+		mixcontent('BQN')
+
+	&.brainfuck, &.bf
+		mixcontent('Brainfuck')
+
+	&.csharp, &.cs
+		mixcontent('C#')
+
+	&.c, &.h
+		mixcontent('C')
+
+	&.cpp, &.hpp, &.cc, &.hh, &.cxx, &.hxx, &.c\\\+\\\+, &.h\\\+\\\+
+		mixcontent('C++')
+
+	&.cal
+		mixcontent('C/AL')
+
+	&.c3
+		mixcontent('C3')
+
+	&.cos, &.cls
+		mixcontent('Cache Object Script')
+
+	&.candid, &.did
+		mixcontent('Candid')
+
+	&.cmake
+		mixcontent('CMake')
+
+	&.cobol, &.standard-cobol
+		mixcontent('COBOL')
+
+	&.codeowners
+		mixcontent('CODEOWNERS')
+
+	&.coq
+		mixcontent('Coq')
+
+	&.csp
+		mixcontent('CSP')
+
+	&.css
+		mixcontent('CSS')
+
+	&.capnproto, &.capnp
+		mixcontent('Cap’n Proto')
+
+	&.chaos, &.kaos
+		mixcontent('Chaos')
+
+	&.chapel, &.chpl
+		mixcontent('Chapel')
+
+	&.cisco
+		mixcontent('Cisco CLI')
+
+	&.clojure, &.clj
+		mixcontent('Clojure')
+
+	&.coffeescript, &.coffee, &.cson, &.iced
+		mixcontent('CoffeeScript')
+
+	&.cpc
+		mixcontent('CpcdosC+')
+
+	&.crmsh, &.crm, &.pcmk
+		mixcontent('Crmsh')
+
+	&.crystal, &.cr
+		mixcontent('Crystal')
+
+	&.curl
+		mixcontent('cURL')
+
+	&.cypher
+		mixcontent('Cypher (Neo4j)')
+
+	&.d
+		mixcontent('D')
+
+	&.dafny
+		mixcontent('Dafny')
+
+	&.dart
+		mixcontent('Dart')
+
+	&.dpr, &.dfm, &.pas, &.pascal
+		mixcontent('Delphi')
+
+	&.diff, &.patch
+		mixcontent('Diff')
+
+	&.django, &.jinja
+		mixcontent('Django')
+
+	&.dns, &.zone, &.bind
+		mixcontent('DNS Zone file')
+
+	&.dockerfile, &.docker
+		mixcontent('Dockerfile')
+
+	&.dos, &.bat, &.cmd
+		mixcontent('DOS')
+
+	&.dsconfig
+		mixcontent('dsconfig')
+
+	&.dts
+		mixcontent('DTS (Device Tree)')
+
+	&.dust, &.dst
+		mixcontent('Dust')
+
+	&.dylan
+		mixcontent('Dylan')
+
+	&.ebnf
+		mixcontent('EBNF')
+
+	&.elixir
+		mixcontent('Elixir')
+
+	&.elm
+		mixcontent('Elm')
+
+	&.erlang, &.erl
+		mixcontent('Erlang')
+
+	&.excel, &.xls, &.xlsx
+		mixcontent('Excel')
+
+	&.extempore, &.xtlang, &.xtm
+		mixcontent('Extempore')
+
+	&.fsharp, &.fs, &.fsx, &.fsi, &.fsscript
+		mixcontent('F#')
+
+	&.fix
+		mixcontent('FIX')
+
+	&.flix
+		mixcontent('Flix')
+
+	&.fortran, &.f90, &.f95
+		mixcontent('Fortran')
+
+	&.func
+		mixcontent('FunC')
+
+	&.gcode, &.nc
+		mixcontent('G-Code')
+
+	&.gams, &.gms
+		mixcontent('Gams')
+
+	&.gauss, &.gss
+		mixcontent('GAUSS')
+
+	&.godot, &.gdscript
+		mixcontent('GDScript')
+
+	&.gherkin
+		mixcontent('Gherkin')
+
+	&.hbs, &.glimmer, &.htmlbars
+		mixcontent('Glimmer and EmberJS')
+
+	&.gn, &.gni
+		mixcontent('GN for Ninja')
+
+	&.go, &.golang
+		mixcontent('Go')
+
+	&.gf
+		mixcontent('Grammatical Framework')
+
+	&.golo, &.gololang
+		mixcontent('Golo')
+
+	&.gradle
+		mixcontent('Gradle')
+
+	&.graphql, &.gql
+		mixcontent('GraphQL')
+
+	&.groovy
+		mixcontent('Groovy')
+
+	&.gsql
+		mixcontent('GSQL')
+
+	&.xml, &.html, &.xhtml, &.rss, &.atom, &.xjb, &.xsd, &.xsl, &.plist, &.svg
+		mixcontent('HTML, XML')
+
+	&.http, &.https
+		mixcontent('HTTP')
+
+	&.haml
+		mixcontent('Haml')
+
+	&.handlebars, &.hbs
+		mixcontent('Handlebars')
+
+	&.haskell, &.hs
+		mixcontent('Haskell')
+
+	&.haxe, &.hx
+		mixcontent('Haxe')
+
+	&.hlsl
+		mixcontent('High-level shader language')
+
+	&.hy, &.hylang
+		mixcontent('Hy')
+
+	&.ini, &.toml
+		mixcontent('Ini, TOML')
+
+	&.inform7, &.i7
+		mixcontent('Inform7')
+
+	&.irpf90
+		mixcontent('IRPF90')
+
+	&.iptables
+		mixcontent('Iptables')
+
+	&.json, &.jsonc
+		mixcontent('JSON')
+
+	&.java, &.jsp
+		mixcontent('Java')
+
+	&.javascript, &.js, &.jsx
+		mixcontent('JavaScript')
+
+	&.jolie, &.iol, &.ol
+		mixcontent('Jolie')
+
+	&.julia, &.jl
+		mixcontent('Julia')
+
+	&.julia-repl
+		mixcontent('Julia REPL')
+
+	&.kotlin, &.kt
+		mixcontent('Kotlin')
+
+	&.lang
+		mixcontent('Lang')
+
+	&.tex
+		mixcontent('LaTeX')
+
+	&.leaf
+		mixcontent('Leaf')
+
+	&.lean
+		mixcontent('Lean')
+
+	&.lasso, &.ls, &.lassoscript
+		mixcontent('Lasso')
+
+	&.less
+		mixcontent('Less')
+
+	&.ldif
+		mixcontent('LDIF')
+
+	&.lisp
+		mixcontent('Lisp')
+
+	&.livecodeserver
+		mixcontent('LiveCode Server')
+
+	&.livescript, &.ls
+		mixcontent('LiveScript')
+
+	&.lookml
+		mixcontent('LookML')
+
+	&.lua
+		mixcontent('Lua')
+
+	&.luau
+		mixcontent('Luau')
+
+	&.macaulay2
+		mixcontent('Macaulay2')
+
+	&.makefile, &.mk, &.mak, &.make
+		mixcontent('Makefile')
+
+	&.markdown, &.md, &.mkdown, &.mkd
+		mixcontent('Markdown')
+
+	&.mathematica, &.mma, &.wl
+		mixcontent('Mathematica')
+
+	&.matlab
+		mixcontent('Matlab')
+
+	&.maxima
+		mixcontent('Maxima')
+
+	&.mel
+		mixcontent('Maya Embedded Language')
+
+	&.mercury
+		mixcontent('Mercury')
+
+	&.mips, &.mipsasm
+		mixcontent('MIPS Assembler')
+
+	&.mint
+		mixcontent('Mint')
+
+	&.mirth
+		mixcontent('Mirth')
+
+	&.mirc, &.mrc
+		mixcontent('mIRC Scripting Language')
+
+	&.mizar
+		mixcontent('Mizar')
+
+	&.mkb
+		mixcontent('MKB')
+
+	&.mlir
+		mixcontent('MLIR')
+
+	&.mojolicious
+		mixcontent('Mojolicious')
+
+	&.monkey
+		mixcontent('Monkey')
+
+	&.moonscript, &.moon
+		mixcontent('Moonscript')
+
+	&.motoko, &.mo
+		mixcontent('Motoko')
+
+	&.n1ql
+		mixcontent('N1QL')
+
+	&.nsis
+		mixcontent('NSIS')
+
+	&.never
+		mixcontent('Never')
+
+	&.nginx, &.nginxconf
+		mixcontent('Nginx')
+
+	&.nim, &.nimrod
+		mixcontent('Nim')
+
+	&.nix
+		mixcontent('Nix')
+
+	&.oak
+		mixcontent('Oak')
+
+	&.ocl
+		mixcontent('Object Constraint Language')
+
+	&.ocaml, &.ml
+		mixcontent('OCaml')
+
+	&.objectivec, &.mm, &.objc, &.obj-c
+		mixcontent('Objective C')
+
+	&.glsl
+		mixcontent('OpenGL Shading Language')
+
+	&.openscad, &.scad
+		mixcontent('OpenSCAD')
+
+	&.ruleslanguage
+		mixcontent('Oracle Rules Language')
+
+	&.oxygene
+		mixcontent('Oxygene')
+
+	&.pf
+		mixcontent('PF')
+
+	&.php
+		mixcontent('PHP')
+
+	&.papyrus, &.psc
+		mixcontent('Papyrus')
+
+	&.parser3
+		mixcontent('Parser3')
+
+	&.perl, &.pl, &.pm
+		mixcontent('Perl')
+
+	&.phix
+		mixcontent('Phix')
+
+	&.pine, &.pinescript
+		mixcontent('Pine Script')
+
+	&.plaintext, &.txt, &.text
+		mixcontent('Plaintext')
+
+	&.pony
+		mixcontent('Pony')
+
+	&.pgsql, &.postgres, &.postgresql
+		mixcontent('PostgreSQL & PL/pgSQL')
+
+	&.powershell, &.ps, &.ps1
+		mixcontent('PowerShell')
+
+	&.processing
+		mixcontent('Processing')
+
+	&.prolog
+		mixcontent('Prolog')
+
+	&.properties
+		mixcontent('Properties')
+
+	&.proto, &.protobuf
+		mixcontent('Protocol Buffers')
+
+	&.puppet, &.pp
+		mixcontent('Puppet')
+
+	&.python, &.py, &.gyp
+		mixcontent('Python')
+
+	&.profile
+		mixcontent('Python profiler results')
+
+	&.python-repl, &.pycon
+		mixcontent('Python REPL')
+
+	&.qsharp
+		mixcontent('Q#')
+
+	&.k, &.kdb
+		mixcontent('Q')
+
+	&.qml
+		mixcontent('QML')
+
+	&.r
+		mixcontent('R')
+
+	&.cshtml, &.razor, &.razor-cshtml
+		mixcontent('Razor CSHTML')
+
+	&.reasonml, &.re
+		mixcontent('ReasonML')
+
+	&.redbol, &.rebol, &.red, &.red-system
+		mixcontent('Rebol & Red')
+
+	&.rib
+		mixcontent('RenderMan RIB')
+
+	&.rsl
+		mixcontent('RenderMan RSL')
+
+	&.rescript, &.res
+		mixcontent('ReScript')
+
+	&.risc, &.riscript
+		mixcontent('RiScript')
+
+	&.riscv, &.riscvasm
+		mixcontent('RISC-V Assembly')
+
+	&.graph, &.instances
+		mixcontent('Roboconf')
+
+	&.robot, &.rf
+		mixcontent('Robot Framework')
+
+	&.rpm-specfile, &.rpm, &.spec, &.rpm-spec, &.specfile
+		mixcontent('RPM spec files')
+
+	&.ruby, &.rb, &.gemspec, &.podspec, &.thor, &.irb
+		mixcontent('Ruby')
+
+	&.rust, &.rs
+		mixcontent('Rust')
+
+	&.rvt, &.rvt-script
+		mixcontent('RVT Script')
+
+	&.sas
+		mixcontent('SAS')
+
+	&.scss
+		mixcontent('SCSS')
+
+	&.sql
+		mixcontent('SQL')
+
+	&.p21, &.step, &.stp
+		mixcontent('STEP Part 21')
+
+	&.scala
+		mixcontent('Scala')
+
+	&.scheme
+		mixcontent('Scheme')
+
+	&.scilab, &.sci
+		mixcontent('Scilab')
+
+	&.sfz
+		mixcontent('SFZ')
+
+	&.shexc
+		mixcontent('Shape Expressions')
+
+	&.shell, &.console
+		mixcontent('Shell')
+
+	&.smali
+		mixcontent('Smali')
+
+	&.smalltalk, &.st
+		mixcontent('Smalltalk')
+
+	&.sml, &.ml
+		mixcontent('SML')
+
+	&.solidity, &.sol
+		mixcontent('Solidity')
+
+	&.spl
+		mixcontent('Splunk SPL')
+
+	&.stan, &.stanfuncs
+		mixcontent('Stan')
+
+	&.stata
+		mixcontent('Stata')
+
+	&.iecst, &.scl, &.stl, &.structured-text
+		mixcontent('Structured Text')
+
+	&.stylus, &.styl
+		mixcontent('Stylus')
+
+	&.subunit
+		mixcontent('SubUnit')
+
+	&.supercollider, &.sc
+		mixcontent('Supercollider')
+
+	&.svelte
+		mixcontent('Svelte')
+
+	&.swift
+		mixcontent('Swift')
+
+	&.tcl, &.tk
+		mixcontent('Tcl')
+
+	&.terraform, &.tf, &.hcl
+		mixcontent('Terraform (HCL)')
+
+	&.tap
+		mixcontent('Test Anything Protocol')
+
+	&.thrift
+		mixcontent('Thrift')
+
+	&.toit
+		mixcontent('Toit')
+
+	&.tp
+		mixcontent('TP')
+
+	&.tsql
+		mixcontent('Transact-SQL')
+
+	&.twig, &.craftcms
+		mixcontent('Twig')
+
+	&.typescript, &.ts, &.tsx, &.mts, &.cts
+		mixcontent('TypeScript')
+
+	&.unicorn-rails-log
+		mixcontent('Unicorn Rails log')
+
+	&.unison, &.u
+		mixcontent('Unison')
+
+	&.vbnet, &.vb
+		mixcontent('VB.Net')
+
+	&.vba
+		mixcontent('VBA')
+
+	&.vbscript, &.vbs
+		mixcontent('VBScript')
+
+	&.vhdl
+		mixcontent('VHDL')
+
+	&.vala
+		mixcontent('Vala')
+
+	&.verilog, &.v
+		mixcontent('Verilog')
+
+	&.vim
+		mixcontent('Vim Script')
+
+	&.wgsl
+		mixcontent('WGSL')
+
+	&.xsharp, &.xs, &.prg
+		mixcontent('X#')
+
+	&.axapta
+		mixcontent('X++')
+
+	&.x86asm
+		mixcontent('x86 Assembly')
+
+	&.x86asmatt
+		mixcontent('x86 Assembly (AT&T)')
+
+	&.xl, &.tao
+		mixcontent('XL')
+
+	&.xquery, &.xpath, &.xq, &.xqm
+		mixcontent('XQuery')
+
+	&.yml, &.yaml
+		mixcontent('YAML')
+
+	&.zenscript, &.zs
+		mixcontent('ZenScript')
+
+	&.zephir, &.zep
+		mixcontent('Zephir')
+
+	&.zig
+		mixcontent('Zig')
 
 pre
 	color: var(--primary-700) !important
