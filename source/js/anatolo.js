@@ -108,6 +108,18 @@ class AnatoloManager extends EventEmitter3 {
   ref(val) {
     return new AnatoloRef(val);
   }
+  success() {
+    return new Promise((res) => {
+      $('#success-indicator').addClass('show');
+      setTimeout(() => {
+        $('#success-indicator').addClass('animated fadeOut');
+      }, 500);
+      setTimeout(() => {
+        $('#success-indicator').removeClass('show animated fadeOut');
+        res();
+      }, 1000);
+    });
+  }
 }
 
 /** @template T */

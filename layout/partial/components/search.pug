@@ -2,8 +2,8 @@ script
   != '(async function(){ if (Anatolo.search == null) await Anatolo.getMsg("search-init"); Anatolo.search.config = {translation:{posts:"' + __("insight.posts") + '",pages:"' + __("insight.pages") + '",categories:"' + __("insight.categories") + '",tags:"' + __("insight.tags") + '",untitled:"' + __("insight.untitled") + '",} }; })()'
 //- script(src=url_for("js/insight.js"), defer)
 script(src=url_for("js/search.js"), defer)
-.searchbox.ins-search
-  .searchbox-container.ins-search-container
+.searchbox.ins-search.modal-cover
+  .searchbox-container.ins-search-container.modal-container
     .searchbox-input-wrapper
       input.searchbox-input.ins-search-input(type="text", placeholder=__("insight.hint"))
       span.searchbox-close
