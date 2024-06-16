@@ -1,4 +1,21 @@
 ul.social-links
+  - var socials = Object.fromEntries(Object.entries(theme.social).filter((x) => x[1]));
+  each link, icon in socials
+    case icon
+      when "mail"
+        li
+          a(href="mailto:" + link)
+            i.fa.fa-envelope
+      when "rss"
+        li
+          a(href=link)
+            i.fa.fa-rss
+      default
+        li
+          a(href=link)
+            i.fab(class="fa-" + icon)
+
+  //- deprecated 
   if theme.github
     li
       a(href=theme.github)
@@ -15,7 +32,7 @@ ul.social-links
   if theme.zhihu
     li
       a(href=theme.zhihu)
-        i.fa.fa-mortar-board
+        i.fa.fa-zhihu
   if theme.twitter
     li
       a(href=theme.twitter)

@@ -22,8 +22,6 @@ Anatolo设计极致简约，但麻雀虽小，五脏理应俱全。因此，我�
 
 码云功能和一些中国特色功能来自 [Anatole-core](https://github.com/mrcore/hexo-theme-Anatole-Core)
 
-
-
 ## Todo List
 
 - 使用基于json的Ajax

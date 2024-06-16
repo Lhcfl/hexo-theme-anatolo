@@ -39,15 +39,16 @@ footbar:
 
 # Social Links
 # If you want to add more, go to sidebar.pug
-github: https://github.com/Lhcfl
-mail: lhcfl@outlook.com
-zhihu: 
-QQ: 
-twitter:
-instagram:
-rss:
-facebook:
-weibo:
+social:
+  github: https://github.com/Lhcfl
+  mail: lhcfl@outlook.com
+  zhihu: 
+  QQ: 
+  twitter:
+  instagram:
+  rss:
+  facebook:
+  weibo:
 
 # Nav menu
 menu:

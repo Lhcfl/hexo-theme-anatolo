@@ -41,16 +41,18 @@ footbar:
 
 
 # Social Links
-# If you want to add more, go to `social_links.pug`
-github: https://github.com/Lhcfl
-mail: yourname@example.com
-zhihu: 
-QQ: 
-twitter:
-instagram:
-rss:
-facebook:
-weibo:
+# The key is the icon name of font-awesome 6, and the value is a link
+# except for mail.
+social:
+  github: https://github.com/Lhcfl
+  mail: yourname@example.com
+  zhihu: 
+  qq: 
+  twitter:
+  instagram:
+  rss:
+  facebook:
+  weibo:
 
 # Nav menu
 menu:
