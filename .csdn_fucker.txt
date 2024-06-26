@@ -1,4 +1,9 @@
 FUCK CSDN AND GITCODE
+
+强烈谴责CSDN私自搬运Github仓库并将其链接**批量替换**成Gitcode的无耻行为。
+
+如果这份文件导致您在国内的仓库无法正常使用Anatolo，请自行删除。
+
 // magic lines to keep your code away from gitcode/csdn/some fucking Chinese shit
 
 +1s 蛤蛤 苟利国家生死以 岂因祸福避趋之
