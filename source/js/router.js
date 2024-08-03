@@ -106,12 +106,12 @@ class AnatoloRouter {
 
     await this.__animating.unitl(false);
 
+    if (pushState) {
+      history.pushState({ time: new Date(), url: url }, '', url);
+    }
+
     $('main-outlet').html(body);
     document.title = title;
-
-    if (pushState) {
-      history.pushState({ time: new Date() }, title, url);
-    }
 
     this.updateRouterState({
       url: document.location.href,
