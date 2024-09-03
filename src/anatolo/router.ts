@@ -1,7 +1,6 @@
 import { make_friends_list } from '@/utils/main';
 import { AnatoloManager } from './anatolo';
 import { AnatoloRef } from './ref';
-import $ from 'jquery';
 import { SiteStatic } from './site-static';
 
 type RouterState = { url: string; body: string; title: string; scrollY?: number };
@@ -47,11 +46,14 @@ export class AnatoloRouter {
   set loading(status: boolean) {
     this.__loading.value = status;
     this.__animating.value = true;
+    const mainEl = document.querySelector('.main.animated');
     if (status === true) {
-      $('.main.animated').removeClass('fadeInDown').addClass('fadeOutDown');
+      mainEl?.classList.add('fadeOutDown');
+      mainEl?.classList.remove('fadeInDown');
     }
     if (status === false) {
-      $('.main.animated').addClass('fadeInDown').removeClass('fadeOutDown');
+      mainEl?.classList.remove('fadeOutDown');
+      mainEl?.classList.add('fadeInDown');
     }
     setTimeout(() => {
       this.__animating.value = false;
@@ -87,7 +89,7 @@ export class AnatoloRouter {
   async queryPageData(link: string) {
     const cached = this.routerStates.get(link);
     if (cached) return cached;
-    const res = await $.ajax(link);
+    const res = await fetch(link).then((res) => res.text());
     if (typeof res !== 'string') {
       throw {
         reason: 'NOT HTML',
@@ -119,7 +121,7 @@ export class AnatoloRouter {
       history.pushState({ time: new Date(), url: url }, '', url);
     }
 
-    $('main-outlet').html(body);
+    document.querySelector('main-outlet')!.innerHTML = body;
     document.title = title;
 
     this.updateRouterState({
@@ -162,6 +164,7 @@ export class AnatoloRouter {
 
   async routeTo(link: string, pushState = true) {
     console.log(`Route to: ${link}`);
+
     if (!link) return;
     if (this.isThisSite(link)) {
       const url = new URL(link, window.location.origin);

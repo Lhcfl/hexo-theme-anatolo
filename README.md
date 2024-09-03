@@ -29,6 +29,9 @@ Anatolo设计极致简约，但麻雀虽小，五脏理应俱全。因此，我�
 
 
 ## 改进
+
+- 20240904 [BREAKING] 引入了 Rollup.js
+
 - 我在学世界语所以主题改名为Anatolo（
 - 暗黑模式支持
 - 增加了文章概要的选项
@@ -60,12 +63,15 @@ Anatolo设计极致简约，但麻雀虽小，五脏理应俱全。因此，我�
 
 Clone:
 
-``` 
+```bash
 git clone https://gitee.com/Lhcfl/hexo-theme-anatolo.git themes/Anatolo
-或者直接下载主题zip包解压至主题目录下，重命名为Anatolo
+cd themes/Anatolo
+yarn # 必须安装依赖
 ```
 
-安装依赖
+安装依赖:
+
+在hexo博客根目录：
 
 ```
 npm install hexo-renderer-pug --save

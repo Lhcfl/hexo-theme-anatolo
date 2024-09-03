@@ -19,8 +19,6 @@ mixin require_comment_scripts
 
 mixin make_comments
   if theme.always_enable_comments || page.comments
-    script(src=url_for("js/visitors.js"))
-
     if theme.duoshuo
       a#comments
       .ds-thread(data-thread-key=page.path, data-title=page.title, data-url=page.permalink, data-author-key="1")

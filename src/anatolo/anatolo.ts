@@ -1,12 +1,11 @@
-import { Site, WebPage } from '../types/site';
 import EventEmitter3 from 'eventemitter3';
 import { AnatoloRef } from './ref';
 import { AnatoloSite } from './site';
 import { AnatoloSearch } from './search';
 import { AnatoloRouter } from './router';
-import $ from 'jquery';
 import { loadComment } from './load-comment';
 import { darkLightToggle } from './dark-light-toggle';
+import { success } from '@/components/success';
 
 export class AnatoloManager extends EventEmitter3 {
   commentConfig = new AnatoloRef<any>(null);
@@ -50,17 +49,9 @@ export class AnatoloManager extends EventEmitter3 {
     }
     return this.root + url;
   }
+
   success() {
-    return new Promise<void>((res) => {
-      $('#success-indicator').addClass('show');
-      setTimeout(() => {
-        $('#success-indicator').addClass('animated fadeOut');
-      }, 500);
-      setTimeout(() => {
-        $('#success-indicator').removeClass('show animated fadeOut');
-        res();
-      }, 1000);
-    });
+    return success();
   }
 
   share = {

@@ -1,7 +1,10 @@
-import $ from 'jquery';
+import { success } from '@/components/success';
+export { h } from './html-helper';
 
 export function nextTick(fn: () => void) {
-  setTimeout(() => fn(), 0);
+  setTimeout(() => {
+    fn();
+  }, 10);
 }
 
 export function escapeHTML(str: any) {
@@ -18,46 +21,7 @@ export function escapeHTML(str: any) {
   );
 }
 
-export function make_friends_list() {
-  try {
-    const friendHTML = ({
-      avatar,
-      href,
-      title,
-      description,
-    }: {
-      avatar?: string;
-      href?: string;
-      title?: string;
-      description?: string;
-    }) =>
-      `<div class="friend-link-container"><div class="friend-link-box">
-        <aside class="friend-link-avatar">
-          <img src="${escapeHTML(avatar)}" href="${escapeHTML(href)}">
-        </aside>
-        <div class="friend-link-meta">
-          <div class="friend-link-title">
-            <a href="${escapeHTML(href)}">${escapeHTML(title)}</a>
-          </div>
-          <div class="friend-link-description">
-            ${escapeHTML(description)}
-          </div>
-        </div>
-      </div></div>`;
-
-    $('.friend-link').replaceWith(function () {
-      const friend = $(this);
-      return friendHTML({
-        avatar: friend.attr('avatar'),
-        href: friend.attr('href'),
-        title: friend.attr('title'),
-        description: friend.attr('description'),
-      });
-    });
-  } catch (err) {
-    console.error(err);
-  }
-}
+export { make_friends_list } from './friend-link';
 
 export async function copyToClipboard(text: string) {
   try {
@@ -76,6 +40,6 @@ export async function copyToClipboard(text: string) {
     document.execCommand('copy');
     document.body.removeChild(t);
   } finally {
-    (window as any).Anatolo.success();
+    success();
   }
 }

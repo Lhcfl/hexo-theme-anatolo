@@ -1,10 +1,7 @@
-// @ts-nocheck
-
 import Fuse from 'fuse.js';
 import { AnatoloDynamicResource } from './dynamic-resource';
-import $ from 'jquery';
 import { AnatoloRef } from './ref';
-import { escapeHTML, nextTick } from '@/utils/main';
+import { escapeHTML, h, nextTick } from '@/utils/main';
 import { AnatoloManager } from './anatolo';
 
 interface SearchResourcePage {
@@ -28,20 +25,20 @@ interface SearchResource {
 
 export class AnatoloSearch {
   searchData: AnatoloDynamicResource<SearchResource>;
-  config: Record<string, any>;
+  config: Record<string, any> = {};
   showing = false;
 
   get mainEl() {
-    return $('.ins-search');
+    return document.querySelector('.ins-search') as HTMLElement;
   }
   get inputEl() {
-    return this.mainEl.find('.ins-search-input');
+    return this.mainEl?.querySelector('.ins-search-input') as HTMLInputElement;
   }
   get wrapperEl() {
-    return this.mainEl.find('.ins-section-wrapper');
+    return this.mainEl?.querySelector('.ins-section-wrapper') as HTMLElement;
   }
   get containerEl() {
-    return this.mainEl.find('.ins-section-container');
+    return this.mainEl?.querySelector('.ins-section-container') as HTMLElement;
   }
 
   fuses = {};
@@ -51,68 +48,88 @@ export class AnatoloSearch {
 
   constructor(Anatolo: AnatoloManager) {
     this.searchData = new AnatoloDynamicResource('content.json');
-    nextTick(() => {
-      this.init();
-    });
+    document.addEventListener(
+      'DOMContentLoaded',
+      () => {
+        nextTick(() => {
+          this.init();
+        });
+      },
+      {
+        once: true,
+      },
+    );
     this.Anatolo = Anatolo;
   }
 
   init() {
     this.buildFuse();
 
-    this.mainEl.parent().remove('.ins-search');
-    $('body').append(this.mainEl);
+    document.body.appendChild(this.mainEl);
 
-    this.inputEl
-      .on('keydown', (e) => {
-        switch (e.code) {
-          case 'ArrowDown':
-            this.markActive(this.getSelectedIndex() + 1);
-            break;
-          case 'ArrowUp':
-            this.markActive(this.getSelectedIndex() - 1);
-            break;
-          case 'Enter':
-            const url = $('.ins-selectable.active').data('url');
-            if (url) this.gotoLink(url);
-            break;
-          case 'Escape':
-            this.closeWindow();
-            break;
-        }
-      })
-      .on('input', (e) => {
-        nextTick(() => {
-          this.search();
-        });
-      });
-
-    $(document)
-      .on('keydown', (e) => {
-        if (e.key == 's' && !this.showing) nextTick(() => this.openWindow());
-      })
-      .on('click', (e) => {
-        if (e.target !== this.inputEl[0] && this.showing) {
+    this.inputEl.addEventListener('keydown', (e) => {
+      switch (e.code) {
+        case 'ArrowDown':
+          this.markActive(this.getSelectedIndex() + 1);
+          break;
+        case 'ArrowUp':
+          this.markActive(this.getSelectedIndex() - 1);
+          break;
+        case 'Enter':
+          const url = (document.querySelector('.ins-selectable.active') as HTMLElement)?.dataset.url;
+          if (url) this.gotoLink(url);
+          break;
+        case 'Escape':
           this.closeWindow();
-        }
+          break;
+      }
+    });
+    this.inputEl.addEventListener('input', () => {
+      nextTick(() => {
+        this.search();
       });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      const focused = document.querySelector(':focus');
+      if (focused?.tagName === 'TEXTAREA' || focused?.tagName === 'INPUT') {
+        return;
+      }
+      if (this.showing) {
+        return;
+      }
+      if (e.key === 's') {
+        nextTick(() => this.openWindow());
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (e.target !== this.inputEl && this.showing) {
+        this.closeWindow();
+      }
+    });
 
     this.Anatolo.emit('search-init');
   }
 
   getSelectedIndex() {
     let index = -1;
-    $('.ins-selectable').each((id, elem) => {
-      if ($(elem).hasClass('active')) index = id;
+    document.querySelectorAll('.ins-selectable').forEach((elem, id) => {
+      if (elem.classList.contains('active')) index = id;
     });
     return index;
   }
 
   markActive(index: number) {
-    const items = $('.ins-selectable');
-    items.removeClass('active');
+    const items = document.querySelectorAll('.ins-selectable');
     index = (index + Number(index == -2) + items.length) % items.length;
-    $(items[index]).addClass('active');
+
+    items.forEach((elem, id) => {
+      elem.classList.remove('active');
+      if (id === index) {
+        elem.classList.add('active');
+      }
+    });
   }
 
   gotoLink(url: string) {
@@ -121,35 +138,34 @@ export class AnatoloSearch {
   }
 
   makeSearchItem(icon: string | null, title: string | null, slug: string | null, preview: string | null, url: string) {
-    return ($ as any)('<div>')
-      .addClass('ins-selectable')
-      .addClass('ins-search-item')
-      .append(
-        ($ as any)('<header>')
-          .append(
-            $('<i>')
-              .addClass('fa')
-              .addClass('fa-' + icon),
-          )
-          .append(
-            $('<span>')
-              .addClass('ins-title')
-              .html(title != null && title !== '' ? title : this.config.translation['untitled']),
-          )
-          .append(slug ? $('<span>').addClass('ins-slug').html(slug) : null),
-      )
-      .append(preview ? $('<p>').addClass('ins-search-preview').html(preview) : null)
-      .attr('data-url', url)
-      .on('click', () => this.gotoLink(url));
+    return h(
+      '.ins-selectable.ins-search-item',
+      {
+        data: { url },
+        event: {
+          click: (e) => {
+            this.gotoLink(url);
+          },
+        },
+      },
+      [
+        h('header', [
+          h(`i.fa.fa-${icon}`),
+          h('span.ins-title', title != null && title !== '' ? title : this.config.translation['untitled']),
+          slug ? h('span.ins-slug') : null,
+        ]),
+        preview ? h('p.ins-search-preview', preview) : null,
+      ],
+    );
   }
 
-  makeSection(sectionType: any, array: any) {
-    const sectionTitle = this.config.translation[sectionType];
+  makeSection(sectionType: any, array: Array) {
+    const sectionTitle = this.config.translation[sectionType] as string;
     let searchItems;
     if (array.length === 0) return null;
 
     searchItems = array.map((item) => {
-      const newItem = {};
+      const newItem: Record<string, any> = {};
       for (const key of Object.keys(item)) {
         if (key === 'link') {
           newItem[key] = item[key];
@@ -188,10 +204,7 @@ export class AnatoloSearch {
       return null;
     });
 
-    return $('<section>')
-      .addClass('ins-section')
-      .append($('<header>').addClass('ins-section-header').text(sectionTitle))
-      .append(searchItems);
+    return h('section.ins-section', [h('header.ins-section-header', sectionTitle), searchItems]);
   }
 
   async buildFuse() {
@@ -225,39 +238,41 @@ export class AnatoloSearch {
   }
 
   search() {
-    const keyword = this.inputEl.val();
+    const keyword = this.inputEl.value;
     this.getSearchResult(keyword).then((res) => {
       this.searchResultToDOM(res);
     });
   }
 
   searchResultToDOM(searchResult) {
-    this.containerEl.empty();
+    this.containerEl.innerHTML = '';
     for (var key in searchResult) {
-      this.containerEl.append(this.makeSection(key.toLowerCase(), searchResult[key]));
+      const section = this.makeSection(key.toLowerCase(), searchResult[key]);
+      if (section) this.containerEl.appendChild(section);
     }
   }
 
-  selectItemByDiff(value) {
-    var $items = $.makeArray(this.containerEl.find('.ins-selectable'));
-    var prevPosition = -1;
-    $items.forEach(function (item, index) {
-      if ($(item).hasClass('active')) {
+  selectItemByDiff(value: number) {
+    const items = this.containerEl.querySelectorAll('.ins-selectable');
+    let prevPosition = -1;
+    items.forEach((elem, index) => {
+      if (elem.classList.contains('active')) {
+        elem.classList.remove('active');
         prevPosition = index;
         return;
       }
     });
-    var nextPosition = ($items.length + prevPosition + value) % $items.length;
-    $($items[prevPosition]).removeClass('active');
-    $($items[nextPosition]).addClass('active');
-    scrollTo($($items[nextPosition]));
+    let nextPosition = (items.length + prevPosition + value) % items.length;
+    items[nextPosition].classList.add('active');
+    // scrollTo(items[nextPosition].scrollTop);
   }
 
   openWindow() {
-    this.mainEl.removeClass('fadeOut').addClass('animated fadeIn').addClass('show');
-    this.mainEl.find('.ins-search-input').trigger('focus');
+    this.mainEl.classList.add('animated', 'fadeIn', 'show');
+    this.mainEl.classList.remove('fadeOut');
+    this.inputEl.focus();
     nextTick(() => {
-      this.inputEl[0].setSelectionRange(0, this.inputEl.val().length);
+      this.inputEl.setSelectionRange(0, this.inputEl.value.length);
       this.showing = true;
     });
     this.search();
@@ -265,14 +280,12 @@ export class AnatoloSearch {
 
   closeWindow() {
     if (!this.showing) return;
-    $('.navbar-main').css('pointer-events', 'none');
-    this.mainEl.removeClass('fadeIn');
-    this.mainEl.addClass('fadeOut');
-    this.inputEl.trigger('blur');
+    this.mainEl.classList.add('fadeOut');
+    this.mainEl.classList.remove('fadeIn');
+    this.inputEl.blur();
     this.showing = false;
     setTimeout(() => {
-      $('.navbar-main').css('pointer-events', 'auto');
-      this.mainEl.removeClass('show');
+      this.mainEl.classList.remove('show');
     }, 400);
   }
 }

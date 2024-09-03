@@ -48,7 +48,6 @@ mixin make_post(item, is_detail)
                 i.fa.fa-tag
                 a.tag(href=config.root + tag.path, title=tag.name)= tag.name + " "
 
-            span.leancloud_visitors
             span
               - var words = word_count(item.content);
               - var needtime = duration((words / 300.0) * 60, "seconds");
