@@ -1,4 +1,6 @@
-function loadStyles(url) {
+import { SiteStatic } from './site-static';
+
+function loadStyles(url: string) {
   var link = document.createElement('link');
   link.id = 'themecss';
   link.rel = 'stylesheet';
@@ -9,27 +11,27 @@ function loadStyles(url) {
 }
 
 function getDefaultTheme() {
-  return document.getElementById('default-theme').getAttribute('data');
+  return document.getElementById('default-theme')?.getAttribute('data');
 }
 
 function setTheme() {
   if (document.getElementById('themecss')) {
-    document.getElementById('themecss').remove();
+    document.getElementById('themecss')?.remove();
   }
   if (localStorage['themeChanged'] && getDefaultTheme() == 'light') {
-    loadStyles(Anatolo.url_for('css/theme/dark.css'));
+    loadStyles(SiteStatic.url_for('css/theme/dark.css'));
   } else if (localStorage['themeChanged'] && getDefaultTheme() == 'dark') {
-    loadStyles(Anatolo.url_for('css/theme/light.css'));
+    loadStyles(SiteStatic.url_for('css/theme/light.css'));
   } else {
-    loadStyles(Anatolo.url_for(`css/theme/${getDefaultTheme()}.css`));
+    loadStyles(SiteStatic.url_for(`css/theme/${getDefaultTheme()}.css`));
   }
 }
 
 setTheme();
 
-function darkLightToggle() {
+export function darkLightToggle() {
   if (!localStorage['themeChanged']) {
-    localStorage.setItem('themeChanged', true);
+    localStorage.setItem('themeChanged', 'true');
   } else {
     localStorage.removeItem('themeChanged');
   }

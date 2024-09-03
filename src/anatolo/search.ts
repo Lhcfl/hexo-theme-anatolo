@@ -1,25 +1,64 @@
-/// <reference path="./anatolo.js" />
-/// <reference types="fuse.js" />
+// @ts-nocheck
 
-/** @type {typeof import("fuse.js").default} */
-var Fuse;
+import Fuse from 'fuse.js';
+import { AnatoloDynamicResource } from './dynamic-resource';
+import $ from 'jquery';
+import { AnatoloRef } from './ref';
+import { escapeHTML, nextTick } from '@/utils/main';
+import { AnatoloManager } from './anatolo';
 
-class AnatoloSearch {
-  /** @type {AnatoloDynamicContent} */
-  searchData;
-  config;
+interface SearchResourcePage {
+  title: string;
+  text: string;
+  link: string;
+}
+
+interface SearchResourceCollection {
+  name: string;
+  slug: string;
+  link: string;
+}
+
+interface SearchResource {
+  pages: SearchResourcePage[];
+  posts: SearchResourcePage[];
+  tags: SearchResourceCollection[];
+  categories: SearchResourceCollection[];
+}
+
+export class AnatoloSearch {
+  searchData: AnatoloDynamicResource<SearchResource>;
+  config: Record<string, any>;
   showing = false;
+
+  get mainEl() {
+    return $('.ins-search');
+  }
+  get inputEl() {
+    return this.mainEl.find('.ins-search-input');
+  }
+  get wrapperEl() {
+    return this.mainEl.find('.ins-section-wrapper');
+  }
+  get containerEl() {
+    return this.mainEl.find('.ins-section-container');
+  }
+
+  fuses = {};
+  fuse_ok = new AnatoloRef(false);
+
+  Anatolo;
+
+  constructor(Anatolo: AnatoloManager) {
+    this.searchData = new AnatoloDynamicResource('content.json');
+    nextTick(() => {
+      this.init();
+    });
+    this.Anatolo = Anatolo;
+  }
+
   init() {
-    this.fuses = {};
-    this.fuse_ok = new AnatoloRef(false);
-
-    // TODO: lazy load data
-    this.fetchSearchData();
-
-    this.mainEl = $('.ins-search');
-    this.inputEl = this.mainEl.find('.ins-search-input');
-    this.wrapperEl = this.mainEl.find('.ins-section-wrapper');
-    this.containerEl = this.mainEl.find('.ins-section-container');
+    this.buildFuse();
 
     this.mainEl.parent().remove('.ins-search');
     $('body').append(this.mainEl);
@@ -43,14 +82,14 @@ class AnatoloSearch {
         }
       })
       .on('input', (e) => {
-        Anatolo.nextTick(() => {
+        nextTick(() => {
           this.search();
         });
       });
 
     $(document)
       .on('keydown', (e) => {
-        if (e.key == 's' && !this.showing) Anatolo.nextTick(() => this.openWindow());
+        if (e.key == 's' && !this.showing) nextTick(() => this.openWindow());
       })
       .on('click', (e) => {
         if (e.target !== this.inputEl[0] && this.showing) {
@@ -58,12 +97,7 @@ class AnatoloSearch {
         }
       });
 
-    Anatolo.emit('search-init');
-  }
-
-  fetchSearchData() {
-    this.searchData = new AnatoloDynamicContent('content.json');
-    this.buildFuse();
+    this.Anatolo.emit('search-init');
   }
 
   getSelectedIndex() {
@@ -73,23 +107,25 @@ class AnatoloSearch {
     });
     return index;
   }
-  markActive(index) {
+
+  markActive(index: number) {
     const items = $('.ins-selectable');
     items.removeClass('active');
-    index = (index + (index == -2) + items.length) % items.length;
+    index = (index + Number(index == -2) + items.length) % items.length;
     $(items[index]).addClass('active');
   }
 
-  gotoLink(url) {
-    Anatolo.router.routeTo(url);
+  gotoLink(url: string) {
+    this.Anatolo.router.routeTo(url);
     this.closeWindow();
   }
-  makeSearchItem(icon, title, slug, preview, url) {
-    return $('<div>')
+
+  makeSearchItem(icon: string | null, title: string | null, slug: string | null, preview: string | null, url: string) {
+    return ($ as any)('<div>')
       .addClass('ins-selectable')
       .addClass('ins-search-item')
       .append(
-        $('<header>')
+        ($ as any)('<header>')
           .append(
             $('<i>')
               .addClass('fa')
@@ -107,8 +143,8 @@ class AnatoloSearch {
       .on('click', () => this.gotoLink(url));
   }
 
-  makeSection(type, array) {
-    const sectionTitle = this.config.translation[type];
+  makeSection(sectionType: any, array: any) {
+    const sectionTitle = this.config.translation[sectionType];
     let searchItems;
     if (array.length === 0) return null;
 
@@ -137,12 +173,12 @@ class AnatoloSearch {
         }
       }
 
-      if (['posts', 'pages'].includes(type)) {
+      if (['posts', 'pages'].includes(sectionType)) {
         return this.makeSearchItem('file', newItem.title, null, newItem.text.slice(0, 150), newItem.link);
       }
-      if (['categories', 'tags'].includes(type)) {
+      if (['categories', 'tags'].includes(sectionType)) {
         return this.makeSearchItem(
-          type === 'CATEGORIES' ? 'folder' : 'tag',
+          sectionType === 'CATEGORIES' ? 'folder' : 'tag',
           newItem.name,
           newItem.slug,
           null,
@@ -157,6 +193,7 @@ class AnatoloSearch {
       .append($('<header>').addClass('ins-section-header').text(sectionTitle))
       .append(searchItems);
   }
+
   async buildFuse() {
     const data = await this.searchData.data();
     Fuse.config.ignoreLocation = true;
@@ -176,7 +213,7 @@ class AnatoloSearch {
     this.fuse_ok.value = true;
   }
 
-  async getSearchResult(keyword) {
+  async getSearchResult(keyword: string) {
     await this.fuse_ok.unitl(true);
     const data = await this.searchData.data();
     return Object.fromEntries(
@@ -219,7 +256,7 @@ class AnatoloSearch {
   openWindow() {
     this.mainEl.removeClass('fadeOut').addClass('animated fadeIn').addClass('show');
     this.mainEl.find('.ins-search-input').trigger('focus');
-    Anatolo.nextTick(() => {
+    nextTick(() => {
       this.inputEl[0].setSelectionRange(0, this.inputEl.val().length);
       this.showing = true;
     });
@@ -239,6 +276,3 @@ class AnatoloSearch {
     }, 400);
   }
 }
-
-Anatolo.search = new AnatoloSearch();
-Anatolo.search.init();

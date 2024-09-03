@@ -1,28 +1,36 @@
-/// <reference path="./anatolo.js" />
+import { make_friends_list } from '@/utils/main';
+import { AnatoloManager } from './anatolo';
+import { AnatoloRef } from './ref';
+import $ from 'jquery';
+import { SiteStatic } from './site-static';
 
-class AnatoloRouter {
-  /** @typedef {{url: string, body: string, title: string, scrollY?: number}} RouterState  */
-  /** @type {Map<string, RouterState | undefined>} */
-  routerStates = new Map();
+type RouterState = { url: string; body: string; title: string; scrollY?: number };
+
+export class AnatoloRouter {
+  routerStates = new Map<string, RouterState>();
   __animating = new AnatoloRef(false);
   __loading = new AnatoloRef(false);
 
-  constructor() {
+  Anatolo;
+
+  constructor(Anatolo: AnatoloManager) {
+    this.Anatolo = Anatolo;
     window.history.scrollRestoration = 'manual';
-    Anatolo.on('page-load', () => this.handlePage());
+    this.Anatolo.on('page-load', () => this.handlePage());
     window.addEventListener('DOMContentLoaded', () => {
-      Anatolo.emit('page-load');
+      this.Anatolo.emit('page-load');
     });
     window.addEventListener('popstate', (ev) => this.onPopState(ev), false);
     this.makeLink();
   }
-  isThisSite(url) {
+
+  isThisSite(url?: string) {
     if (!url) return false;
     url += '/';
-    return url.startsWith(Anatolo.root.href) || url.startsWith(Anatolo.base);
+    return url.startsWith(SiteStatic.root.href) || url.startsWith(SiteStatic.base);
   }
-  /** @param {string | null} hash  */
-  scrollToHash(hash = null) {
+
+  scrollToHash(hash?: string) {
     if (hash == null) hash = window.location.hash;
     if (!hash) return; // Don't need
     const sid = decodeURI(hash).slice(1);
@@ -30,13 +38,13 @@ class AnatoloRouter {
     if (go) {
       window.scrollTo({
         left: 0,
-        top: go.offsetTop + (go.offsetParent?.offsetTop || 0) - 80,
+        top: go.offsetTop + ((go.offsetParent as HTMLElement)?.offsetTop || 0) - 80,
         behavior: 'smooth',
       });
     }
   }
-  /** @param {boolean} status  */
-  set loading(status) {
+
+  set loading(status: boolean) {
     this.__loading.value = status;
     this.__animating.value = true;
     if (status === true) {
@@ -49,9 +57,11 @@ class AnatoloRouter {
       this.__animating.value = false;
     }, 250);
   }
+
   get loading() {
     return this.__loading.value;
   }
+
   getRouterState() {
     return {
       url: document.location.href,
@@ -60,11 +70,12 @@ class AnatoloRouter {
       scrollY: window.scrollY,
     };
   }
+
   cacheRouterState() {
     this.routerStates.set(document.location.href, this.getRouterState());
   }
-  /** @param {RouterState} state  */
-  updateRouterState(state) {
+
+  updateRouterState(state: RouterState) {
     const had = this.routerStates.has(state.url);
     if (had) {
       Object.assign(had, state);
@@ -72,8 +83,8 @@ class AnatoloRouter {
       this.routerStates.set(state.url, state);
     }
   }
-  /** @param {string} link  */
-  async queryPageData(link) {
+
+  async queryPageData(link: string) {
     const cached = this.routerStates.get(link);
     if (cached) return cached;
     const res = await $.ajax(link);
@@ -97,10 +108,8 @@ class AnatoloRouter {
   }
   /**
    * Change Page
-   * @param {RouterState} _1
-   * @param {boolean} pushState
    */
-  async replacePage({ body, title, url, scrollY }, pushState = true) {
+  async replacePage({ body, title, url, scrollY }: RouterState, pushState = true) {
     const sidebarheight = document.getElementsByClassName('sidebar')[0].clientHeight - 40;
     this.cacheRouterState();
 
@@ -128,8 +137,8 @@ class AnatoloRouter {
         });
       } else {
         if (
-          window.location.href === Anatolo.url_for('/', true) ||
-          window.location.href.slice(0, -1) === Anatolo.url_for('/', true)
+          window.location.href === this.Anatolo.url_for('/') ||
+          window.location.href.slice(0, -1) === this.Anatolo.url_for('/')
         ) {
           window.scrollTo({
             left: 0,
@@ -150,8 +159,8 @@ class AnatoloRouter {
       });
     }
   }
-  /** @param {string} link */
-  async routeTo(link, pushState = true) {
+
+  async routeTo(link: string, pushState = true) {
     console.log(`Route to: ${link}`);
     if (!link) return;
     if (this.isThisSite(link)) {
@@ -172,8 +181,8 @@ class AnatoloRouter {
         const res = await this.queryPageData(link);
         await this.replacePage(res, pushState);
         this.loading = false;
-        Anatolo.emit('page-load');
-      } catch (err) {
+        this.Anatolo.emit('page-load');
+      } catch (err: any) {
         if (err.status === 404) {
           window.location.href = err.url;
           return;
@@ -192,7 +201,7 @@ class AnatoloRouter {
   }
   makeLink() {
     document.addEventListener('click', (ev) => {
-      let target = ev.target;
+      let target = ev.target as HTMLAnchorElement;
       while (target) {
         if (target.onclick) return;
         if (this.isThisSite(target.href)) {
@@ -200,21 +209,19 @@ class AnatoloRouter {
           ev.stopPropagation();
           this.routeTo(target.href, true);
         }
-        target = target.parentNode;
+        target = target.parentNode as HTMLAnchorElement;
       }
     });
   }
 
   handlePage() {
     this.scrollToHash();
-    Anatolo.loadComment().catch(() => {});
-    Utils.make_friends_list();
+    this.Anatolo.loadComment().catch(() => {});
+    make_friends_list();
   }
 
-  onPopState(event) {
+  onPopState(event: PopStateEvent) {
     event.preventDefault();
     this.routeTo(window.location.href, false);
   }
 }
-
-Anatolo.router = new AnatoloRouter();

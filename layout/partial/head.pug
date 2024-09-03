@@ -17,7 +17,7 @@ meta(content="yes", name="apple-mobile-web-app-capable")
 meta(content="black", name="apple-mobile-web-app-status-bar-style")
 meta(content="telephone=no", name="format-detection")
 
-meta#site_root_url(data=url_for("/"))
+meta#site_data_static(data-url=url_for("/"))
 meta#default-theme(data=theme.defaultTheme == "dark-mode" ? "dark" : "light")
 
 meta(name="renderer", content="webkit")
@@ -31,23 +31,9 @@ link(rel="stylesheet", href=url_for("css/insight.css"))
 link(rel="stylesheet", href=url_for("css/search.css"))
 link(rel="alternate", type="application/atom+xml", title="ATOM 1.0", href="/atom.xml")
 
-script(src=url_for("js/utils/index.js"))
-script(src=url_for("js/lib/eventemitter3.umd.min.js"))
-script(
-  src="https://code.jquery.com/jquery-3.7.1.min.js",
-  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=",
-  crossorigin="anonymous"
-)
-script(src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0")
-script(src=url_for("js/lib/jquery-migrate-1.2.1.min.js"))
-script(src=url_for("js/lib/jquery.appear.js"))
-script(src=url_for("js/anatolo.js"))
-script(src=url_for("js/router.js"))
-script(src=url_for("js/darkLightToggle.js"))
-script(src=url_for("js/share.js"))
+script(src=url_for("js_complied/bundle.js"))
 if theme.Baidutongji
   script(src=url_for("js/baidu-tongji.js"))
 
 include comments
 +require_comment_scripts
-script(src=url_for("js/load-comment.js"))

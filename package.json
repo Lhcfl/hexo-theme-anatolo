@@ -4,13 +4,21 @@
     "private": true,
     "scripts": {
         "format:stylus": "yarn stylus-supremacy format ./source/css/**/*.styl -r --options .supermacy.yml",
-        "format:pretty": "prettier --write ./{includes,languages,layout,scripts,source}/**/*.{pug,js,css}",
+        "format:pretty": "prettier --write ./{includes,languages,layout,scripts,source,src}/**/*.{pug,js,css,ts}",
         "lint": "yarn eslint . --fix",
-        "format": "yarn format:stylus && yarn format:pretty"
+        "format": "yarn format:stylus && yarn format:pretty",
+        "build": "yarn rollup -c ./rollup.config.mjs"
     },
     "dependencies": {
+        "@rollup/plugin-commonjs": "^26.0.1",
+        "@rollup/plugin-node-resolve": "^15.2.3",
+        "@rollup/plugin-terser": "^0.4.4",
+        "@rollup/plugin-typescript": "^11.1.6",
         "hexo-renderer-pug": "^0.0.5",
-        "hexo-renderer-stylus": "^0.2.3"
+        "hexo-renderer-stylus": "^0.2.3",
+        "jquery": "^3.7.1",
+        "rollup": "^4.21.2",
+        "typescript": "^5.5.4"
     },
     "devDependencies": {
         "@prettier/plugin-pug": "^3.0.0",

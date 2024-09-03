@@ -1,4 +1,5 @@
 require('../includes/tasks/welcome')(hexo);
+require('../includes/tasks/rollup')(hexo);
 require('../includes/generators/insight')(hexo);
 require('../includes/generators/site_json')(hexo);
 require('../includes/generators/tags')(hexo);

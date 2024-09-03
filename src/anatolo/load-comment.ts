@@ -1,10 +1,10 @@
-/// <reference path="./anatolo.js" />
+import { AnatoloManager } from './anatolo';
 
-Anatolo.loadComment = async (retry = 3) => {
-  const config = await Anatolo.getCommentConfig();
+export async function loadComment(this: AnatoloManager, retry = 3) {
+  const config = await this.getCommentConfig();
   if (!config) return;
-  if (config.valine?.enable && window.Valine) {
-    new window.Valine({
+  if (config.valine?.enable && (window as any).Valine) {
+    new (window as any).Valine({
       el: '#vcomments',
       notify: config.valine.notify || false,
       verify: config.valine.verify || false,
@@ -18,8 +18,8 @@ Anatolo.loadComment = async (retry = 3) => {
       avatar: config.valine.avatar,
     });
   }
-  const id = (await Anatolo.getPageTitle()).slice(0, 50);
-  if (config.gitment?.enable && window.Gitment) {
+  const id = (await this.getPageTitle()).slice(0, 50);
+  if (config.gitment?.enable && (window as any).Gitment) {
     var git_ment = {
       id,
       owner: config.gitment.owner,
@@ -30,11 +30,11 @@ Anatolo.loadComment = async (retry = 3) => {
       },
     };
     if (config.gitment.id != '') git_ment.id = config.gitment.id;
-    var gitment = new window.Gitment(git_ment);
+    var gitment = new (window as any).Gitment(git_ment);
     gitment.render('gitment_container');
   }
-  if (config.gitalk?.enable && window.Gitalk) {
-    const gitalk = new window.Gitalk({
+  if (config.gitalk?.enable && (window as any).Gitalk) {
+    const gitalk = new (window as any).Gitalk({
       clientID: config.gitalk.client_id,
       clientSecret: config.gitalk.client_secret,
       repo: config.gitalk.repo, // The repository of store comments,
@@ -45,4 +45,4 @@ Anatolo.loadComment = async (retry = 3) => {
     });
     gitalk.render('gitalk_container');
   }
-};
+}

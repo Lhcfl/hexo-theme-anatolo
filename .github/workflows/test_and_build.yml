@@ -33,6 +33,9 @@ jobs:
         run: |
           git clone https://github.com/hexojs/hexo-theme-unit-test.git unit_test
           git clone https://github.com/Lhcfl/hexo-theme-anatolo.git unit_test/themes/Anatolo
+          cd unit_test/themes/Anatolo
+          yarn
+          cd ../../..
           cp ./.github/asserts/anatolo_config.yml unit_test/themes/Anatolo/_config.yml
           cp ./.github/asserts/hexo_config.yml unit_test/_config.yml
           cp ./.github/asserts/_posts/* unit_test/source/_posts/
