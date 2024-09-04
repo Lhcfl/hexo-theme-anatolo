@@ -1,4 +1,5 @@
-import { escapeHTML, h } from './main';
+import { escapeHTML } from './escape-html';
+import { h } from './html-helper';
 
 export function make_friends_list() {
   try {

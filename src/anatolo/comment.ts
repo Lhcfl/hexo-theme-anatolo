@@ -1,5 +1,6 @@
 import { CommentConfig } from '@/types/comment';
 import { Anatolo } from './anatolo';
+import { router } from './router';
 
 let config: CommentConfig | null = null;
 
@@ -48,6 +49,8 @@ export async function load(retry = 3) {
     gitalk.render('gitalk_container');
   }
 }
+
+router.onPageChange(load);
 
 export function setConfig(conf: CommentConfig) {
   config = conf;

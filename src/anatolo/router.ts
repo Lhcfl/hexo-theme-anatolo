@@ -1,11 +1,11 @@
 import { make_friends_list } from '@/utils/main';
 import { AnatoloRef } from './ref';
 import { site } from './site';
-import { load as loadComment } from './comment';
 
 type RouterState = { url: string; body: string; title: string; scrollY?: number };
 
 export class AnatoloRouter {
+  pageChangeFns: (() => void)[] = [];
   routerStates = new Map<string, RouterState>();
   __animating = new AnatoloRef(false);
   __loading = new AnatoloRef(false);
@@ -212,14 +212,25 @@ export class AnatoloRouter {
 
   handlePage() {
     this.scrollToHash();
-    loadComment().catch(() => {});
-    make_friends_list();
+    this.pageChangeFns.forEach((fn) => {
+      try {
+        fn();
+      } catch (error) {
+        console.error(error);
+      }
+    });
   }
 
   onPopState(event: PopStateEvent) {
     event.preventDefault();
     this.routeTo(window.location.href, false);
   }
+
+  onPageChange(fn: () => void) {
+    this.pageChangeFns.push(fn);
+  }
 }
 
 export const router = new AnatoloRouter();
+
+router.onPageChange(make_friends_list);
