@@ -31,6 +31,6 @@ export const site = {
 
   async thisPage() {
     await site.data();
-    return urlMap.get(site.thisPageUrl()) as WebPage;
+    return urlMap.get(site.thisPageUrl());
   },
 };

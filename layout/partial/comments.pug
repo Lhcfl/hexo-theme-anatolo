@@ -85,16 +85,13 @@ mixin make_comments
       if theme.valine.enable == true
         a#comments
         #vcomments(style="margin: 0 30px")
-        script Anatolo.comment.load();
 
     if theme.gitment
       if theme.gitment.enable == true
         a#comments
         #gitment_container(style="padding: 10px")
-        script Anatolo.comment.load();
 
     if theme.gitalk
       if theme.gitalk.enable == true
         a#comments
         #gitalk_container(style="padding: 10px")
-        script Anatolo.comment.load();

@@ -4,7 +4,7 @@ import { darkLightToggle } from './dark-light-toggle';
 import { site } from './site';
 
 async function getPageTitle() {
-  return (await site.thisPage()).title ?? document.querySelector('title')?.textContent;
+  return (await site.thisPage())?.title ?? document.querySelector('title')?.textContent ?? '';
 }
 
 // Classes for interacting with elements in static HTML

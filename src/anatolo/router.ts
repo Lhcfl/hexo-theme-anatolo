@@ -1,6 +1,7 @@
 import { make_friends_list } from '@/utils/main';
 import { AnatoloRef } from './ref';
 import { site } from './site';
+import { loadScript } from '@/utils/load-script';
 
 type RouterState = { url: string; body: string; title: string; scrollY?: number };
 
@@ -212,6 +213,7 @@ export class AnatoloRouter {
 
   handlePage() {
     this.scrollToHash();
+    this.reloadScript();
     this.pageChangeFns.forEach((fn) => {
       try {
         fn();
@@ -228,6 +230,16 @@ export class AnatoloRouter {
 
   onPageChange(fn: () => void) {
     this.pageChangeFns.push(fn);
+  }
+
+  reloadScript() {
+    const body_scripts = document.querySelector('main-outlet')?.getElementsByTagName('script');
+    for (const script of body_scripts ?? []) {
+      loadScript({
+        url: script.src,
+        script: script.textContent,
+      });
+    }
   }
 }
 

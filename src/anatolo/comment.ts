@@ -6,6 +6,8 @@ let config: CommentConfig | null = null;
 
 export async function load(retry = 3) {
   if (!config) return;
+  const id = (await Anatolo.getPageTitle()).slice(0, 50);
+  if (!id) return;
   if (config.valine?.enable && (window as any).Valine) {
     new (window as any).Valine({
       el: '#vcomments',
@@ -21,7 +23,6 @@ export async function load(retry = 3) {
       avatar: config.valine.avatar,
     });
   }
-  const id = (await Anatolo.getPageTitle()).slice(0, 50);
   if (config.gitment?.enable && (window as any).Gitment) {
     var git_ment = {
       id,
@@ -50,7 +51,7 @@ export async function load(retry = 3) {
   }
 }
 
-router.onPageChange(load);
+router.onPageChange(() => load().catch(() => {}));
 
 export function setConfig(conf: CommentConfig) {
   config = conf;
