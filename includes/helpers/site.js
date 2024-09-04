@@ -16,6 +16,7 @@ const URL = require('url').URL;
 const moment = require('moment');
 const crypto = require('crypto');
 
+/** @param {import("hexo")} hexo */
 module.exports = function (hexo) {
   hexo.extend.helper.register('is_same_link', function (a, b) {
     function santize(url) {

@@ -122,6 +122,7 @@ function getPath(path) {
   }
 }
 
+/** @param {import("hexo")} hexo */
 module.exports = function (hexo) {
   hexo.extend.generator.register('site_JSON', function (locals) {
     const site = {

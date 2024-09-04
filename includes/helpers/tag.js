@@ -1,5 +1,6 @@
 const util = require('hexo-util');
 
+/** @param {import("hexo")} hexo */
 module.exports = function (hexo) {
   hexo.extend.helper.register('alphabet_tag_list', function (tags, classNames) {
     classNames.a = classNames.a || 'tag_btn';

@@ -3,6 +3,7 @@ const util = require('hexo-util');
 /**
  * Insight search content.json generator.
  */
+/** @param {import("hexo")} hexo */
 module.exports = function (hexo) {
   hexo.extend.generator.register('insight', function (locals) {
     const url_for = hexo.extend.helper.get('url_for').bind(this);
