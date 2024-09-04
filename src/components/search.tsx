@@ -1,28 +1,20 @@
-import Fuse from 'fuse.js';
+import Fuse, { type FuseResult } from 'fuse.js';
 import { AnatoloDynamicResource } from '@/anatolo/dynamic-resource';
 import { AnatoloRef } from '@/anatolo/ref';
 import { escapeHTML, h, nextTick } from '@/utils/main';
 import { Component } from './base';
 import { router } from '@/anatolo/router';
+import { SearchResourceCollection, SearchResource, SearchResourcePage } from '@/types/search';
 
-interface SearchResourcePage {
-  title: string;
-  text: string;
-  link: string;
-}
+const SEARCH_RESULT_LIMIT = 5;
 
-interface SearchResourceCollection {
-  name: string;
-  slug: string;
-  link: string;
-}
+const SEARCHABLE = ['posts', 'pages', 'tags', 'categories'] as const;
 
-interface SearchResource {
-  pages: SearchResourcePage[];
-  posts: SearchResourcePage[];
-  tags: SearchResourceCollection[];
-  categories: SearchResourceCollection[];
-}
+type SEARCHABLE_T = 'posts' | 'pages' | 'tags' | 'categories';
+
+type SearchResult =
+  | (FuseResult<SearchResourceCollection> | SearchResourceCollection)[]
+  | (FuseResult<SearchResourcePage> | SearchResourcePage)[];
 
 export class AnatoloSearch extends Component {
   searchData: AnatoloDynamicResource<SearchResource>;
@@ -42,7 +34,13 @@ export class AnatoloSearch extends Component {
     return this.mainEl?.querySelector('.ins-section-container') as HTMLElement;
   }
 
-  fuses = {};
+  fuses: {
+    pages?: Fuse<SearchResourcePage>;
+    posts?: Fuse<SearchResourcePage>;
+    tags?: Fuse<SearchResourceCollection>;
+    categories?: Fuse<SearchResourceCollection>;
+  } = {};
+
   fuse_ok = new AnatoloRef(false);
 
   constructor() {
@@ -142,31 +140,36 @@ export class AnatoloSearch extends Component {
     );
   }
 
-  makeSection(sectionType: any, array: Array) {
+  makeSection(sectionType: SEARCHABLE_T, array: SearchResult) {
     const sectionTitle = this.config.translation[sectionType] as string;
     let searchItems;
     if (array.length === 0) return null;
 
     searchItems = array.map((item) => {
       const newItem: Record<string, any> = {};
-      for (const key of Object.keys(item)) {
+
+      for (const [key, val] of Object.entries(item)) {
         if (key === 'link') {
-          newItem[key] = item[key];
+          newItem[key] = val;
           continue;
         }
-        newItem[key] = escapeHTML(item[key]);
+        newItem[key] = escapeHTML(val);
       }
-      for (const matched of item.matches ?? []) {
+
+      const matches = ('matches' in item ? item.matches : null) ?? [];
+
+      for (const matched of matches) {
         if (matched.key === 'link') continue;
+        if (matched.key == null) continue;
 
         const [st, ed] = matched.indices.reduce((a, b) => (a[1] - a[0] < b[1] - b[0] ? b : a), [0, -1]);
 
         newItem[matched.key] =
-          escapeHTML(item[matched.key].slice(0, st)) +
+          escapeHTML((item as unknown as Record<string, string>)[matched.key].slice(0, st)) +
           '<mark>' +
-          escapeHTML(item[matched.key].slice(st, ed + 1)) +
+          escapeHTML((item as unknown as Record<string, string>)[matched.key].slice(st, ed + 1)) +
           '</mark>' +
-          escapeHTML(item[matched.key].slice(ed + 1));
+          escapeHTML((item as unknown as Record<string, string>)[matched.key].slice(ed + 1));
         if (matched.key === 'text') {
           newItem.text = newItem.text.slice(Math.max(st - 20, 0));
         }
@@ -177,7 +180,7 @@ export class AnatoloSearch extends Component {
       }
       if (['categories', 'tags'].includes(sectionType)) {
         return this.makeSearchItem(
-          sectionType === 'CATEGORIES' ? 'folder' : 'tag',
+          sectionType === 'categories' ? 'folder' : 'tag',
           newItem.name,
           newItem.slug,
           null,
@@ -199,45 +202,37 @@ export class AnatoloSearch extends Component {
     const data = await this.searchData.data();
     Fuse.config.ignoreLocation = true;
     Fuse.config.includeMatches = true;
-    for (const key of ['posts', 'pages']) {
-      const conf = {
-        keys: ['title', 'text', 'link'],
-      };
-      this.fuses[key] = new Fuse(data[key], conf);
-    }
-    for (const key of ['tags', 'categories']) {
-      const conf = {
-        keys: ['title', 'text', 'link'],
-      };
-      this.fuses[key] = new Fuse(data[key], conf);
-    }
+
+    this.fuses.posts = new Fuse(data.posts, { keys: ['title', 'text', 'link'] });
+    this.fuses.pages = new Fuse(data.pages, { keys: ['title', 'text', 'link'] });
+    this.fuses.tags = new Fuse(data.tags, { keys: ['name', 'slug', 'link'] });
+    this.fuses.categories = new Fuse(data.categories, { keys: ['name', 'slug', 'link'] });
+
     this.fuse_ok.value = true;
   }
 
   async getSearchResult(keyword: string) {
     await this.fuse_ok.unitl(true);
     const data = await this.searchData.data();
-    return Object.fromEntries(
-      ['posts', 'pages', 'categories', 'tags'].map((t) => [
-        t,
-        keyword ? this.fuses[t].search(keyword, { limit: 5 }).map((i) => ({ ...i, ...i.item })) : data[t].slice(0, 5),
-      ]),
-    );
+
+    const searched = <T extends keyof SearchResource>(t: T) => {
+      return keyword
+        ? this.fuses[t]!.search(keyword, { limit: SEARCH_RESULT_LIMIT }).map((res) => ({ ...res, ...res.item }))
+        : data[t].slice(0, 5);
+    };
+
+    return SEARCHABLE.map((s) => [s, searched(s)] as [SEARCHABLE_T, SearchResult]);
   }
 
   search() {
     const keyword = this.inputEl.value;
     this.getSearchResult(keyword).then((res) => {
-      this.searchResultToDOM(res);
+      this.containerEl.innerHTML = '';
+      for (const [key, result] of res) {
+        const section = this.makeSection(key, result);
+        if (section) this.containerEl.appendChild(section);
+      }
     });
-  }
-
-  searchResultToDOM(searchResult) {
-    this.containerEl.innerHTML = '';
-    for (var key in searchResult) {
-      const section = this.makeSection(key.toLowerCase(), searchResult[key]);
-      if (section) this.containerEl.appendChild(section);
-    }
   }
 
   selectItemByDiff(value: number) {
