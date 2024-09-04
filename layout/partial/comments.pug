@@ -1,5 +1,5 @@
 - var theme_config = { valine: theme.valine, gitment: theme.gitment, gitalk: theme.gitalk, duoshuo: theme.duoshuo, disqus: theme.disqus, gentie: theme.gentie, youyan: theme.youyan };
-script Anatolo.setCommentConfig(!{ JSON.stringify(theme_config) })
+script Anatolo.comment.setConfig(!{ JSON.stringify(theme_config) })
 
 mixin require_comment_scripts
   if theme.valine
@@ -85,16 +85,16 @@ mixin make_comments
       if theme.valine.enable == true
         a#comments
         #vcomments(style="margin: 0 30px")
-        script Anatolo.loadComment();
+        script Anatolo.comment.load();
 
     if theme.gitment
       if theme.gitment.enable == true
         a#comments
         #gitment_container(style="padding: 10px")
-        script Anatolo.loadComment();
+        script Anatolo.comment.load();
 
     if theme.gitalk
       if theme.gitalk.enable == true
         a#comments
         #gitalk_container(style="padding: 10px")
-        script Anatolo.loadComment();
+        script Anatolo.comment.load();

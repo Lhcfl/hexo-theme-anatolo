@@ -1,7 +1,7 @@
 import { make_friends_list } from '@/utils/main';
-import { AnatoloManager } from './anatolo';
 import { AnatoloRef } from './ref';
-import { SiteStatic } from './site-static';
+import { site } from './site';
+import { load as loadComment } from './comment';
 
 type RouterState = { url: string; body: string; title: string; scrollY?: number };
 
@@ -10,14 +10,10 @@ export class AnatoloRouter {
   __animating = new AnatoloRef(false);
   __loading = new AnatoloRef(false);
 
-  Anatolo;
-
-  constructor(Anatolo: AnatoloManager) {
-    this.Anatolo = Anatolo;
+  constructor() {
     window.history.scrollRestoration = 'manual';
-    this.Anatolo.on('page-load', () => this.handlePage());
     window.addEventListener('DOMContentLoaded', () => {
-      this.Anatolo.emit('page-load');
+      this.handlePage();
     });
     window.addEventListener('popstate', (ev) => this.onPopState(ev), false);
     this.makeLink();
@@ -26,7 +22,7 @@ export class AnatoloRouter {
   isThisSite(url?: string) {
     if (!url) return false;
     url += '/';
-    return url.startsWith(SiteStatic.root.href) || url.startsWith(SiteStatic.base);
+    return url.startsWith(site.root.href) || url.startsWith(site.base);
   }
 
   scrollToHash(hash?: string) {
@@ -138,10 +134,7 @@ export class AnatoloRouter {
           behavior: 'smooth',
         });
       } else {
-        if (
-          window.location.href === this.Anatolo.url_for('/') ||
-          window.location.href.slice(0, -1) === this.Anatolo.url_for('/')
-        ) {
+        if (window.location.href === site.url_for('/') || window.location.href.slice(0, -1) === site.url_for('/')) {
           window.scrollTo({
             left: 0,
             top: 0,
@@ -184,7 +177,7 @@ export class AnatoloRouter {
         const res = await this.queryPageData(link);
         await this.replacePage(res, pushState);
         this.loading = false;
-        this.Anatolo.emit('page-load');
+        this.handlePage();
       } catch (err: any) {
         if (err.status === 404) {
           window.location.href = err.url;
@@ -219,7 +212,7 @@ export class AnatoloRouter {
 
   handlePage() {
     this.scrollToHash();
-    this.Anatolo.loadComment().catch(() => {});
+    loadComment().catch(() => {});
     make_friends_list();
   }
 
@@ -228,3 +221,5 @@ export class AnatoloRouter {
     this.routeTo(window.location.href, false);
   }
 }
+
+export const router = new AnatoloRouter();

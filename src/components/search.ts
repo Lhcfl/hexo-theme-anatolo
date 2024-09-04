@@ -1,8 +1,9 @@
 import Fuse from 'fuse.js';
-import { AnatoloDynamicResource } from './dynamic-resource';
-import { AnatoloRef } from './ref';
+import { AnatoloDynamicResource } from '@/anatolo/dynamic-resource';
+import { AnatoloRef } from '@/anatolo/ref';
 import { escapeHTML, h, nextTick } from '@/utils/main';
-import { AnatoloManager } from './anatolo';
+import { Component } from './base';
+import { router } from '@/anatolo/router';
 
 interface SearchResourcePage {
   title: string;
@@ -23,7 +24,7 @@ interface SearchResource {
   categories: SearchResourceCollection[];
 }
 
-export class AnatoloSearch {
+export class AnatoloSearch extends Component {
   searchData: AnatoloDynamicResource<SearchResource>;
   config: Record<string, any> = {};
   showing = false;
@@ -44,22 +45,9 @@ export class AnatoloSearch {
   fuses = {};
   fuse_ok = new AnatoloRef(false);
 
-  Anatolo;
-
-  constructor(Anatolo: AnatoloManager) {
+  constructor() {
+    super();
     this.searchData = new AnatoloDynamicResource('content.json');
-    document.addEventListener(
-      'DOMContentLoaded',
-      () => {
-        nextTick(() => {
-          this.init();
-        });
-      },
-      {
-        once: true,
-      },
-    );
-    this.Anatolo = Anatolo;
   }
 
   init() {
@@ -108,8 +96,6 @@ export class AnatoloSearch {
         this.closeWindow();
       }
     });
-
-    this.Anatolo.emit('search-init');
   }
 
   getSelectedIndex() {
@@ -133,7 +119,7 @@ export class AnatoloSearch {
   }
 
   gotoLink(url: string) {
-    this.Anatolo.router.routeTo(url);
+    router.routeTo(url);
     this.closeWindow();
   }
 
@@ -152,7 +138,7 @@ export class AnatoloSearch {
         h('header', [
           h(`i.fa.fa-${icon}`),
           h('span.ins-title', title != null && title !== '' ? title : this.config.translation['untitled']),
-          slug ? h('span.ins-slug') : null,
+          slug ? h('span.ins-slug', slug) : null,
         ]),
         preview ? h('p.ins-search-preview', preview) : null,
       ],
