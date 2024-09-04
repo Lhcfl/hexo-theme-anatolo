@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "format:stylus": "yarn stylus-supremacy format ./source/css/**/*.styl -r --options .supermacy.yml",
-        "format:pretty": "prettier --write ./{includes,languages,layout,scripts,source,src}/**/*.{pug,js,css,ts}",
+        "format:pretty": "prettier --write ./{includes,languages,layout,scripts,source,src}/**/*.{pug,js,css,ts,tsx,jsx}",
         "lint": "yarn eslint . --fix",
         "format": "yarn format:stylus && yarn format:pretty",
         "build": "yarn rollup -c ./rollup.config.mjs"

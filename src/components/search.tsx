@@ -124,24 +124,21 @@ export class AnatoloSearch extends Component {
   }
 
   makeSearchItem(icon: string | null, title: string | null, slug: string | null, preview: string | null, url: string) {
-    return h(
-      '.ins-selectable.ins-search-item',
-      {
-        data: { url },
-        event: {
-          click: (e) => {
-            this.gotoLink(url);
-          },
-        },
-      },
-      [
-        h('header', [
-          h(`i.fa.fa-${icon}`),
-          h('span.ins-title', title != null && title !== '' ? title : this.config.translation['untitled']),
-          slug ? h('span.ins-slug', slug) : null,
-        ]),
-        preview ? h('p.ins-search-preview', preview) : null,
-      ],
+    return (
+      <div
+        class="ins-selectable ins-search-item"
+        data-url={url}
+        onclick={() => {
+          this.gotoLink(url);
+        }}
+      >
+        <header>
+          <i class={`fa fa-${icon}`}></i>
+          <span class="ins-title">{title != null && title !== '' ? title : this.config.translation['untitled']}</span>
+          {slug ? <span class="ins-slug">{slug}</span> : null}
+        </header>
+        {preview ? <p class="ins-search-preview">{preview}</p> : null}
+      </div>
     );
   }
 
@@ -190,7 +187,12 @@ export class AnatoloSearch extends Component {
       return null;
     });
 
-    return h('section.ins-section', [h('header.ins-section-header', sectionTitle), searchItems]);
+    return (
+      <section class="ins-section">
+        <header class="ins-section-header">{sectionTitle}</header>
+        {searchItems}
+      </section>
+    );
   }
 
   async buildFuse() {

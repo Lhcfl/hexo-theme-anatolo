@@ -1,31 +1,23 @@
-type Attrs = {
-  data?: Record<string, string>;
-  event?: Partial<Record<keyof HTMLElementEventMap, (e: Event) => void>>;
-  class?: string;
-} & Record<string, any>;
+type Attrs = Record<string, any> | null;
 
 type ContentNode = string | HTMLElement | null | undefined;
 
 type Content = ContentNode | ContentNode[];
 
-function h3(ident: string, attrs: Attrs, content?: Content) {
+export function h(ident: string, attrs: Attrs, ...content: ContentNode[]) {
   let [tagName, ...classes] = ident.split('.');
   if (!tagName) tagName = 'div';
   const elem = document.createElement(tagName);
   elem.classList.add(...classes);
-  for (const key of Object.keys(attrs)) {
-    if (key === 'class' && attrs.class) {
-      elem.classList.add(...attrs.class.split(' '));
-    } else if (key === 'data') {
-      for (const [dataKey, dataVal] of Object.entries(attrs.data || {})) {
-        elem.dataset[dataKey] = dataVal as string;
+  if (attrs != null) {
+    for (const [key, val] of Object.entries(attrs)) {
+      if (key === 'class' && attrs.class) {
+        elem.classList.add(...attrs.class.split(' '));
+      } else if (key.startsWith('on')) {
+        elem.addEventListener(key.slice(2), val);
+      } else {
+        elem.setAttribute(key, val);
       }
-    } else if (key === 'event') {
-      for (const [eventName, fn] of Object.entries(attrs.event || {})) {
-        elem.addEventListener(eventName, fn);
-      }
-    } else {
-      elem.setAttribute(key, attrs[key]);
     }
   }
 
@@ -37,24 +29,9 @@ function h3(ident: string, attrs: Attrs, content?: Content) {
     }
   }
 
-  if (Array.isArray(content)) {
-    content.flat().forEach((c) => {
-      addContent(c);
-    });
-  } else {
-    addContent(content);
-  }
+  content.flat().forEach((c) => {
+    addContent(c);
+  });
 
   return elem;
-}
-
-export function h(ident: string, content?: Content): HTMLElement;
-export function h(ident: string, attrs: Attrs, content?: Content): HTMLElement;
-
-export function h(ident: string, attrs_or_content?: Attrs | Content, content?: Content) {
-  if (Array.isArray(attrs_or_content) || typeof attrs_or_content === 'string' || attrs_or_content == null) {
-    return h3(ident, {}, attrs_or_content);
-  } else {
-    return h3(ident, attrs_or_content, content);
-  }
 }
