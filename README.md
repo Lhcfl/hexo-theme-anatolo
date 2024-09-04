@@ -10,11 +10,11 @@
 
 ## 关于主题
 
-基于ben02移植的[Anatole主题](https://github.com/Ben02/hexo-theme-Anatole)进行了大量修改，增添和优化。  
+基于ben02移植的[Anatole主题](https://github.com/Ben02/hexo-theme-Anatole)进行了前端重构。
 
-Anatolo设计极致简约，但麻雀虽小，五脏理应俱全。因此，我在[Anatole主题](https://github.com/Ben02/hexo-theme-Anatole)基础上增加了动态请求、帖子目录、黑暗模式、搜索框等多种理应有的功能，并对界面进行了进一步美化，只为让它甄于完美。
+现在，Anatolo已经是一个类型安全的小巧现代化 Hexo 主题。Anatolo 前端的 js 文件仅仅只有 29 KB 大小，保证极快的加载速度。
 
-如果有任何建议欢迎issue，也可以提出pr。
+Anatolo 还在[Anatole主题](https://github.com/Ben02/hexo-theme-Anatole)基础上增加了动态请求、帖子目录、黑暗模式、搜索框等多种理应有的功能，并对界面进行了进一步美化。
 
 ### 鸣谢
 
@@ -27,12 +27,9 @@ Anatolo设计极致简约，但麻雀虽小，五脏理应俱全。因此，我�
 - 使用基于json的Ajax
 - 点击头像弹出的菜单没有动画且过于隐蔽
 
-
 ## 改进
 
-- 20240904 [BREAKING] 引入了 Rollup.js
-
-- 我在学世界语所以主题改名为Anatolo（
+- 引入了现代化前端打包器 Rollup.js, Typescript 与 TSX
 - 暗黑模式支持
 - 增加了文章概要的选项
 - 增加了多语言支持
@@ -61,15 +58,13 @@ Anatolo设计极致简约，但麻雀虽小，五脏理应俱全。因此，我�
 
 ### 安装
 
-Clone:
+克隆本仓库并安装依赖：
 
 ```bash
 git clone https://gitee.com/Lhcfl/hexo-theme-anatolo.git themes/Anatolo
 cd themes/Anatolo
 yarn # 必须安装依赖
 ```
-
-安装依赖:
 
 在hexo博客根目录：
 
@@ -83,27 +78,42 @@ npm install hexo-renderer-stylus --save
 修改hexo根目录下的 `_config.yml` ： `theme: Anatolo`
 
 
-### 更新
-在Anatolo的目录下
-```
-git pull origin master
+### 更新、
 
+在Anatolo的目录下
+
+```bash
+git pull origin master
 ```
 
 ## 开发
 
+### 准备工作
+
 进入Anatolo的目录，执行
 
-```
+```bash
 yarn
 ```
 
 安装所有依赖。
 
+
+### 目录结构
+
+- `.github`: GitHub 的 CI 配置文件，用于自动部署样例
+- `includes`: 主题内置的 Hexo 脚本
+- `languages`: I18n 文件
+- `layout` 主题使用的模板，在服务端（也就是 `hexo g`）渲染成最后的 HTML
+- `scripts`: 主题内置的 Hexo 脚本
+- `source`: 主题需要的HTML资产
+- `src`: 主题前端相关的 typescript 脚本。这些脚本会被 `rollup` 打包并压缩成一个 `js/complied/bundle.js`
+
 ### 代码格式化
 
 对本主题做出修改后，使用下面的命令可以对代码进行格式化
-```
+
+```bash
 yarn format
 ```
 
