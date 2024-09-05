@@ -48,13 +48,13 @@ Anatolo 还在[Anatole主题](https://github.com/Ben02/hexo-theme-Anatole)基础
 - 允许自动化生成友链
 
 ## 已知bug ~~（feature）~~
+
 - 原主题的葡萄牙语支持无法更新
 - TOC放置可能不够美观
 - 当Nav栏放置过多链接时可能导致右侧按钮下移
 - 暗黑模式暂只支持Gittalk，如有需要请自行PR
 
 ## 使用
-
 
 ### 安装
 
@@ -63,7 +63,7 @@ Anatolo 还在[Anatole主题](https://github.com/Ben02/hexo-theme-Anatole)基础
 ```bash
 git clone https://gitee.com/Lhcfl/hexo-theme-anatolo.git themes/Anatolo
 cd themes/Anatolo
-yarn # 必须安装依赖
+pnpm i # 必须安装依赖
 ```
 
 在hexo博客根目录：
@@ -74,9 +74,9 @@ npm install hexo-renderer-stylus --save
 ```
 
 ### 配置
+
 复制`_config.example.yml`为`_config.yml`  
 修改hexo根目录下的 `_config.yml` ： `theme: Anatolo`
-
 
 ### 更新、
 
@@ -93,11 +93,10 @@ git pull origin master
 进入Anatolo的目录，执行
 
 ```bash
-yarn
+pnpm i
 ```
 
 安装所有依赖。
-
 
 ### 目录结构
 
@@ -114,7 +113,7 @@ yarn
 对本主题做出修改后，使用下面的命令可以对代码进行格式化
 
 ```bash
-yarn format
+pnpm format
 ```
 
 详见 `package.json`
