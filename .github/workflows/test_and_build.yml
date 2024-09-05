@@ -1,6 +1,7 @@
 name: Build
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
@@ -31,34 +32,35 @@ jobs:
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           git config --global user.name $GIT_USERNAME
           git config --global user.email $GIT_EMAIL
-      
+
       - name: Configure Hexo Unit Test # 配置 Hexo 单元测试
         run: |
-          git clone https://github.com/hexojs/hexo-theme-unit-test.git unit_test
-          git clone https://github.com/Lhcfl/hexo-theme-anatolo.git unit_test/themes/Anatolo
-          cd unit_test/themes/Anatolo
+          git clone https://github.com/hexojs/hexo-theme-unit-test.git ~/unit_test
+          mkdir -p ~/unit_test/themes/Anatolo
+          cp -r ./* ~/unit_test/themes/Anatolo/
+          cd ~/unit_test/themes/Anatolo
           pnpm i
-          cd ../../..
-          cp ./.github/asserts/anatolo_config.yml unit_test/themes/Anatolo/_config.yml
-          cp ./.github/asserts/hexo_config.yml unit_test/_config.yml
-          cp ./.github/asserts/_posts/* unit_test/source/_posts/
-          cd unit_test
+          cd /home/runner/work/hexo-theme-anatolo/hexo-theme-anatolo
+          cp ./.github/asserts/anatolo_config.yml ~/unit_test/themes/Anatolo/_config.yml
+          cp ./.github/asserts/hexo_config.yml ~/unit_test/_config.yml
+          cp ./.github/asserts/_posts/* ~/unit_test/source/_posts/
+          cd ~/unit_test
           npm install
           npm install hexo-renderer-pug --save
           npm install hexo-renderer-stylus --save
           npx hexo new "Anatolo简介"
-          cat ../README.md >> ./source/_posts/Anatolo简介.md
-      
+          cat /home/runner/work/hexo-theme-anatolo/hexo-theme-anatolo/README.md >> ./source/_posts/Anatolo简介.md
+
       - name: Generate Test # 生成 Hexo 单元测试
         run: |
-          cd unit_test
+          cd ~/unit_test
           npx hexo g -b
 
       - name: Commit And Push Blog # 提交到Git仓库
         env:
           GIT_URL: 'git@github.com:Lhcfl/Anatolodemo.git'
         run: |
-          cd unit_test/public
+          cd ~/unit_test/public
           git init
           git remote add origin $GIT_URL
           git add -A
