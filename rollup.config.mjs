@@ -1,23 +1,30 @@
 import resolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
-import typescript from "@rollup/plugin-typescript";
-import terser from '@rollup/plugin-terser';
+import { resolve as pathResolve } from 'node:path';
+import { defineConfig } from 'rollup';
+import swc from 'unplugin-swc';
 
-export default [
+export default defineConfig([
   // browser-friendly UMD build
   {
     input: 'src/main.ts',
     output: {
       name: 'main.js',
-      file: "source/js_complied/bundle.js",
+      file: 'source/js_complied/bundle.js',
       // format: 'umd',
       format: 'umd',
     },
     plugins: [
       resolve(), // so Rollup can find `ms`
-      commonjs(), // so Rollup can convert `ms` to an ES module
-      typescript(),
-      terser(),
+      swc.rollup({
+        minify: true,
+        jsc: {
+          target: 'esnext',
+          baseUrl: pathResolve('./'),
+          paths: {
+            '@/*': ['./src/*'],
+          },
+        },
+      }),
     ],
   },
 
@@ -35,4 +42,4 @@ export default [
   //     { file: pkg.module, format: 'es' },
   //   ],
   // },
-];
+]);
