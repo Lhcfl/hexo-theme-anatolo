@@ -1,7 +1,7 @@
 import Fuse, { type FuseResult } from 'fuse.js';
 import { AnatoloDynamicResource } from '@/anatolo/dynamic-resource';
 import { AnatoloRef } from '@/anatolo/ref';
-import { escapeHTML, h, nextTick } from '@/utils/main';
+import { escapeHTML, nextTick } from '@/utils/main';
 import { Component } from './base';
 import { router } from '@/anatolo/router';
 import { SearchResourceCollection, SearchResource, SearchResourcePage } from '@/types/search';
