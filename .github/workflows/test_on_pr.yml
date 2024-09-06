@@ -1,0 +1,40 @@
+name: Build Test for Pull Requests
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  unit_test_and_build_blog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Configure Hexo Unit Test
+        run: |
+          git clone https://github.com/hexojs/hexo-theme-unit-test.git ~/unit_test
+          mkdir -p ~/unit_test/themes/Anatolo
+          cp -r ./* ~/unit_test/themes/Anatolo/
+          cd ~/unit_test/themes/Anatolo
+          pnpm i
+          cd /home/runner/work/hexo-theme-anatolo/hexo-theme-anatolo
+          cp ./.github/asserts/anatolo_config.yml ~/unit_test/themes/Anatolo/_config.yml
+          cp ./.github/asserts/hexo_config.yml ~/unit_test/_config.yml
+          cp ./.github/asserts/_posts/* ~/unit_test/source/_posts/
+          cd ~/unit_test
+          npm install
+          npm install hexo-renderer-pug --save
+          npm install hexo-renderer-stylus --save
+          npx hexo new "Anatolo简介"
+          cat /home/runner/work/hexo-theme-anatolo/hexo-theme-anatolo/README.md >> ./source/_posts/Anatolo简介.md
+
+      - name: Generate Test
+        run: |
+          cd ~/unit_test
+          npx hexo g -b
