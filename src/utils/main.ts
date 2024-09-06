@@ -1,4 +1,4 @@
-export { h } from './html-helper';
+export { h } from './jsx-runtime';
 
 export function nextTick(fn: () => void) {
   setTimeout(() => {
