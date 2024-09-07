@@ -3,7 +3,7 @@
   "jsc": {
     "minify": {
       "compress": true,
-      "mangle": { "props": {} }
+      "mangle": true
     },
     "target": "es2017"
   }
