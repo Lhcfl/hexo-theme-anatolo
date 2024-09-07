@@ -18,7 +18,6 @@ export default defineConfig([
       swc.rollup({
         minify: true,
         jsc: {
-          target: 'esnext',
           baseUrl: pathResolve('./'),
           paths: {
             '@/*': ['./src/*'],
