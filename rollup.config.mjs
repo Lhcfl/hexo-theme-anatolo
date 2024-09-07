@@ -1,5 +1,4 @@
 import resolve from '@rollup/plugin-node-resolve';
-import { resolve as pathResolve } from 'node:path';
 import { defineConfig } from 'rollup';
 import swc from 'unplugin-swc';
 
@@ -18,7 +17,7 @@ export default defineConfig([
       swc.rollup({
         minify: true,
         jsc: {
-          baseUrl: pathResolve('./'),
+          baseUrl: import.meta.dirname,
           paths: {
             '@/*': ['./src/*'],
           },
