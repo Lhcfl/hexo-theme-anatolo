@@ -1,0 +1,10 @@
+{
+  "$schema": "https://swc.rs/schema.json",
+  "jsc": {
+    "minify": {
+      "compress": true,
+      "mangle": true
+    },
+    "target": "es2017"
+  }
+}
