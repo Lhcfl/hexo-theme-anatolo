@@ -1,4 +1,5 @@
 import { escapeHTML } from './escape-html';
+import { h } from './jsx-runtime';
 
 export function make_friends_list() {
   try {

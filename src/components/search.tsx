@@ -5,6 +5,7 @@ import { escapeHTML, nextTick } from '@/utils/main';
 import { Component } from './base';
 import { router } from '@/anatolo/router';
 import { SearchResourceCollection, SearchResource, SearchResourcePage } from '@/types/search';
+import { h } from '@/utils/main';
 
 const SEARCH_RESULT_LIMIT = 5;
 
