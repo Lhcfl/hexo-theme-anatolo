@@ -5,7 +5,12 @@ module.exports = function (hexo) {
   if (hexo.env?.cmd?.startsWith('n')) {
     return;
   }
-  hexo.log.info('building js');
-  cp.execSync('pnpm build', { cwd: './themes/Anatolo', stdio: 'inherit' });
-  hexo.log.info('build successful!');
+  if (hexo.env?.cmd === 's' || hexo.env?.cmd === 'server') {
+    hexo.log.info('Starting js watch changer...');
+    cp.exec('pnpm watch', { cwd: './themes/Anatolo', stdio: 'inherit' });
+  } else {
+    hexo.log.info('Building js...');
+    cp.execSync('pnpm build', { cwd: './themes/Anatolo', stdio: 'inherit' });
+    hexo.log.info('Build successful!');
+  }
 };

@@ -8,6 +8,7 @@
         "format:biome": "biome format --write includes languages scripts source src",
         "lint": "eslint . --fix",
         "format": "pnpm format:stylus && pnpm format:biome && pnpm format:pretty",
+        "watch": "rollup -w -c ./rollup.config.mjs",
         "build": "rollup -c ./rollup.config.mjs"
     },
     "dependencies": {
