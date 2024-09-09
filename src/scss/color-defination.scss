@@ -19,15 +19,19 @@
 @mixin darkTheme() {
   $primary: 255 255 255;
   $secondary: 40 40 40;
+  $tertiary: 181 206 255;
   @include genColor('primary', $primary, $secondary);
   @include genColor('secondary', $secondary, $primary);
+  @include genColor('tertiary', $tertiary, $secondary);
 }
 
 @mixin lightTheme() {
   $primary: 22 22 22;
   $secondary: 255 255 255;
+  $tertiary: 71 134 214;
   @include genColor('primary', $primary, $secondary);
   @include genColor('secondary', $secondary, $primary);
+  @include genColor('tertiary', $tertiary, $secondary);
 }
 
 html[theme='default'] {

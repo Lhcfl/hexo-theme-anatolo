@@ -1231,13 +1231,6 @@ figure.highlight {
 }
 
 pre {
-  font-size: 15px;
-  background-color: var(--secondary-950) !important;
-  font-family: 'mononoki', 'Consolas', 'Roboto Mono', 'Lucida Console', 'Trebuchet MS', 'Courier New', 'Monaco',
-    'courier', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Jhenghei', 'Microsoft YaHei', monospace !important;
-
-  color: var(--primary-700) !important;
-
   .function .keyword,
   .constant {
     color: #0092db !important;

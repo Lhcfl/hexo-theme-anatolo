@@ -2,50 +2,6 @@
 
 $site-border: 1px solid var(--primary-100);
 
-html {
-  -webkit-font-smoothing: antialiased;
-  // transition: all 0.2s ease-out;
-}
-
-body {
-  color: var(--primary-high);
-  font-family: 'Open Sans', Helvetica, Arial, 'PingHei', 'PingFang SC', Helvetica, 'Work Sans', 'Hiragino Sans GB',
-    'Microsoft YaHei', SimSun, sans-serif;
-  font-size: 15px;
-  width: 100%;
-  margin: 0 auto 30px auto;
-  background-color: var(--secondary);
-  transition:
-    background-color 0.8s,
-    color 0.8s;
-}
-
-p {
-  line-height: 1.9em;
-  font-weight: 400;
-  font-size: 15px;
-}
-
-a {
-  text-decoration: none;
-}
-
-a:link,
-a:visited {
-  opacity: 1;
-  -webkit-transition: all 0.15s linear;
-  -moz-transition: all 0.15s linear;
-  -o-transition: all 0.15s linear;
-  -ms-transition: all 0.15s linear;
-  transition: all 0.15s linear;
-  color: var(--secondary-300);
-}
-
-a:hover,
-a:active {
-  color: #4786d6;
-}
-
 /* basic styles ends */
 /* animation starts */
 .animated {
@@ -420,7 +376,7 @@ a:active {
   .post-content {
     a {
       text-decoration: none;
-      color: #4786d6;
+      color: var(--tertiary);
     }
 
     a:hover {

@@ -1,3 +1,8 @@
+:root {
+  --mono-font-face: 'mononoki', 'Consolas', 'Roboto Mono', 'Lucida Console', 'Trebuchet MS', 'Courier New', 'courier',
+    monospace;
+}
+
 .content > .post > .post-content > p {
   word-wrap: break-word;
   word-break: break-all;
@@ -10,6 +15,7 @@
 }
 
 html {
+  -webkit-font-smoothing: antialiased;
   height: 100%;
   max-height: 100%;
   padding: 0;
@@ -20,6 +26,16 @@ body {
   padding: 0;
   margin: 0;
   line-height: 1.6em;
+  color: var(--primary-high);
+  font-family: 'Open Sans', Helvetica, Arial, 'PingHei', 'PingFang SC', Helvetica, 'Work Sans', 'Hiragino Sans GB',
+    'Microsoft YaHei', SimSun, sans-serif;
+  font-size: 15px;
+  width: 100%;
+  margin: 0 auto 30px auto;
+  background-color: var(--secondary);
+  transition:
+    background-color 0.8s,
+    color 0.8s;
 }
 
 .clear {
@@ -107,6 +123,32 @@ a img {
   border: none;
 }
 
+p {
+  line-height: 1.9em;
+  font-weight: 400;
+  font-size: 15px;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:link,
+a:visited {
+  opacity: 1;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  transition: all 0.15s linear;
+  color: var(--primary-700);
+}
+
+a:hover,
+a:active {
+  color: var(--tertiary);
+}
+
 dl {
   dt {
     float: left;
@@ -174,16 +216,23 @@ mark {
 code,
 tt {
   padding: 1px 3px;
-  font-family: Inconsolata, monospace, sans-serif;
-  font-size: 0.95em;
+  font-family: var(--mono-font-face);
   white-space: pre-wrap;
-  border: 1px solid var(--primary-200);
   background-color: var(--secondary-950);
   transition:
     background-color 0.8s,
     border 0.8s;
-  color: #d14;
-  border-radius: 2px;
+  color: var(--primary-700);
+  border-radius: 3px;
+}
+
+pre {
+  font-size: 15px;
+  background-color: var(--secondary-950) !important;
+  font-family: var(--mono-font-face) !important;
+  text-wrap: wrap;
+  overflow-wrap: anywhere;
+  color: var(--primary-700) !important;
 }
 
 kbd {
