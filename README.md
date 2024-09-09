@@ -12,7 +12,7 @@
 
 基于ben02移植的[Anatole主题](https://github.com/Ben02/hexo-theme-Anatole)进行了前端重构。
 
-现在，Anatolo已经是一个类型安全的小巧现代化 Hexo 主题。Anatolo 前端的 js 文件仅仅只有 29 KB 大小，保证极快的加载速度。
+现在，Anatolo已经是一个类型安全的小巧现代化 Hexo 主题。Anatolo 前端的 js 文件仅仅只有不到 40KB 大小，保证极快的加载速度。
 
 Anatolo 还在[Anatole主题](https://github.com/Ben02/hexo-theme-Anatole)基础上增加了动态请求、帖子目录、黑暗模式、搜索框等多种理应有的功能，并对界面进行了进一步美化。
 
@@ -70,7 +70,6 @@ pnpm i # 必须安装依赖
 
 ```
 npm install hexo-renderer-pug --save
-npm install hexo-renderer-stylus --save
 ```
 
 ### 配置

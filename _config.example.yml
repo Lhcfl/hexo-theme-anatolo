@@ -1,4 +1,4 @@
-# See explaination in 
+# See explaination in
 # Blog config
 keywords: Blog,博客,Hexo
 author: Yourname
@@ -15,7 +15,7 @@ logo_style: width:220px;
 # Site-wide copyright settings
 copyright:
   # If `show` is set to true, a copyright statement will be added to the bottom of each article. You can set this individually in the header of each post. For more information, please refer to the documentation
-  # For example: 
+  # For example:
   # ---
   # title: xxx
   # copyright: "All rights reserved"
@@ -27,7 +27,7 @@ copyright:
   # ---
   show: true
   # Default copyright statement
-  default: "本文采用CC-BY-SA-3.0协议，转载请注明出处"
+  default: '本文采用CC-BY-SA-3.0协议，转载请注明出处'
   # Show article author in the copyright statement
   show_author: true
 
@@ -36,9 +36,8 @@ footbar:
   # Copyright statement.You can also use it as a footnote
   copyright: 全站CC-BY-SA-3.0
   # 对于中国用户，如果你有网站备案：
-  beian: 
-  gongan: 
-
+  beian:
+  gongan:
 
 # Social Links
 # The key is the icon name of font-awesome 6, and the value is a link
@@ -46,8 +45,8 @@ footbar:
 social:
   github: https://github.com/Lhcfl
   mail: yourname@example.com
-  zhihu: 
-  qq: 
+  zhihu:
+  qq:
   twitter:
   instagram:
   rss:
@@ -65,30 +64,27 @@ menu:
 # Navbar rightbtn
 rightbtn:
   back: true
-  search: true          # Thanks to Icarus for the search box code
+  search: true # Thanks to Icarus for the search box code
   avatar: true
   darkLightToggle: true # A toggle switch for dark/light theme
 
-
 # Other settings
-useSummary: false       # Opening it will use the automatically generated summary instead of the <!-- more --> you can configure to preview the article.
+useSummary: false # Opening it will use the automatically generated summary instead of the <!-- more --> you can configure to preview the article.
 
-useTagCloud: false      # Use tagcloud instead of tag list
-tocMaxDepth: 6          # If you set 0, toc will not be generated. The maximum is 6.
+useTagCloud: false # Use tagcloud instead of tag list
+tocMaxDepth: 6 # If you set 0, toc will not be generated. The maximum is 6.
 
-
-  
 # Comment
 always_enable_comments: false # Always enable comments
 
-duoshuo: 
-disqus: 
-gentie: 
+duoshuo:
+disqus:
+gentie:
 # Valine comments https://valine.js.org
 valine:
   enable: false # if you want use valine, please set enable: true
-  appid:  # your leancloud appid
-  appkey:  # your leancloud appkey
+  appid: # your leancloud appid
+  appkey: # your leancloud appkey
   notify: false # true/false:mail notify !!!Test,Caution. https://github.com/xCss/Valine/wiki/Valine-%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%82%AE%E4%BB%B6%E6%8F%90%E9%86%92%E8%AE%BE%E7%BD%AE
   verify: false # true/false:verify code
   avatar: mm # avatar style https://github.com/xCss/Valine/wiki/avatar-setting-for-valine
@@ -107,6 +103,6 @@ gitalk:
   client_secret: 'Your client secret'
 
 # 百度统计设置
-# 请访问 https://tongji.baidu.com/ 
+# 请访问 https://tongji.baidu.com/
 # 获取统计JS代码放入 Anatolo/source/js/baidu-tongji.js
 Baidutongji: false

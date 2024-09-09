@@ -8,7 +8,7 @@ export default [
       globals: {
         ...globals.browser,
         ...globals.commonjs,
-        hexo: "readonly",
+        hexo: 'readonly',
       },
     },
   },

@@ -1,33 +1,30 @@
 {
-    "name": "hexo-theme-Anatolo",
-    "version": "0.0.0",
-    "private": true,
-    "scripts": {
-        "format:stylus": "stylus-supremacy format ./source/css/**/*.styl -r --options .supermacy.yml",
-        "format:pretty": "prettier --write ./{layout,src}/**/*.{pug,scss}",
-        "format:biome": "biome format --write includes languages scripts source src",
-        "lint": "eslint . --fix",
-        "format": "pnpm format:stylus && pnpm format:biome && pnpm format:pretty",
-        "watch": "rollup -w -c ./rollup.config.mjs",
-        "build": "rollup -c ./rollup.config.mjs"
-    },
-    "dependencies": {
-        "@rollup/plugin-node-resolve": "^15.2.3",
-        "hexo-renderer-pug": "^0.0.5",
-        "hexo-renderer-stylus": "^0.2.3",
-        "rollup": "^4.21.2",
-        "rollup-plugin-sass": "^1.13.2",
-        "typescript": "^5.5.4"
-    },
-    "devDependencies": {
-        "@biomejs/biome": "1.8.3",
-        "@prettier/plugin-pug": "^3.0.0",
-        "@swc/core": "^1.7.23",
-        "eslint": "^9.4.0",
-        "fuse.js": "^7.0.0",
-        "prettier": "^3.3.1",
-        "stylus-supremacy": "^2.17.5",
-        "unplugin-swc": "^1.5.1"
-    },
-    "packageManager": "pnpm@9.9.0+sha512.60c18acd138bff695d339be6ad13f7e936eea6745660d4cc4a776d5247c540d0edee1a563695c183a66eb917ef88f2b4feb1fc25f32a7adcadc7aaf3438e99c1"
+  "name": "hexo-theme-Anatolo",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "format:pretty": "prettier --write ./{layout,src}/**/*.{pug,scss} && prettier --write ./*.{yml,md}",
+    "format:biome": "biome format --write includes languages scripts source src .",
+    "lint": "eslint . --fix",
+    "format": "pnpm format:biome && pnpm format:pretty",
+    "watch": "rollup -w -c ./rollup.config.mjs",
+    "build": "rollup -c ./rollup.config.mjs"
+  },
+  "dependencies": {
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "hexo-renderer-pug": "^0.0.5",
+    "rollup": "^4.21.2",
+    "rollup-plugin-sass": "^1.13.2",
+    "typescript": "^5.5.4"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.8.3",
+    "@prettier/plugin-pug": "^3.0.0",
+    "@swc/core": "^1.7.23",
+    "eslint": "^9.4.0",
+    "fuse.js": "^7.0.0",
+    "prettier": "^3.3.1",
+    "unplugin-swc": "^1.5.1"
+  },
+  "packageManager": "pnpm@9.9.0+sha512.60c18acd138bff695d339be6ad13f7e936eea6745660d4cc4a776d5247c540d0edee1a563695c183a66eb917ef88f2b4feb1fc25f32a7adcadc7aaf3438e99c1"
 }

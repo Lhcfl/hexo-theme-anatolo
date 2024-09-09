@@ -12,7 +12,7 @@ module.exports = {
   singleQuote: true,
   semi: true,
   tabWidth: 2,
-  trailingComma: "all",
-  endOfLine: "lf"
+  trailingComma: 'all',
+  endOfLine: 'lf',
   // ... more pug* options
 };
