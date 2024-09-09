@@ -20,6 +20,9 @@ importers:
       rollup:
         specifier: ^4.21.2
         version: 4.21.2
+      rollup-plugin-sass:
+        specifier: ^1.13.2
+        version: 1.13.2(rollup@4.21.2)
       typescript:
         specifier: ^5.5.4
         version: 5.5.4
@@ -755,6 +758,9 @@ packages:
     resolution: {integrity: sha512-5Fytz/IraMjqpwfd34ke28PTVMjZjJG2MPn5t7OE4eUCUNf8BAa7b5WUS9/Qvr6mwOQS7Mk6vdsMno5he+T8Xw==}
     engines: {node: '>= 4'}
 
+  immutable@4.3.7:
+    resolution: {integrity: sha512-1hqclzwYwjRDFLjcFxOM5AYkkG0rpFPpr1RLPMEuGczoS7YA8gLhy8SWXYRAA/XwfEHpfo3cw5JGioS32fnMRw==}
+
   import-fresh@3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
     engines: {node: '>=6'}
@@ -1131,6 +1137,10 @@ packages:
     resolution: {integrity: sha512-yqINtL/G7vs2v+dFIZmFUDbnVyFUJFKd6gK22Kgo6R4jfJGFtisKyncWDDULgjfqf4ASQuIQyjJ7XZ+3aWpsAg==}
     engines: {node: '>=0.10.0'}
 
+  rollup-plugin-sass@1.13.2:
+    resolution: {integrity: sha512-Ff+NePHCWpLKzcb7k8D+v1c7+I6DyFXJyLYF6MBkt24ei6Gsp4WMRZv1i/EtTZF980b5eWKjQpxLXDZh2CSXwA==}
+    engines: {node: '>=10'}
+
   rollup@4.21.2:
     resolution: {integrity: sha512-e3TapAgYf9xjdLvKQCkQTnbTKd4a6jwlpQSJJFokHGaX2IVjoEqkIIhiQfqsi0cdwlOD+tQGuOd5AJkc5RngBw==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
@@ -1138,6 +1148,11 @@ packages:
 
   run-parallel@1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
+
+  sass@1.78.0:
+    resolution: {integrity: sha512-AaIqGSrjo5lA2Yg7RvFZrlXDBCp3nV4XP73GrLGvdRWWwk+8H3l0SDvq/5bA4eF+0RFPLuWUk3E+P1U/YqnpsQ==}
+    engines: {node: '>=14.0.0'}
+    hasBin: true
 
   sax@0.5.8:
     resolution: {integrity: sha512-c0YL9VcSfcdH3F1Qij9qpYJFpKFKMXNOkLWFssBL3RuF7ZS8oZhllR2rWlCRjDTJsfq3R6wbSsaRU6o0rkEdNw==}
@@ -1166,6 +1181,10 @@ packages:
 
   sigmund@1.0.1:
     resolution: {integrity: sha512-fCvEXfh6NWpm+YSuY2bpXb/VIihqWA6hLsgboC+0nl71Q7N7o2eaCW8mJa/NLvQhs6jpd3VZV4UiUQlV6+lc8g==}
+
+  source-map-js@1.2.1:
+    resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
+    engines: {node: '>=0.10.0'}
 
   source-map@0.1.43:
     resolution: {integrity: sha512-VtCvB9SIQhk3aF6h+N85EaqIaBFIAfZ9Cu+NJHHVvc8BbEcnvDcFw6sqQ2dQrT6SlOrZq3tIvyD9+EGq/lJryQ==}
@@ -2021,6 +2040,8 @@ snapshots:
 
   ignore@5.3.1: {}
 
+  immutable@4.3.7: {}
+
   import-fresh@3.3.0:
     dependencies:
       parent-module: 1.0.1
@@ -2389,6 +2410,14 @@ snapshots:
     dependencies:
       align-text: 0.1.4
 
+  rollup-plugin-sass@1.13.2(rollup@4.21.2):
+    dependencies:
+      '@rollup/pluginutils': 5.1.0(rollup@4.21.2)
+      resolve: 1.22.8
+      sass: 1.78.0
+    transitivePeerDependencies:
+      - rollup
+
   rollup@4.21.2:
     dependencies:
       '@types/estree': 1.0.5
@@ -2415,6 +2444,12 @@ snapshots:
     dependencies:
       queue-microtask: 1.2.3
 
+  sass@1.78.0:
+    dependencies:
+      chokidar: 3.0.2
+      immutable: 4.3.7
+      source-map-js: 1.2.1
+
   sax@0.5.8: {}
 
   sax@1.2.4: {}
@@ -2439,6 +2474,8 @@ snapshots:
   shebang-regex@3.0.0: {}
 
   sigmund@1.0.1: {}
+
+  source-map-js@1.2.1: {}
 
   source-map@0.1.43:
     dependencies:

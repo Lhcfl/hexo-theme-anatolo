@@ -1,1189 +1,1532 @@
-.tip
-	position: relative
-	margin: 2em 0
-	padding: 12px 24px 12px 30px
-	border-left: 4px solid #f66
-	border-top-right-radius: 2px
-	border-bottom-right-radius: 2px
-	background-color: var(--secondary-950)
+.tip {
+	position: relative;
+	margin: 2em 0;
+	padding: 12px 24px 12px 30px;
+	border-left: 4px solid #f66;
+	border-top-right-radius: 2px;
+	border-bottom-right-radius: 2px;
+	background-color: var(--secondary-950);
 
-	br
+	br {
 		/* *display: none* */
+	}
+
+	&:before {
+		position: absolute;
+		top: 14px;
+		left: -12px;
+		content: '!';
+		width: 20px;
+		height: 20px;
+		border-radius: 100%;
+		transition: color 0.8s;
+		color: var(--secondary);
+		font-size: 14px;
+		line-height: 20px;
+		font-weight: bold;
+		text-align: center;
+		background-color: #f66;
+		font-family: 'Dosis', 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+	}
+}
+
+.content>.post>.post-content>p {
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+#ds-thread, #disqus_thread, #cloud-tie-wrapper {
+	margin: 0 30px !important;
+}
+
+pre {
+	font-size: 15px;
+	background-color: var(--secondary-950) !important;
+	font-family: 'mononoki', 'Consolas', 'Roboto Mono', 'Lucida Console', 'Trebuchet MS', 'Courier New', 'Monaco', 'courier', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Jhenghei', 'Microsoft YaHei', monospace !important;
+}
+
+figure.highlight {
+	position: relative !important;
+	margin: 1em 0 !important;
+	border-radius: 2px !important;
+	line-height: 1.1em !important;
+	background-color: var(--secondary-950) !important;
+	overflow-x: auto !important;
+	padding-left: 1em;
+
+	table, tr, td {
+		width: 100% !important;
+		border-collapse: collapse !important;
+		padding: 0 !important;
+		margin: 0 !important;
+	}
+
+	.gutter {
+		width: fit-content !important;
+		line-height: 1.5em !important;
+		font-size: 15px;
+		padding: 0em 1em 0em 0em !important;
+		user-select: none;
+
+		pre {
+			color: rgb(212, 148, 75) !important;
+		}
+	}
+
+	body.disable-line-number & .gutter {
+		display: none;
+	}
+
+	.code pre {
+		padding: 1.2em 1em 1.2em 0 !important;
+		line-height: 1.5em !important;
+		margin: 0 !important;
+	}
+
+	.code:after {
+		position: absolute !important;
+		top: 0 !important;
+		right: 0 !important;
+		color: #ccc !important;
+		text-align: right !important;
+		font-size: 0.75em !important;
+		padding: 5px 10px 0 !important;
+		line-height: 15px !important;
+		height: 15px !important;
+		font-weight: 600 !important;
+	}
+
+	mixcontent(txt) {
+		.code:after {
+			content: txt;
+		}
+	}
+
+	&.1c {
+		mixcontent('1C');
+	}
+
+	&.4d {
+		mixcontent('4D');
+	}
+
+	&.sap-abap, &.abap {
+		mixcontent('ABAP');
+	}
 
-	&:before
-		position: absolute
-		top: 14px
-		left: -12px
-		content: '!'
-		width: 20px
-		height: 20px
-		border-radius: 100%
-		transition: color 0.8s
-		color: var(--secondary)
-		font-size: 14px
-		line-height: 20px
-		font-weight: bold
-		text-align: center
-		background-color: #f66
-		font-family: 'Dosis', 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif
-
-.content>.post>.post-content>p
-	word-wrap: break-word
-	word-break: break-all
-
-#ds-thread, #disqus_thread, #cloud-tie-wrapper
-	margin: 0 30px !important
-
-pre
-	font-size: 15px
-	background-color: var(--secondary-950) !important
-	font-family: 'mononoki', 'Consolas', 'Roboto Mono', 'Lucida Console', 'Trebuchet MS', 'Courier New', 'Monaco', 'courier', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Jhenghei', 'Microsoft YaHei', monospace !important
-
-figure.highlight
-	position: relative !important
-	margin: 1em 0 !important
-	border-radius: 2px !important
-	line-height: 1.1em !important
-	background-color: var(--secondary-950) !important
-	overflow-x: auto !important
-	padding-left: 1em
-
-	table, tr, td
-		width: 100% !important
-		border-collapse: collapse !important
-		padding: 0 !important
-		margin: 0 !important
-
-	.gutter
-		width: fit-content !important
-		line-height: 1.5em !important
-		font-size: 15px
-		padding: 0em 1em 0em 0em !important
-		user-select: none
-
-		pre
-			color: rgb(212, 148, 75) !important
-
-	body.disable-line-number & .gutter
-		display: none
-
-	.code pre
-		padding: 1.2em 1em 1.2em 0 !important
-		line-height: 1.5em !important
-		margin: 0 !important
-
-	.code:after
-		position: absolute !important
-		top: 0 !important
-		right: 0 !important
-		color: #ccc !important
-		text-align: right !important
-		font-size: 0.75em !important
-		padding: 5px 10px 0 !important
-		line-height: 15px !important
-		height: 15px !important
-		font-weight: 600 !important
+	&.abnf {
+		mixcontent('ABNF');
+	}
 
-	mixcontent(txt)
-		.code:after
-			content: txt
+	&.accesslog {
+		mixcontent('Access logs');
+	}
 
-	&.1c
-		mixcontent('1C')
+	&.ada {
+		mixcontent('Ada');
+	}
 
-	&.4d
-		mixcontent('4D')
+	&.apex {
+		mixcontent('Apex');
+	}
 
-	&.sap-abap, &.abap
-		mixcontent('ABAP')
+	&.arduino, &.ino {
+		mixcontent('Arduino (C++ w/Arduino libs)');
+	}
 
-	&.abnf
-		mixcontent('ABNF')
+	&.armasm, &.arm {
+		mixcontent('ARM assembler');
+	}
 
-	&.accesslog
-		mixcontent('Access logs')
+	&.avrasm {
+		mixcontent('AVR assembler');
+	}
 
-	&.ada
-		mixcontent('Ada')
+	&.actionscript, &.as {
+		mixcontent('ActionScript');
+	}
 
-	&.apex
-		mixcontent('Apex')
+	&.alan, &.i {
+		mixcontent('Alan IF');
+	}
 
-	&.arduino, &.ino
-		mixcontent('Arduino (C++ w/Arduino libs)')
+	&.ln {
+		mixcontent('Alan');
+	}
 
-	&.armasm, &.arm
-		mixcontent('ARM assembler')
+	&.angelscript, &.asc {
+		mixcontent('AngelScript');
+	}
 
-	&.avrasm
-		mixcontent('AVR assembler')
+	&.apache, &.apacheconf {
+		mixcontent('Apache');
+	}
 
-	&.actionscript, &.as
-		mixcontent('ActionScript')
+	&.applescript, &.osascript {
+		mixcontent('AppleScript');
+	}
 
-	&.alan, &.i
-		mixcontent('Alan IF')
+	&.arcade {
+		mixcontent('Arcade');
+	}
 
-	&.ln
-		mixcontent('Alan')
+	&.asciidoc, &.adoc {
+		mixcontent('AsciiDoc');
+	}
 
-	&.angelscript, &.asc
-		mixcontent('AngelScript')
+	&.aspectj {
+		mixcontent('AspectJ');
+	}
 
-	&.apache, &.apacheconf
-		mixcontent('Apache')
+	&.autohotkey {
+		mixcontent('AutoHotkey');
+	}
 
-	&.applescript, &.osascript
-		mixcontent('AppleScript')
+	&.autoit {
+		mixcontent('AutoIt');
+	}
 
-	&.arcade
-		mixcontent('Arcade')
+	&.awk, &.mawk, &.nawk, &.gawk {
+		mixcontent('Awk');
+	}
 
-	&.asciidoc, &.adoc
-		mixcontent('AsciiDoc')
+	&.ballerina, &.bal {
+		mixcontent('Ballerina');
+	}
 
-	&.aspectj
-		mixcontent('AspectJ')
+	&.bash, &.sh, &.zsh {
+		mixcontent('Bash');
+	}
 
-	&.autohotkey
-		mixcontent('AutoHotkey')
+	&.basic {
+		mixcontent('Basic');
+	}
 
-	&.autoit
-		mixcontent('AutoIt')
+	&.bbcode {
+		mixcontent('BBCode');
+	}
 
-	&.awk, &.mawk, &.nawk, &.gawk
-		mixcontent('Awk')
+	&.blade {
+		mixcontent('Blade (Laravel)');
+	}
 
-	&.ballerina, &.bal
-		mixcontent('Ballerina')
+	&.bnf {
+		mixcontent('BNF');
+	}
 
-	&.bash, &.sh, &.zsh
-		mixcontent('Bash')
+	&.bqn {
+		mixcontent('BQN');
+	}
 
-	&.basic
-		mixcontent('Basic')
+	&.brainfuck, &.bf {
+		mixcontent('Brainfuck');
+	}
 
-	&.bbcode
-		mixcontent('BBCode')
+	&.csharp, &.cs {
+		mixcontent('C#');
+	}
 
-	&.blade
-		mixcontent('Blade (Laravel)')
+	&.c, &.h {
+		mixcontent('C');
+	}
 
-	&.bnf
-		mixcontent('BNF')
+	&.cpp, &.hpp, &.cc, &.hh, &.cxx, &.hxx, &.c\\\+\\\+, &.h\\\+\\\+ {
+		mixcontent('C++');
+	}
 
-	&.bqn
-		mixcontent('BQN')
+	&.cal {
+		mixcontent('C/AL');
+	}
 
-	&.brainfuck, &.bf
-		mixcontent('Brainfuck')
+	&.c3 {
+		mixcontent('C3');
+	}
 
-	&.csharp, &.cs
-		mixcontent('C#')
+	&.cos, &.cls {
+		mixcontent('Cache Object Script');
+	}
 
-	&.c, &.h
-		mixcontent('C')
+	&.candid, &.did {
+		mixcontent('Candid');
+	}
 
-	&.cpp, &.hpp, &.cc, &.hh, &.cxx, &.hxx, &.c\\\+\\\+, &.h\\\+\\\+
-		mixcontent('C++')
+	&.cmake {
+		mixcontent('CMake');
+	}
 
-	&.cal
-		mixcontent('C/AL')
+	&.cobol, &.standard-cobol {
+		mixcontent('COBOL');
+	}
 
-	&.c3
-		mixcontent('C3')
+	&.codeowners {
+		mixcontent('CODEOWNERS');
+	}
 
-	&.cos, &.cls
-		mixcontent('Cache Object Script')
+	&.coq {
+		mixcontent('Coq');
+	}
 
-	&.candid, &.did
-		mixcontent('Candid')
+	&.csp {
+		mixcontent('CSP');
+	}
 
-	&.cmake
-		mixcontent('CMake')
+	&.css {
+		mixcontent('CSS');
+	}
 
-	&.cobol, &.standard-cobol
-		mixcontent('COBOL')
+	&.capnproto, &.capnp {
+		mixcontent('Cap’n Proto');
+	}
 
-	&.codeowners
-		mixcontent('CODEOWNERS')
+	&.chaos, &.kaos {
+		mixcontent('Chaos');
+	}
 
-	&.coq
-		mixcontent('Coq')
+	&.chapel, &.chpl {
+		mixcontent('Chapel');
+	}
 
-	&.csp
-		mixcontent('CSP')
+	&.cisco {
+		mixcontent('Cisco CLI');
+	}
 
-	&.css
-		mixcontent('CSS')
+	&.clojure, &.clj {
+		mixcontent('Clojure');
+	}
 
-	&.capnproto, &.capnp
-		mixcontent('Cap’n Proto')
+	&.coffeescript, &.coffee, &.cson, &.iced {
+		mixcontent('CoffeeScript');
+	}
 
-	&.chaos, &.kaos
-		mixcontent('Chaos')
+	&.cpc {
+		mixcontent('CpcdosC+');
+	}
 
-	&.chapel, &.chpl
-		mixcontent('Chapel')
+	&.crmsh, &.crm, &.pcmk {
+		mixcontent('Crmsh');
+	}
 
-	&.cisco
-		mixcontent('Cisco CLI')
+	&.crystal, &.cr {
+		mixcontent('Crystal');
+	}
 
-	&.clojure, &.clj
-		mixcontent('Clojure')
+	&.curl {
+		mixcontent('cURL');
+	}
 
-	&.coffeescript, &.coffee, &.cson, &.iced
-		mixcontent('CoffeeScript')
+	&.cypher {
+		mixcontent('Cypher (Neo4j)');
+	}
 
-	&.cpc
-		mixcontent('CpcdosC+')
+	&.d {
+		mixcontent('D');
+	}
 
-	&.crmsh, &.crm, &.pcmk
-		mixcontent('Crmsh')
+	&.dafny {
+		mixcontent('Dafny');
+	}
 
-	&.crystal, &.cr
-		mixcontent('Crystal')
+	&.dart {
+		mixcontent('Dart');
+	}
 
-	&.curl
-		mixcontent('cURL')
+	&.dpr, &.dfm, &.pas, &.pascal {
+		mixcontent('Delphi');
+	}
 
-	&.cypher
-		mixcontent('Cypher (Neo4j)')
+	&.diff, &.patch {
+		mixcontent('Diff');
+	}
 
-	&.d
-		mixcontent('D')
+	&.django, &.jinja {
+		mixcontent('Django');
+	}
 
-	&.dafny
-		mixcontent('Dafny')
+	&.dns, &.zone, &.bind {
+		mixcontent('DNS Zone file');
+	}
 
-	&.dart
-		mixcontent('Dart')
+	&.dockerfile, &.docker {
+		mixcontent('Dockerfile');
+	}
 
-	&.dpr, &.dfm, &.pas, &.pascal
-		mixcontent('Delphi')
+	&.dos, &.bat, &.cmd {
+		mixcontent('DOS');
+	}
 
-	&.diff, &.patch
-		mixcontent('Diff')
+	&.dsconfig {
+		mixcontent('dsconfig');
+	}
 
-	&.django, &.jinja
-		mixcontent('Django')
+	&.dts {
+		mixcontent('DTS (Device Tree)');
+	}
 
-	&.dns, &.zone, &.bind
-		mixcontent('DNS Zone file')
+	&.dust, &.dst {
+		mixcontent('Dust');
+	}
 
-	&.dockerfile, &.docker
-		mixcontent('Dockerfile')
+	&.dylan {
+		mixcontent('Dylan');
+	}
 
-	&.dos, &.bat, &.cmd
-		mixcontent('DOS')
+	&.ebnf {
+		mixcontent('EBNF');
+	}
 
-	&.dsconfig
-		mixcontent('dsconfig')
+	&.elixir {
+		mixcontent('Elixir');
+	}
 
-	&.dts
-		mixcontent('DTS (Device Tree)')
+	&.elm {
+		mixcontent('Elm');
+	}
 
-	&.dust, &.dst
-		mixcontent('Dust')
+	&.erlang, &.erl {
+		mixcontent('Erlang');
+	}
 
-	&.dylan
-		mixcontent('Dylan')
+	&.excel, &.xls, &.xlsx {
+		mixcontent('Excel');
+	}
 
-	&.ebnf
-		mixcontent('EBNF')
+	&.extempore, &.xtlang, &.xtm {
+		mixcontent('Extempore');
+	}
 
-	&.elixir
-		mixcontent('Elixir')
+	&.fsharp, &.fs, &.fsx, &.fsi, &.fsscript {
+		mixcontent('F#');
+	}
 
-	&.elm
-		mixcontent('Elm')
+	&.fix {
+		mixcontent('FIX');
+	}
 
-	&.erlang, &.erl
-		mixcontent('Erlang')
+	&.flix {
+		mixcontent('Flix');
+	}
 
-	&.excel, &.xls, &.xlsx
-		mixcontent('Excel')
+	&.fortran, &.f90, &.f95 {
+		mixcontent('Fortran');
+	}
 
-	&.extempore, &.xtlang, &.xtm
-		mixcontent('Extempore')
+	&.func {
+		mixcontent('FunC');
+	}
 
-	&.fsharp, &.fs, &.fsx, &.fsi, &.fsscript
-		mixcontent('F#')
+	&.gcode, &.nc {
+		mixcontent('G-Code');
+	}
 
-	&.fix
-		mixcontent('FIX')
+	&.gams, &.gms {
+		mixcontent('Gams');
+	}
 
-	&.flix
-		mixcontent('Flix')
+	&.gauss, &.gss {
+		mixcontent('GAUSS');
+	}
 
-	&.fortran, &.f90, &.f95
-		mixcontent('Fortran')
+	&.godot, &.gdscript {
+		mixcontent('GDScript');
+	}
 
-	&.func
-		mixcontent('FunC')
+	&.gherkin {
+		mixcontent('Gherkin');
+	}
 
-	&.gcode, &.nc
-		mixcontent('G-Code')
+	&.hbs, &.glimmer, &.htmlbars {
+		mixcontent('Glimmer and EmberJS');
+	}
 
-	&.gams, &.gms
-		mixcontent('Gams')
+	&.gn, &.gni {
+		mixcontent('GN for Ninja');
+	}
 
-	&.gauss, &.gss
-		mixcontent('GAUSS')
+	&.go, &.golang {
+		mixcontent('Go');
+	}
 
-	&.godot, &.gdscript
-		mixcontent('GDScript')
+	&.gf {
+		mixcontent('Grammatical Framework');
+	}
 
-	&.gherkin
-		mixcontent('Gherkin')
+	&.golo, &.gololang {
+		mixcontent('Golo');
+	}
 
-	&.hbs, &.glimmer, &.htmlbars
-		mixcontent('Glimmer and EmberJS')
+	&.gradle {
+		mixcontent('Gradle');
+	}
 
-	&.gn, &.gni
-		mixcontent('GN for Ninja')
+	&.graphql, &.gql {
+		mixcontent('GraphQL');
+	}
 
-	&.go, &.golang
-		mixcontent('Go')
+	&.groovy {
+		mixcontent('Groovy');
+	}
 
-	&.gf
-		mixcontent('Grammatical Framework')
+	&.gsql {
+		mixcontent('GSQL');
+	}
 
-	&.golo, &.gololang
-		mixcontent('Golo')
+	&.xml, &.html, &.xhtml, &.rss, &.atom, &.xjb, &.xsd, &.xsl, &.plist, &.svg {
+		mixcontent('HTML, XML');
+	}
 
-	&.gradle
-		mixcontent('Gradle')
+	&.http, &.https {
+		mixcontent('HTTP');
+	}
 
-	&.graphql, &.gql
-		mixcontent('GraphQL')
+	&.haml {
+		mixcontent('Haml');
+	}
 
-	&.groovy
-		mixcontent('Groovy')
+	&.handlebars, &.hbs {
+		mixcontent('Handlebars');
+	}
 
-	&.gsql
-		mixcontent('GSQL')
+	&.haskell, &.hs {
+		mixcontent('Haskell');
+	}
 
-	&.xml, &.html, &.xhtml, &.rss, &.atom, &.xjb, &.xsd, &.xsl, &.plist, &.svg
-		mixcontent('HTML, XML')
+	&.haxe, &.hx {
+		mixcontent('Haxe');
+	}
 
-	&.http, &.https
-		mixcontent('HTTP')
+	&.hlsl {
+		mixcontent('High-level shader language');
+	}
 
-	&.haml
-		mixcontent('Haml')
+	&.hy, &.hylang {
+		mixcontent('Hy');
+	}
 
-	&.handlebars, &.hbs
-		mixcontent('Handlebars')
+	&.ini, &.toml {
+		mixcontent('Ini, TOML');
+	}
 
-	&.haskell, &.hs
-		mixcontent('Haskell')
+	&.inform7, &.i7 {
+		mixcontent('Inform7');
+	}
 
-	&.haxe, &.hx
-		mixcontent('Haxe')
+	&.irpf90 {
+		mixcontent('IRPF90');
+	}
 
-	&.hlsl
-		mixcontent('High-level shader language')
+	&.iptables {
+		mixcontent('Iptables');
+	}
 
-	&.hy, &.hylang
-		mixcontent('Hy')
+	&.json, &.jsonc {
+		mixcontent('JSON');
+	}
 
-	&.ini, &.toml
-		mixcontent('Ini, TOML')
+	&.java, &.jsp {
+		mixcontent('Java');
+	}
 
-	&.inform7, &.i7
-		mixcontent('Inform7')
+	&.javascript, &.js, &.jsx {
+		mixcontent('JavaScript');
+	}
 
-	&.irpf90
-		mixcontent('IRPF90')
+	&.jolie, &.iol, &.ol {
+		mixcontent('Jolie');
+	}
 
-	&.iptables
-		mixcontent('Iptables')
+	&.julia, &.jl {
+		mixcontent('Julia');
+	}
 
-	&.json, &.jsonc
-		mixcontent('JSON')
+	&.julia-repl {
+		mixcontent('Julia REPL');
+	}
 
-	&.java, &.jsp
-		mixcontent('Java')
+	&.kotlin, &.kt {
+		mixcontent('Kotlin');
+	}
 
-	&.javascript, &.js, &.jsx
-		mixcontent('JavaScript')
+	&.lang {
+		mixcontent('Lang');
+	}
 
-	&.jolie, &.iol, &.ol
-		mixcontent('Jolie')
+	&.tex {
+		mixcontent('LaTeX');
+	}
 
-	&.julia, &.jl
-		mixcontent('Julia')
+	&.leaf {
+		mixcontent('Leaf');
+	}
 
-	&.julia-repl
-		mixcontent('Julia REPL')
+	&.lean {
+		mixcontent('Lean');
+	}
 
-	&.kotlin, &.kt
-		mixcontent('Kotlin')
+	&.lasso, &.ls, &.lassoscript {
+		mixcontent('Lasso');
+	}
 
-	&.lang
-		mixcontent('Lang')
+	&.less {
+		mixcontent('Less');
+	}
 
-	&.tex
-		mixcontent('LaTeX')
+	&.ldif {
+		mixcontent('LDIF');
+	}
 
-	&.leaf
-		mixcontent('Leaf')
+	&.lisp {
+		mixcontent('Lisp');
+	}
 
-	&.lean
-		mixcontent('Lean')
+	&.livecodeserver {
+		mixcontent('LiveCode Server');
+	}
 
-	&.lasso, &.ls, &.lassoscript
-		mixcontent('Lasso')
+	&.livescript, &.ls {
+		mixcontent('LiveScript');
+	}
 
-	&.less
-		mixcontent('Less')
+	&.lookml {
+		mixcontent('LookML');
+	}
 
-	&.ldif
-		mixcontent('LDIF')
+	&.lua {
+		mixcontent('Lua');
+	}
 
-	&.lisp
-		mixcontent('Lisp')
+	&.luau {
+		mixcontent('Luau');
+	}
 
-	&.livecodeserver
-		mixcontent('LiveCode Server')
+	&.macaulay2 {
+		mixcontent('Macaulay2');
+	}
 
-	&.livescript, &.ls
-		mixcontent('LiveScript')
+	&.makefile, &.mk, &.mak, &.make {
+		mixcontent('Makefile');
+	}
 
-	&.lookml
-		mixcontent('LookML')
+	&.markdown, &.md, &.mkdown, &.mkd {
+		mixcontent('Markdown');
+	}
 
-	&.lua
-		mixcontent('Lua')
+	&.mathematica, &.mma, &.wl {
+		mixcontent('Mathematica');
+	}
 
-	&.luau
-		mixcontent('Luau')
+	&.matlab {
+		mixcontent('Matlab');
+	}
 
-	&.macaulay2
-		mixcontent('Macaulay2')
+	&.maxima {
+		mixcontent('Maxima');
+	}
 
-	&.makefile, &.mk, &.mak, &.make
-		mixcontent('Makefile')
+	&.mel {
+		mixcontent('Maya Embedded Language');
+	}
 
-	&.markdown, &.md, &.mkdown, &.mkd
-		mixcontent('Markdown')
+	&.mercury {
+		mixcontent('Mercury');
+	}
 
-	&.mathematica, &.mma, &.wl
-		mixcontent('Mathematica')
+	&.mips, &.mipsasm {
+		mixcontent('MIPS Assembler');
+	}
 
-	&.matlab
-		mixcontent('Matlab')
+	&.mint {
+		mixcontent('Mint');
+	}
 
-	&.maxima
-		mixcontent('Maxima')
+	&.mirth {
+		mixcontent('Mirth');
+	}
 
-	&.mel
-		mixcontent('Maya Embedded Language')
+	&.mirc, &.mrc {
+		mixcontent('mIRC Scripting Language');
+	}
 
-	&.mercury
-		mixcontent('Mercury')
+	&.mizar {
+		mixcontent('Mizar');
+	}
 
-	&.mips, &.mipsasm
-		mixcontent('MIPS Assembler')
+	&.mkb {
+		mixcontent('MKB');
+	}
 
-	&.mint
-		mixcontent('Mint')
+	&.mlir {
+		mixcontent('MLIR');
+	}
 
-	&.mirth
-		mixcontent('Mirth')
+	&.mojolicious {
+		mixcontent('Mojolicious');
+	}
 
-	&.mirc, &.mrc
-		mixcontent('mIRC Scripting Language')
+	&.monkey {
+		mixcontent('Monkey');
+	}
 
-	&.mizar
-		mixcontent('Mizar')
+	&.moonscript, &.moon {
+		mixcontent('Moonscript');
+	}
 
-	&.mkb
-		mixcontent('MKB')
+	&.motoko, &.mo {
+		mixcontent('Motoko');
+	}
 
-	&.mlir
-		mixcontent('MLIR')
+	&.n1ql {
+		mixcontent('N1QL');
+	}
 
-	&.mojolicious
-		mixcontent('Mojolicious')
+	&.nsis {
+		mixcontent('NSIS');
+	}
 
-	&.monkey
-		mixcontent('Monkey')
+	&.never {
+		mixcontent('Never');
+	}
 
-	&.moonscript, &.moon
-		mixcontent('Moonscript')
+	&.nginx, &.nginxconf {
+		mixcontent('Nginx');
+	}
 
-	&.motoko, &.mo
-		mixcontent('Motoko')
+	&.nim, &.nimrod {
+		mixcontent('Nim');
+	}
 
-	&.n1ql
-		mixcontent('N1QL')
+	&.nix {
+		mixcontent('Nix');
+	}
 
-	&.nsis
-		mixcontent('NSIS')
+	&.oak {
+		mixcontent('Oak');
+	}
 
-	&.never
-		mixcontent('Never')
+	&.ocl {
+		mixcontent('Object Constraint Language');
+	}
 
-	&.nginx, &.nginxconf
-		mixcontent('Nginx')
+	&.ocaml, &.ml {
+		mixcontent('OCaml');
+	}
 
-	&.nim, &.nimrod
-		mixcontent('Nim')
+	&.objectivec, &.mm, &.objc, &.obj-c {
+		mixcontent('Objective C');
+	}
 
-	&.nix
-		mixcontent('Nix')
+	&.glsl {
+		mixcontent('OpenGL Shading Language');
+	}
 
-	&.oak
-		mixcontent('Oak')
+	&.openscad, &.scad {
+		mixcontent('OpenSCAD');
+	}
 
-	&.ocl
-		mixcontent('Object Constraint Language')
+	&.ruleslanguage {
+		mixcontent('Oracle Rules Language');
+	}
 
-	&.ocaml, &.ml
-		mixcontent('OCaml')
+	&.oxygene {
+		mixcontent('Oxygene');
+	}
 
-	&.objectivec, &.mm, &.objc, &.obj-c
-		mixcontent('Objective C')
+	&.pf {
+		mixcontent('PF');
+	}
 
-	&.glsl
-		mixcontent('OpenGL Shading Language')
+	&.php {
+		mixcontent('PHP');
+	}
 
-	&.openscad, &.scad
-		mixcontent('OpenSCAD')
+	&.papyrus, &.psc {
+		mixcontent('Papyrus');
+	}
 
-	&.ruleslanguage
-		mixcontent('Oracle Rules Language')
+	&.parser3 {
+		mixcontent('Parser3');
+	}
 
-	&.oxygene
-		mixcontent('Oxygene')
+	&.perl, &.pl, &.pm {
+		mixcontent('Perl');
+	}
 
-	&.pf
-		mixcontent('PF')
+	&.phix {
+		mixcontent('Phix');
+	}
 
-	&.php
-		mixcontent('PHP')
+	&.pine, &.pinescript {
+		mixcontent('Pine Script');
+	}
 
-	&.papyrus, &.psc
-		mixcontent('Papyrus')
+	&.plaintext, &.txt, &.text {
+		mixcontent('Plaintext');
+	}
 
-	&.parser3
-		mixcontent('Parser3')
+	&.pony {
+		mixcontent('Pony');
+	}
 
-	&.perl, &.pl, &.pm
-		mixcontent('Perl')
+	&.pgsql, &.postgres, &.postgresql {
+		mixcontent('PostgreSQL & PL/pgSQL');
+	}
 
-	&.phix
-		mixcontent('Phix')
+	&.powershell, &.ps, &.ps1 {
+		mixcontent('PowerShell');
+	}
 
-	&.pine, &.pinescript
-		mixcontent('Pine Script')
+	&.processing {
+		mixcontent('Processing');
+	}
 
-	&.plaintext, &.txt, &.text
-		mixcontent('Plaintext')
+	&.prolog {
+		mixcontent('Prolog');
+	}
 
-	&.pony
-		mixcontent('Pony')
+	&.properties {
+		mixcontent('Properties');
+	}
 
-	&.pgsql, &.postgres, &.postgresql
-		mixcontent('PostgreSQL & PL/pgSQL')
+	&.proto, &.protobuf {
+		mixcontent('Protocol Buffers');
+	}
 
-	&.powershell, &.ps, &.ps1
-		mixcontent('PowerShell')
+	&.puppet, &.pp {
+		mixcontent('Puppet');
+	}
 
-	&.processing
-		mixcontent('Processing')
+	&.python, &.py, &.gyp {
+		mixcontent('Python');
+	}
 
-	&.prolog
-		mixcontent('Prolog')
+	&.profile {
+		mixcontent('Python profiler results');
+	}
 
-	&.properties
-		mixcontent('Properties')
+	&.python-repl, &.pycon {
+		mixcontent('Python REPL');
+	}
 
-	&.proto, &.protobuf
-		mixcontent('Protocol Buffers')
+	&.qsharp {
+		mixcontent('Q#');
+	}
 
-	&.puppet, &.pp
-		mixcontent('Puppet')
+	&.k, &.kdb {
+		mixcontent('Q');
+	}
 
-	&.python, &.py, &.gyp
-		mixcontent('Python')
+	&.qml {
+		mixcontent('QML');
+	}
 
-	&.profile
-		mixcontent('Python profiler results')
+	&.r {
+		mixcontent('R');
+	}
 
-	&.python-repl, &.pycon
-		mixcontent('Python REPL')
+	&.cshtml, &.razor, &.razor-cshtml {
+		mixcontent('Razor CSHTML');
+	}
 
-	&.qsharp
-		mixcontent('Q#')
+	&.reasonml, &.re {
+		mixcontent('ReasonML');
+	}
 
-	&.k, &.kdb
-		mixcontent('Q')
+	&.redbol, &.rebol, &.red, &.red-system {
+		mixcontent('Rebol & Red');
+	}
 
-	&.qml
-		mixcontent('QML')
+	&.rib {
+		mixcontent('RenderMan RIB');
+	}
 
-	&.r
-		mixcontent('R')
+	&.rsl {
+		mixcontent('RenderMan RSL');
+	}
 
-	&.cshtml, &.razor, &.razor-cshtml
-		mixcontent('Razor CSHTML')
+	&.rescript, &.res {
+		mixcontent('ReScript');
+	}
 
-	&.reasonml, &.re
-		mixcontent('ReasonML')
+	&.risc, &.riscript {
+		mixcontent('RiScript');
+	}
 
-	&.redbol, &.rebol, &.red, &.red-system
-		mixcontent('Rebol & Red')
+	&.riscv, &.riscvasm {
+		mixcontent('RISC-V Assembly');
+	}
 
-	&.rib
-		mixcontent('RenderMan RIB')
+	&.graph, &.instances {
+		mixcontent('Roboconf');
+	}
 
-	&.rsl
-		mixcontent('RenderMan RSL')
+	&.robot, &.rf {
+		mixcontent('Robot Framework');
+	}
 
-	&.rescript, &.res
-		mixcontent('ReScript')
+	&.rpm-specfile, &.rpm, &.spec, &.rpm-spec, &.specfile {
+		mixcontent('RPM spec files');
+	}
 
-	&.risc, &.riscript
-		mixcontent('RiScript')
+	&.ruby, &.rb, &.gemspec, &.podspec, &.thor, &.irb {
+		mixcontent('Ruby');
+	}
 
-	&.riscv, &.riscvasm
-		mixcontent('RISC-V Assembly')
+	&.rust, &.rs {
+		mixcontent('Rust');
+	}
 
-	&.graph, &.instances
-		mixcontent('Roboconf')
+	&.rvt, &.rvt-script {
+		mixcontent('RVT Script');
+	}
 
-	&.robot, &.rf
-		mixcontent('Robot Framework')
+	&.sas {
+		mixcontent('SAS');
+	}
 
-	&.rpm-specfile, &.rpm, &.spec, &.rpm-spec, &.specfile
-		mixcontent('RPM spec files')
+	&.scss {
+		mixcontent('SCSS');
+	}
 
-	&.ruby, &.rb, &.gemspec, &.podspec, &.thor, &.irb
-		mixcontent('Ruby')
+	&.sql {
+		mixcontent('SQL');
+	}
 
-	&.rust, &.rs
-		mixcontent('Rust')
+	&.p21, &.step, &.stp {
+		mixcontent('STEP Part 21');
+	}
 
-	&.rvt, &.rvt-script
-		mixcontent('RVT Script')
+	&.scala {
+		mixcontent('Scala');
+	}
 
-	&.sas
-		mixcontent('SAS')
+	&.scheme {
+		mixcontent('Scheme');
+	}
 
-	&.scss
-		mixcontent('SCSS')
+	&.scilab, &.sci {
+		mixcontent('Scilab');
+	}
 
-	&.sql
-		mixcontent('SQL')
+	&.sfz {
+		mixcontent('SFZ');
+	}
 
-	&.p21, &.step, &.stp
-		mixcontent('STEP Part 21')
+	&.shexc {
+		mixcontent('Shape Expressions');
+	}
 
-	&.scala
-		mixcontent('Scala')
+	&.shell, &.console {
+		mixcontent('Shell');
+	}
 
-	&.scheme
-		mixcontent('Scheme')
+	&.smali {
+		mixcontent('Smali');
+	}
 
-	&.scilab, &.sci
-		mixcontent('Scilab')
+	&.smalltalk, &.st {
+		mixcontent('Smalltalk');
+	}
 
-	&.sfz
-		mixcontent('SFZ')
+	&.sml, &.ml {
+		mixcontent('SML');
+	}
 
-	&.shexc
-		mixcontent('Shape Expressions')
+	&.solidity, &.sol {
+		mixcontent('Solidity');
+	}
 
-	&.shell, &.console
-		mixcontent('Shell')
+	&.spl {
+		mixcontent('Splunk SPL');
+	}
 
-	&.smali
-		mixcontent('Smali')
+	&.stan, &.stanfuncs {
+		mixcontent('Stan');
+	}
 
-	&.smalltalk, &.st
-		mixcontent('Smalltalk')
+	&.stata {
+		mixcontent('Stata');
+	}
 
-	&.sml, &.ml
-		mixcontent('SML')
+	&.iecst, &.scl, &.stl, &.structured-text {
+		mixcontent('Structured Text');
+	}
 
-	&.solidity, &.sol
-		mixcontent('Solidity')
+	&.stylus, &.styl {
+		mixcontent('Stylus');
+	}
 
-	&.spl
-		mixcontent('Splunk SPL')
+	&.subunit {
+		mixcontent('SubUnit');
+	}
 
-	&.stan, &.stanfuncs
-		mixcontent('Stan')
+	&.supercollider, &.sc {
+		mixcontent('Supercollider');
+	}
 
-	&.stata
-		mixcontent('Stata')
+	&.svelte {
+		mixcontent('Svelte');
+	}
 
-	&.iecst, &.scl, &.stl, &.structured-text
-		mixcontent('Structured Text')
+	&.swift {
+		mixcontent('Swift');
+	}
 
-	&.stylus, &.styl
-		mixcontent('Stylus')
+	&.tcl, &.tk {
+		mixcontent('Tcl');
+	}
 
-	&.subunit
-		mixcontent('SubUnit')
+	&.terraform, &.tf, &.hcl {
+		mixcontent('Terraform (HCL)');
+	}
 
-	&.supercollider, &.sc
-		mixcontent('Supercollider')
+	&.tap {
+		mixcontent('Test Anything Protocol');
+	}
 
-	&.svelte
-		mixcontent('Svelte')
+	&.thrift {
+		mixcontent('Thrift');
+	}
 
-	&.swift
-		mixcontent('Swift')
+	&.toit {
+		mixcontent('Toit');
+	}
 
-	&.tcl, &.tk
-		mixcontent('Tcl')
+	&.tp {
+		mixcontent('TP');
+	}
 
-	&.terraform, &.tf, &.hcl
-		mixcontent('Terraform (HCL)')
+	&.tsql {
+		mixcontent('Transact-SQL');
+	}
 
-	&.tap
-		mixcontent('Test Anything Protocol')
+	&.twig, &.craftcms {
+		mixcontent('Twig');
+	}
 
-	&.thrift
-		mixcontent('Thrift')
+	&.typescript, &.ts, &.tsx, &.mts, &.cts {
+		mixcontent('TypeScript');
+	}
 
-	&.toit
-		mixcontent('Toit')
+	&.unicorn-rails-log {
+		mixcontent('Unicorn Rails log');
+	}
 
-	&.tp
-		mixcontent('TP')
+	&.unison, &.u {
+		mixcontent('Unison');
+	}
 
-	&.tsql
-		mixcontent('Transact-SQL')
+	&.vbnet, &.vb {
+		mixcontent('VB.Net');
+	}
 
-	&.twig, &.craftcms
-		mixcontent('Twig')
+	&.vba {
+		mixcontent('VBA');
+	}
 
-	&.typescript, &.ts, &.tsx, &.mts, &.cts
-		mixcontent('TypeScript')
+	&.vbscript, &.vbs {
+		mixcontent('VBScript');
+	}
 
-	&.unicorn-rails-log
-		mixcontent('Unicorn Rails log')
+	&.vhdl {
+		mixcontent('VHDL');
+	}
 
-	&.unison, &.u
-		mixcontent('Unison')
+	&.vala {
+		mixcontent('Vala');
+	}
 
-	&.vbnet, &.vb
-		mixcontent('VB.Net')
-
-	&.vba
-		mixcontent('VBA')
-
-	&.vbscript, &.vbs
-		mixcontent('VBScript')
-
-	&.vhdl
-		mixcontent('VHDL')
-
-	&.vala
-		mixcontent('Vala')
-
-	&.verilog, &.v
-		mixcontent('Verilog')
-
-	&.vim
-		mixcontent('Vim Script')
-
-	&.wgsl
-		mixcontent('WGSL')
-
-	&.xsharp, &.xs, &.prg
-		mixcontent('X#')
-
-	&.axapta
-		mixcontent('X++')
-
-	&.x86asm
-		mixcontent('x86 Assembly')
-
-	&.x86asmatt
-		mixcontent('x86 Assembly (AT&T)')
-
-	&.xl, &.tao
-		mixcontent('XL')
-
-	&.xquery, &.xpath, &.xq, &.xqm
-		mixcontent('XQuery')
-
-	&.yml, &.yaml
-		mixcontent('YAML')
-
-	&.zenscript, &.zs
-		mixcontent('ZenScript')
-
-	&.zephir, &.zep
-		mixcontent('Zephir')
-
-	&.zig
-		mixcontent('Zig')
-
-pre
-	color: var(--primary-700) !important
-
-	.function .keyword, .constant
-		color: #0092db !important
-
-	.keyword, .attribute
-		color: #e96900 !important
-
-	.number, .literal
-		color: #ae81ff !important
-
-	.tag, .tag .title, .change, .winutils, .flow, .lisp .title, .clojure .built_in, .nginx .title, .tex .special
-		color: #2973b7 !important
-
-	.symbol, .symbol .string, .value, .regexp
-		color: #42b983 !important
-
-	.title
-		color: #83B917 !important
-
-	.tag .value, .string, .subst, .haskell .type, .preprocessor, .ruby .class .parent, .built_in, .sql .aggregate, .django .template_tag, .django .variable, .smalltalk .class, .javadoc, .django .filter .argument, .smalltalk .localvars, .smalltalk .array, .attr_selector, .pseudo, .addition, .stream, .envvar, .apache .tag, .apache .cbracket, .tex .command, .prompt
-		color: #42b983 !important
-
-	.comment, .java .annotation, .python .decorator, .template_comment, .pi, .doctype, .shebang, .apache .sqbracket, .tex .formula
-		color: #b3b3b3 !important
-
-	.deletion
-		color: #BA4545 !important
-
-	.coffeescript .javascript, .javascript .xml, .tex .formula, .xml .javascript, .xml .vbscript, .xml .css, .xml .cdata
-		opacity: 0.5 !important
-
-html
-	height: 100%
-	max-height: 100%
-	padding: 0
-	margin: 0
-
-body
-	padding: 0
-	margin: 0
-	line-height: 1.6em
-
-.clear
-	clear: both
-	display: block
-	overflow: hidden
-	visibility: hidden
-	width: 0
-	height: 0
-
-h1, h2, h3, h4, h5, h6
-	text-rendering: optimizeLegibility
-	line-height: 1
-	margin: 2rem 0
-
-h1
-	font-size: 2.1rem
-	line-height: 1.2em
-
-h2
-	font-size: 1.9rem
-	line-height: 1.2em
-
-h3
-	font-size: 1.75rem
-
-h4
-	font-size: 1.3rem
-
-h5
-	font-size: 1.2rem
-
-h6
-	font-size: 1.1rem
-
-img
-	max-width: 100%
-	height: auto
-
-p, ul, ol, dl
-	margin: 1em 0
-
-ol ol, ul ul, ul ol, ol ul
-	margin: 0.4em 0
-
-ol.toclist-child
-	padding-inline-start: 15px
-
-ul p, ol p, li p, .content li p, blockquote p, .content blockquote p, .post blockquote p, .post li p
-	margin: 0
-	overflow: visible
-
-a img
-	border: none
-
-dl
-	dt
-		float: left
-		width: 180px
-		overflow: hidden
-		clear: left
-		text-align: right
-		text-overflow: ellipsis
-		white-space: nowrap
-		font-weight: bold
-		margin-bottom: 1em
-
-	dd
-		margin-left: 200px
-		margin-bottom: 1em
-
-hr
-	display: block
-	height: 1px
-	border: 0
-	border-top: 1px solid var(--primary-100)
-	margin: 3.2em 0
-	padding: 0
-
-blockquote
-	box-sizing: border-box
-	margin: 1.6em 0 1.6em 0em
-	padding: 0 0 0 1.6em
-	border-left: #f66 0.3em solid
-	background-color: cssrgba(var(--primary-rgb), 0.03)
-
-	p
-		margin: 0.8em 0
-		padding: 1em 0
-
-	small
-		display: inline-block
-		margin: 0.8em 0 0.8em 1.5em
-		font-size: 0.9em
-		color: #ccc
-
-		&:before
-			content: '\2014 \00A0'
-
-	cite
-		font-weight: bold
-
-		a
-			font-weight: normal
-
-mark
-	background-color: #ffc336
-
-code, tt
-	padding: 1px 3px
-	font-family: Inconsolata, monospace, sans-serif
-	font-size: 0.95em
-	white-space: pre-wrap
-	border: 1px solid var(--primary-200)
-	background-color: var(--secondary-950)
-	transition: background-color 0.8s, border 0.8s
-	color: #d14
-	border-radius: 2px
-
-kbd
-	display: inline-block
-	margin-bottom: 0.4em
-	padding: 1px 8px
-	border: var(--primary-200) 1px solid
-	color: var(--primary-700)
-	font-size: 0.9em
-	font-weight: bold
-	background: var(--primary-50)
-	border-radius: 4px
-	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 0 white inset
-
-table
-	-moz-box-sizing: border-box
-	box-sizing: border-box
-	margin: 1em 0
-	width: 100%
-	max-width: 100%
-	border-width: 1px
-	border-style: solid
-	background-color: transparent
-
-table, table tr, table tr td, table tr th
-	border-color: transparent
-
-table th
-	color: var(--primary-700)
-	background-color: rgba(63, 185, 237, 0.15)
-
-tr th
-	border-bottom-width: 1px
-	border-bottom-style: solid
-
-tr th, tr td
-	padding: 5px 20px
-	border-right: 1px solid
-	font-size: 1rem
-
-tr th:last-child, tr td:last-child
-	border-right: 0px
-
-table th
-	font-weight: bold
-
-table tbody>tr:nth-child(odd)>td, table tbody>tr:nth-child(odd)>th
-	background-color: var(--secondary-950)
-
-.gist
-	font-size: 12px
-
-	table
-		margin: 0
-		width: auto
-
-		pre
-			font-size: 12px
-
-		.line-numbers
-			font-size: 12px
-
-.toc
-	border: 1px solid #f0f0f0
-	margin-bottom: 20px
-	padding: 10px 30px
-
-#fb_comments_container
-	overflow: hidden
-	margin: 0 auto
-
-	#fb_comments
-		list-style-type: none
-		padding: 0
-
-		h1
-			font-size: 1.3em
-
-		h2
-			font-size: 1.2em
-
-		h3
-			font-size: 1.1em
-
-#fb_comments_container #fb_comments h4, #fb_comments_container #fb_comments h5, #fb_comments_container #fb_comments h6
-	font-size: 1.05em
-
-#fb_comments_container #fb_comments .comment
-	position: relative
-	padding: 25px 0
-	border-bottom: 1px solid rgba(150, 150, 150, 0.2)
-	*border-bottom: 1px solid #f0f0f0
-
-	.avatar
-		position: absolute
-		top: 25px
-		left: 0
-		width: 50px
-		float: left
-
-		img
-			width: 48px
-			border: none
-			border-radius: 5px
-			margin: 0
-
-#fb_comments_container #fb_comments .comment .comment_body, #fb_comments_container #fb_comments .comment .c_content
-	margin-left: 70px
-	display: block
-
-#fb_comments_container #fb_comments .comment .comment_body p, #fb_comments_container #fb_comments .comment .c_content p
-	margin: 5px 0 15px 0
-	padding: 0
-	line-height: 1.8
-
-#fb_comments_container #fb_comments .comment .comment_body .author, #fb_comments_container #fb_comments .comment .c_content .author
-	line-height: 1.5em
-	margin: 0
-	padding: 0
-
-#fb_comments_container #fb_comments .comment .comment_body .author b, #fb_comments_container #fb_comments .comment .c_content .author b
-	color: #555
-
-#fb_comments_container #fb_comments .comment .comment_body .author small, #fb_comments_container #fb_comments .comment .c_content .author small
-	font-weight: normal
-	padding-left: 10px
-	font-size: 0.7em
-	color: #666
-
-#fb_new_comment
-	padding-bottom: 50px
-
-	textarea
-		border-radius: 5px
-		height: 80px
-		width: 98%
-		padding: 5px
-		font-size: 1em
-		border: 1px solid rgba(150, 150, 150, 0.5)
-		*border: 1px solid #a8a8a8
-		line-height: 1.5
-
-	.comment_error
-		color: red
-		text-align: center
-		display: block
-		font-size: 0.8em
-		padding-top: 1em
-
-	.c_button &:hover
-		background: #E60900
-		color: #fff
-		text-decoration: none
-
-#fb_new_comment .c_button, #fb_new_comment #c_submit
-	cursor: pointer
-	font-family: 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif
-	font-size: 1em
-	line-height: 1.3em
-	letter-spacing: 1px
-	border-radius: 5px
-	padding: 5px 5px 2px 5px
-
-#fb_new_comment .input_body
-	margin-top: 10px
-
-	ul
-		list-style: none
-		padding: 5px 0
-		margin: auto 0
-
-		li
-			float: left
-			margin-right: 2.2%
-			*margin-right: 22px
-
-			label
-				line-height: 1em
-
-			input
-				border-radius: 5px
-				border: 1px solid #ddd
-				padding: 5px
-				background: rgba(255, 255, 255, 0.5)
-				margin: 0 0 10px 0
-
-#SwfStore_farbox_0
-	height: 0
-	overflow: hidden
-
-@media screen and (max-width: 320px)
-	#fb_comments .c_content, #fb_comments .comment_body
-		margin-left: 57px
-
-.tag_box
-	position: relative
-	width: 80%
-	margin-top: 1%
-	margin-left: 7.2%
-
-.katex .katex-html
-	display: none
+	&.verilog, &.v {
+		mixcontent('Verilog');
+	}
+
+	&.vim {
+		mixcontent('Vim Script');
+	}
+
+	&.wgsl {
+		mixcontent('WGSL');
+	}
+
+	&.xsharp, &.xs, &.prg {
+		mixcontent('X#');
+	}
+
+	&.axapta {
+		mixcontent('X++');
+	}
+
+	&.x86asm {
+		mixcontent('x86 Assembly');
+	}
+
+	&.x86asmatt {
+		mixcontent('x86 Assembly (AT&T)');
+	}
+
+	&.xl, &.tao {
+		mixcontent('XL');
+	}
+
+	&.xquery, &.xpath, &.xq, &.xqm {
+		mixcontent('XQuery');
+	}
+
+	&.yml, &.yaml {
+		mixcontent('YAML');
+	}
+
+	&.zenscript, &.zs {
+		mixcontent('ZenScript');
+	}
+
+	&.zephir, &.zep {
+		mixcontent('Zephir');
+	}
+
+	&.zig {
+		mixcontent('Zig');
+	}
+}
+
+pre {
+	color: var(--primary-700) !important;
+
+	.function .keyword, .constant {
+		color: #0092db !important;
+	}
+
+	.keyword, .attribute {
+		color: #e96900 !important;
+	}
+
+	.number, .literal {
+		color: #ae81ff !important;
+	}
+
+	.tag, .tag .title, .change, .winutils, .flow, .lisp .title, .clojure .built_in, .nginx .title, .tex .special {
+		color: #2973b7 !important;
+	}
+
+	.symbol, .symbol .string, .value, .regexp {
+		color: #42b983 !important;
+	}
+
+	.title {
+		color: #83B917 !important;
+	}
+
+	.tag .value, .string, .subst, .haskell .type, .preprocessor, .ruby .class .parent, .built_in, .sql .aggregate, .django .template_tag, .django .variable, .smalltalk .class, .javadoc, .django .filter .argument, .smalltalk .localvars, .smalltalk .array, .attr_selector, .pseudo, .addition, .stream, .envvar, .apache .tag, .apache .cbracket, .tex .command, .prompt {
+		color: #42b983 !important;
+	}
+
+	.comment, .java .annotation, .python .decorator, .template_comment, .pi, .doctype, .shebang, .apache .sqbracket, .tex .formula {
+		color: #b3b3b3 !important;
+	}
+
+	.deletion {
+		color: #BA4545 !important;
+	}
+
+	.coffeescript .javascript, .javascript .xml, .tex .formula, .xml .javascript, .xml .vbscript, .xml .css, .xml .cdata {
+		opacity: 0.5 !important;
+	}
+}
+
+html {
+	height: 100%;
+	max-height: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	padding: 0;
+	margin: 0;
+	line-height: 1.6em;
+}
+
+.clear {
+	clear: both;
+	display: block;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-rendering: optimizeLegibility;
+	line-height: 1;
+	margin: 2rem 0;
+}
+
+h1 {
+	font-size: 2.1rem;
+	line-height: 1.2em;
+}
+
+h2 {
+	font-size: 1.9rem;
+	line-height: 1.2em;
+}
+
+h3 {
+	font-size: 1.75rem;
+}
+
+h4 {
+	font-size: 1.3rem;
+}
+
+h5 {
+	font-size: 1.2rem;
+}
+
+h6 {
+	font-size: 1.1rem;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+p, ul, ol, dl {
+	margin: 1em 0;
+}
+
+ol ol, ul ul, ul ol, ol ul {
+	margin: 0.4em 0;
+}
+
+ol.toclist-child {
+	padding-inline-start: 15px;
+}
+
+ul p, ol p, li p, .content li p, blockquote p, .content blockquote p, .post blockquote p, .post li p {
+	margin: 0;
+	overflow: visible;
+}
+
+a img {
+	border: none;
+}
+
+dl {
+	dt {
+		float: left;
+		width: 180px;
+		overflow: hidden;
+		clear: left;
+		text-align: right;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		font-weight: bold;
+		margin-bottom: 1em;
+	}
+
+	dd {
+		margin-left: 200px;
+		margin-bottom: 1em;
+	}
+}
+
+hr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid var(--primary-100);
+	margin: 3.2em 0;
+	padding: 0;
+}
+
+blockquote {
+	box-sizing: border-box;
+	margin: 1.6em 0 1.6em 0em;
+	padding: 0 0 0 1.6em;
+	border-left: #f66 0.3em solid;
+	background-color: cssrgba(var(--primary-rgb), 0.03);
+
+	p {
+		margin: 0.8em 0;
+		padding: 1em 0;
+	}
+
+	small {
+		display: inline-block;
+		margin: 0.8em 0 0.8em 1.5em;
+		font-size: 0.9em;
+		color: #ccc;
+
+		&:before {
+			content: '\2014 \00A0';
+		}
+	}
+
+	cite {
+		font-weight: bold;
+
+		a {
+			font-weight: normal;
+		}
+	}
+}
+
+mark {
+	background-color: #ffc336;
+}
+
+code, tt {
+	padding: 1px 3px;
+	font-family: Inconsolata, monospace, sans-serif;
+	font-size: 0.95em;
+	white-space: pre-wrap;
+	border: 1px solid var(--primary-200);
+	background-color: var(--secondary-950);
+	transition: background-color 0.8s, border 0.8s;
+	color: #d14;
+	border-radius: 2px;
+}
+
+kbd {
+	display: inline-block;
+	margin-bottom: 0.4em;
+	padding: 1px 8px;
+	border: var(--primary-200) 1px solid;
+	color: var(--primary-700);
+	font-size: 0.9em;
+	font-weight: bold;
+	background: var(--primary-50);
+	border-radius: 4px;
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 0 white inset;
+}
+
+table {
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	margin: 1em 0;
+	width: 100%;
+	max-width: 100%;
+	border-width: 1px;
+	border-style: solid;
+	background-color: transparent;
+}
+
+table, table tr, table tr td, table tr th {
+	border-color: transparent;
+}
+
+table th {
+	color: var(--primary-700);
+	background-color: rgba(63, 185, 237, 0.15);
+}
+
+tr th {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+tr th, tr td {
+	padding: 5px 20px;
+	border-right: 1px solid;
+	font-size: 1rem;
+}
+
+tr th:last-child, tr td:last-child {
+	border-right: 0px;
+}
+
+table th {
+	font-weight: bold;
+}
+
+table tbody>tr:nth-child(odd)>td, table tbody>tr:nth-child(odd)>th {
+	background-color: var(--secondary-950);
+}
+
+.gist {
+	font-size: 12px;
+
+	table {
+		margin: 0;
+		width: auto;
+
+		pre {
+			font-size: 12px;
+		}
+
+		.line-numbers {
+			font-size: 12px;
+		}
+	}
+}
+
+.toc {
+	border: 1px solid #f0f0f0;
+	margin-bottom: 20px;
+	padding: 10px 30px;
+}
+
+#fb_comments_container {
+	overflow: hidden;
+	margin: 0 auto;
+
+	#fb_comments {
+		list-style-type: none;
+		padding: 0;
+
+		h1 {
+			font-size: 1.3em;
+		}
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		h3 {
+			font-size: 1.1em;
+		}
+	}
+}
+
+#fb_comments_container #fb_comments h4, #fb_comments_container #fb_comments h5, #fb_comments_container #fb_comments h6 {
+	font-size: 1.05em;
+}
+
+#fb_comments_container #fb_comments .comment {
+	position: relative;
+	padding: 25px 0;
+	border-bottom: 1px solid rgba(150, 150, 150, 0.2);
+	*border-bottom: 1px solid #f0f0f0;
+
+	.avatar {
+		position: absolute;
+		top: 25px;
+		left: 0;
+		width: 50px;
+		float: left;
+
+		img {
+			width: 48px;
+			border: none;
+			border-radius: 5px;
+			margin: 0;
+		}
+	}
+}
+
+#fb_comments_container #fb_comments .comment .comment_body, #fb_comments_container #fb_comments .comment .c_content {
+	margin-left: 70px;
+	display: block;
+}
+
+#fb_comments_container #fb_comments .comment .comment_body p, #fb_comments_container #fb_comments .comment .c_content p {
+	margin: 5px 0 15px 0;
+	padding: 0;
+	line-height: 1.8;
+}
+
+#fb_comments_container #fb_comments .comment .comment_body .author, #fb_comments_container #fb_comments .comment .c_content .author {
+	line-height: 1.5em;
+	margin: 0;
+	padding: 0;
+}
+
+#fb_comments_container #fb_comments .comment .comment_body .author b, #fb_comments_container #fb_comments .comment .c_content .author b {
+	color: #555;
+}
+
+#fb_comments_container #fb_comments .comment .comment_body .author small, #fb_comments_container #fb_comments .comment .c_content .author small {
+	font-weight: normal;
+	padding-left: 10px;
+	font-size: 0.7em;
+	color: #666;
+}
+
+#fb_new_comment {
+	padding-bottom: 50px;
+
+	textarea {
+		border-radius: 5px;
+		height: 80px;
+		width: 98%;
+		padding: 5px;
+		font-size: 1em;
+		border: 1px solid rgba(150, 150, 150, 0.5);
+		*border: 1px solid #a8a8a8;
+		line-height: 1.5;
+	}
+
+	.comment_error {
+		color: red;
+		text-align: center;
+		display: block;
+		font-size: 0.8em;
+		padding-top: 1em;
+	}
+
+	.c_button &:hover {
+		background: #E60900;
+		color: #fff;
+		text-decoration: none;
+	}
+}
+
+#fb_new_comment .c_button, #fb_new_comment #c_submit {
+	cursor: pointer;
+	font-family: 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+	font-size: 1em;
+	line-height: 1.3em;
+	letter-spacing: 1px;
+	border-radius: 5px;
+	padding: 5px 5px 2px 5px;
+}
+
+#fb_new_comment .input_body {
+	margin-top: 10px;
+
+	ul {
+		list-style: none;
+		padding: 5px 0;
+		margin: auto 0;
+
+		li {
+			float: left;
+			margin-right: 2.2%;
+			*margin-right: 22px;
+
+			label {
+				line-height: 1em;
+			}
+
+			input {
+				border-radius: 5px;
+				border: 1px solid #ddd;
+				padding: 5px;
+				background: rgba(255, 255, 255, 0.5);
+				margin: 0 0 10px 0;
+			}
+		}
+	}
+}
+
+#SwfStore_farbox_0 {
+	height: 0;
+	overflow: hidden;
+}
+
+@media screen and (max-width: 320px) {
+	#fb_comments .c_content, #fb_comments .comment_body {
+		margin-left: 57px;
+	}
+}
+
+.tag_box {
+	position: relative;
+	width: 80%;
+	margin-top: 1%;
+	margin-left: 7.2%;
+}
+
+.katex .katex-html {
+	display: none;
+}

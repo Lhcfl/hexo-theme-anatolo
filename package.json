@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "format:stylus": "stylus-supremacy format ./source/css/**/*.styl -r --options .supermacy.yml",
-        "format:pretty": "prettier --write ./layout/**/*.pug",
+        "format:pretty": "prettier --write ./{layout,src}/**/*.{pug,scss}",
         "format:biome": "biome format --write includes languages scripts source src",
         "lint": "eslint . --fix",
         "format": "pnpm format:stylus && pnpm format:biome && pnpm format:pretty",
@@ -16,6 +16,7 @@
         "hexo-renderer-pug": "^0.0.5",
         "hexo-renderer-stylus": "^0.2.3",
         "rollup": "^4.21.2",
+        "rollup-plugin-sass": "^1.13.2",
         "typescript": "^5.5.4"
     },
     "devDependencies": {

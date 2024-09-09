@@ -1,3 +1,4 @@
+import './search.scss';
 import Fuse, { type FuseResult } from 'fuse.js';
 import { AnatoloDynamicResource } from '@/anatolo/dynamic-resource';
 import { AnatoloRef } from '@/anatolo/ref';

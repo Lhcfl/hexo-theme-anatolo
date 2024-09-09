@@ -1,4 +1,5 @@
 import resolve from '@rollup/plugin-node-resolve';
+import sass from 'rollup-plugin-sass';
 import { defineConfig } from 'rollup';
 import swc from 'unplugin-swc';
 
@@ -22,6 +23,9 @@ export default defineConfig([
             '@/*': ['./src/*'],
           },
         },
+      }),
+      sass({
+        output: true,
       }),
     ],
   },
