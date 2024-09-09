@@ -1,0 +1,40 @@
+.tip {
+  position: relative;
+  margin: 2em 0;
+  padding: 12px 24px 12px 30px;
+  border-left: 4px solid #f66;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+  background-color: var(--secondary-950);
+
+  &:before {
+    position: absolute;
+    top: 14px;
+    left: -12px;
+    content: '!';
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    transition: color 0.8s;
+    color: var(--secondary);
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #f66;
+    font-family: 'Dosis', 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+  }
+}
+
+.toc {
+  border: 1px solid #f0f0f0;
+  margin-bottom: 20px;
+  padding: 10px 30px;
+}
+
+.tag_box {
+  position: relative;
+  width: 80%;
+  margin-top: 1%;
+  margin-left: 7.2%;
+}

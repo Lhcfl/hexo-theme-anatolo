@@ -1,0 +1,1331 @@
+@mixin mixcontent($txt) {
+  .code:after {
+    content: $txt;
+  }
+}
+
+figure.highlight {
+  position: relative !important;
+  margin: 1em 0 !important;
+  border-radius: 2px !important;
+  line-height: 1.1em !important;
+  background-color: var(--secondary-950) !important;
+  overflow-x: auto !important;
+  padding-left: 1em;
+
+  table,
+  tr,
+  td {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .gutter {
+    width: fit-content !important;
+    line-height: 1.5em !important;
+    font-size: 15px;
+    padding: 0em 1em 0em 0em !important;
+    user-select: none;
+
+    pre {
+      color: rgb(212, 148, 75) !important;
+    }
+  }
+
+  body.disable-line-number & .gutter {
+    display: none;
+  }
+
+  .code pre {
+    padding: 1.2em 1em 1.2em 0 !important;
+    line-height: 1.5em !important;
+    margin: 0 !important;
+  }
+
+  .code:after {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    color: #ccc !important;
+    text-align: right !important;
+    font-size: 0.75em !important;
+    padding: 5px 10px 0 !important;
+    line-height: 15px !important;
+    height: 15px !important;
+    font-weight: 600 !important;
+  }
+
+  // &.1c {
+  // 	@include mixcontent('1C');
+  // }
+
+  // &.4d {
+  // 	@include mixcontent('4D');
+  // }
+
+  &.sap-abap,
+  &.abap {
+    @include mixcontent('ABAP');
+  }
+
+  &.abnf {
+    @include mixcontent('ABNF');
+  }
+
+  &.accesslog {
+    @include mixcontent('Access logs');
+  }
+
+  &.ada {
+    @include mixcontent('Ada');
+  }
+
+  &.apex {
+    @include mixcontent('Apex');
+  }
+
+  &.arduino,
+  &.ino {
+    @include mixcontent('Arduino( C++ w/Arduino libs)');
+  }
+
+  &.armasm,
+  &.arm {
+    @include mixcontent('ARM assembler');
+  }
+
+  &.avrasm {
+    @include mixcontent('AVR assembler');
+  }
+
+  &.actionscript,
+  &.as {
+    @include mixcontent('ActionScript');
+  }
+
+  &.alan,
+  &.i {
+    @include mixcontent('Alan IF');
+  }
+
+  &.ln {
+    @include mixcontent('Alan');
+  }
+
+  &.angelscript,
+  &.asc {
+    @include mixcontent('AngelScript');
+  }
+
+  &.apache,
+  &.apacheconf {
+    @include mixcontent('Apache');
+  }
+
+  &.applescript,
+  &.osascript {
+    @include mixcontent('AppleScript');
+  }
+
+  &.arcade {
+    @include mixcontent('Arcade');
+  }
+
+  &.asciidoc,
+  &.adoc {
+    @include mixcontent('AsciiDoc');
+  }
+
+  &.aspectj {
+    @include mixcontent('AspectJ');
+  }
+
+  &.autohotkey {
+    @include mixcontent('AutoHotkey');
+  }
+
+  &.autoit {
+    @include mixcontent('AutoIt');
+  }
+
+  &.awk,
+  &.mawk,
+  &.nawk,
+  &.gawk {
+    @include mixcontent('Awk');
+  }
+
+  &.ballerina,
+  &.bal {
+    @include mixcontent('Ballerina');
+  }
+
+  &.bash,
+  &.sh,
+  &.zsh {
+    @include mixcontent('Bash');
+  }
+
+  &.basic {
+    @include mixcontent('Basic');
+  }
+
+  &.bbcode {
+    @include mixcontent('BBCode');
+  }
+
+  &.blade {
+    @include mixcontent('Blade( Laravel)');
+  }
+
+  &.bnf {
+    @include mixcontent('BNF');
+  }
+
+  &.bqn {
+    @include mixcontent('BQN');
+  }
+
+  &.brainfuck,
+  &.bf {
+    @include mixcontent('Brainfuck');
+  }
+
+  &.csharp,
+  &.cs {
+    @include mixcontent('C#');
+  }
+
+  &.c,
+  &.h {
+    @include mixcontent('C');
+  }
+
+  &.cpp,
+  &.hpp,
+  &.cc,
+  &.hh,
+  &.cxx,
+  &.hxx,
+  &.c\\\+\\\+,
+  &.h\\\+\\\+ {
+    @include mixcontent('C++');
+  }
+
+  &.cal {
+    @include mixcontent('C/AL');
+  }
+
+  &.c3 {
+    @include mixcontent('C3');
+  }
+
+  &.cos,
+  &.cls {
+    @include mixcontent('Cache Object Script');
+  }
+
+  &.candid,
+  &.did {
+    @include mixcontent('Candid');
+  }
+
+  &.cmake {
+    @include mixcontent('CMake');
+  }
+
+  &.cobol,
+  &.standard-cobol {
+    @include mixcontent('COBOL');
+  }
+
+  &.codeowners {
+    @include mixcontent('CODEOWNERS');
+  }
+
+  &.coq {
+    @include mixcontent('Coq');
+  }
+
+  &.csp {
+    @include mixcontent('CSP');
+  }
+
+  &.css {
+    @include mixcontent('CSS');
+  }
+
+  &.capnproto,
+  &.capnp {
+    @include mixcontent('Cap’n Proto');
+  }
+
+  &.chaos,
+  &.kaos {
+    @include mixcontent('Chaos');
+  }
+
+  &.chapel,
+  &.chpl {
+    @include mixcontent('Chapel');
+  }
+
+  &.cisco {
+    @include mixcontent('Cisco CLI');
+  }
+
+  &.clojure,
+  &.clj {
+    @include mixcontent('Clojure');
+  }
+
+  &.coffeescript,
+  &.coffee,
+  &.cson,
+  &.iced {
+    @include mixcontent('CoffeeScript');
+  }
+
+  &.cpc {
+    @include mixcontent('CpcdosC+');
+  }
+
+  &.crmsh,
+  &.crm,
+  &.pcmk {
+    @include mixcontent('Crmsh');
+  }
+
+  &.crystal,
+  &.cr {
+    @include mixcontent('Crystal');
+  }
+
+  &.curl {
+    @include mixcontent('cURL');
+  }
+
+  &.cypher {
+    @include mixcontent('Cypher( Neo4j)');
+  }
+
+  &.d {
+    @include mixcontent('D');
+  }
+
+  &.dafny {
+    @include mixcontent('Dafny');
+  }
+
+  &.dart {
+    @include mixcontent('Dart');
+  }
+
+  &.dpr,
+  &.dfm,
+  &.pas,
+  &.pascal {
+    @include mixcontent('Delphi');
+  }
+
+  &.diff,
+  &.patch {
+    @include mixcontent('Diff');
+  }
+
+  &.django,
+  &.jinja {
+    @include mixcontent('Django');
+  }
+
+  &.dns,
+  &.zone,
+  &.bind {
+    @include mixcontent('DNS Zone file');
+  }
+
+  &.dockerfile,
+  &.docker {
+    @include mixcontent('Dockerfile');
+  }
+
+  &.dos,
+  &.bat,
+  &.cmd {
+    @include mixcontent('DOS');
+  }
+
+  &.dsconfig {
+    @include mixcontent('dsconfig');
+  }
+
+  &.dts {
+    @include mixcontent('DTS( Device Tree)');
+  }
+
+  &.dust,
+  &.dst {
+    @include mixcontent('Dust');
+  }
+
+  &.dylan {
+    @include mixcontent('Dylan');
+  }
+
+  &.ebnf {
+    @include mixcontent('EBNF');
+  }
+
+  &.elixir {
+    @include mixcontent('Elixir');
+  }
+
+  &.elm {
+    @include mixcontent('Elm');
+  }
+
+  &.erlang,
+  &.erl {
+    @include mixcontent('Erlang');
+  }
+
+  &.excel,
+  &.xls,
+  &.xlsx {
+    @include mixcontent('Excel');
+  }
+
+  &.extempore,
+  &.xtlang,
+  &.xtm {
+    @include mixcontent('Extempore');
+  }
+
+  &.fsharp,
+  &.fs,
+  &.fsx,
+  &.fsi,
+  &.fsscript {
+    @include mixcontent('F#');
+  }
+
+  &.fix {
+    @include mixcontent('FIX');
+  }
+
+  &.flix {
+    @include mixcontent('Flix');
+  }
+
+  &.fortran,
+  &.f90,
+  &.f95 {
+    @include mixcontent('Fortran');
+  }
+
+  &.func {
+    @include mixcontent('FunC');
+  }
+
+  &.gcode,
+  &.nc {
+    @include mixcontent('G-Code');
+  }
+
+  &.gams,
+  &.gms {
+    @include mixcontent('Gams');
+  }
+
+  &.gauss,
+  &.gss {
+    @include mixcontent('GAUSS');
+  }
+
+  &.godot,
+  &.gdscript {
+    @include mixcontent('GDScript');
+  }
+
+  &.gherkin {
+    @include mixcontent('Gherkin');
+  }
+
+  &.hbs,
+  &.glimmer,
+  &.htmlbars {
+    @include mixcontent('Glimmer and EmberJS');
+  }
+
+  &.gn,
+  &.gni {
+    @include mixcontent('GN for Ninja');
+  }
+
+  &.go,
+  &.golang {
+    @include mixcontent('Go');
+  }
+
+  &.gf {
+    @include mixcontent('Grammatical Framework');
+  }
+
+  &.golo,
+  &.gololang {
+    @include mixcontent('Golo');
+  }
+
+  &.gradle {
+    @include mixcontent('Gradle');
+  }
+
+  &.graphql,
+  &.gql {
+    @include mixcontent('GraphQL');
+  }
+
+  &.groovy {
+    @include mixcontent('Groovy');
+  }
+
+  &.gsql {
+    @include mixcontent('GSQL');
+  }
+
+  &.xml,
+  &.html,
+  &.xhtml,
+  &.rss,
+  &.atom,
+  &.xjb,
+  &.xsd,
+  &.xsl,
+  &.plist,
+  &.svg {
+    @include mixcontent('HTML, XML');
+  }
+
+  &.http,
+  &.https {
+    @include mixcontent('HTTP');
+  }
+
+  &.haml {
+    @include mixcontent('Haml');
+  }
+
+  &.handlebars,
+  &.hbs {
+    @include mixcontent('Handlebars');
+  }
+
+  &.haskell,
+  &.hs {
+    @include mixcontent('Haskell');
+  }
+
+  &.haxe,
+  &.hx {
+    @include mixcontent('Haxe');
+  }
+
+  &.hlsl {
+    @include mixcontent('High-level shader language');
+  }
+
+  &.hy,
+  &.hylang {
+    @include mixcontent('Hy');
+  }
+
+  &.ini,
+  &.toml {
+    @include mixcontent('Ini, TOML');
+  }
+
+  &.inform7,
+  &.i7 {
+    @include mixcontent('Inform7');
+  }
+
+  &.irpf90 {
+    @include mixcontent('IRPF90');
+  }
+
+  &.iptables {
+    @include mixcontent('Iptables');
+  }
+
+  &.json,
+  &.jsonc {
+    @include mixcontent('JSON');
+  }
+
+  &.java,
+  &.jsp {
+    @include mixcontent('Java');
+  }
+
+  &.javascript,
+  &.js,
+  &.jsx {
+    @include mixcontent('JavaScript');
+  }
+
+  &.jolie,
+  &.iol,
+  &.ol {
+    @include mixcontent('Jolie');
+  }
+
+  &.julia,
+  &.jl {
+    @include mixcontent('Julia');
+  }
+
+  &.julia-repl {
+    @include mixcontent('Julia REPL');
+  }
+
+  &.kotlin,
+  &.kt {
+    @include mixcontent('Kotlin');
+  }
+
+  &.lang {
+    @include mixcontent('Lang');
+  }
+
+  &.tex {
+    @include mixcontent('LaTeX');
+  }
+
+  &.leaf {
+    @include mixcontent('Leaf');
+  }
+
+  &.lean {
+    @include mixcontent('Lean');
+  }
+
+  &.lasso,
+  &.ls,
+  &.lassoscript {
+    @include mixcontent('Lasso');
+  }
+
+  &.less {
+    @include mixcontent('Less');
+  }
+
+  &.ldif {
+    @include mixcontent('LDIF');
+  }
+
+  &.lisp {
+    @include mixcontent('Lisp');
+  }
+
+  &.livecodeserver {
+    @include mixcontent('LiveCode Server');
+  }
+
+  &.livescript,
+  &.ls {
+    @include mixcontent('LiveScript');
+  }
+
+  &.lookml {
+    @include mixcontent('LookML');
+  }
+
+  &.lua {
+    @include mixcontent('Lua');
+  }
+
+  &.luau {
+    @include mixcontent('Luau');
+  }
+
+  &.macaulay2 {
+    @include mixcontent('Macaulay2');
+  }
+
+  &.makefile,
+  &.mk,
+  &.mak,
+  &.make {
+    @include mixcontent('Makefile');
+  }
+
+  &.markdown,
+  &.md,
+  &.mkdown,
+  &.mkd {
+    @include mixcontent('Markdown');
+  }
+
+  &.mathematica,
+  &.mma,
+  &.wl {
+    @include mixcontent('Mathematica');
+  }
+
+  &.matlab {
+    @include mixcontent('Matlab');
+  }
+
+  &.maxima {
+    @include mixcontent('Maxima');
+  }
+
+  &.mel {
+    @include mixcontent('Maya Embedded Language');
+  }
+
+  &.mercury {
+    @include mixcontent('Mercury');
+  }
+
+  &.mips,
+  &.mipsasm {
+    @include mixcontent('MIPS Assembler');
+  }
+
+  &.mint {
+    @include mixcontent('Mint');
+  }
+
+  &.mirth {
+    @include mixcontent('Mirth');
+  }
+
+  &.mirc,
+  &.mrc {
+    @include mixcontent('mIRC Scripting Language');
+  }
+
+  &.mizar {
+    @include mixcontent('Mizar');
+  }
+
+  &.mkb {
+    @include mixcontent('MKB');
+  }
+
+  &.mlir {
+    @include mixcontent('MLIR');
+  }
+
+  &.mojolicious {
+    @include mixcontent('Mojolicious');
+  }
+
+  &.monkey {
+    @include mixcontent('Monkey');
+  }
+
+  &.moonscript,
+  &.moon {
+    @include mixcontent('Moonscript');
+  }
+
+  &.motoko,
+  &.mo {
+    @include mixcontent('Motoko');
+  }
+
+  &.n1ql {
+    @include mixcontent('N1QL');
+  }
+
+  &.nsis {
+    @include mixcontent('NSIS');
+  }
+
+  &.never {
+    @include mixcontent('Never');
+  }
+
+  &.nginx,
+  &.nginxconf {
+    @include mixcontent('Nginx');
+  }
+
+  &.nim,
+  &.nimrod {
+    @include mixcontent('Nim');
+  }
+
+  &.nix {
+    @include mixcontent('Nix');
+  }
+
+  &.oak {
+    @include mixcontent('Oak');
+  }
+
+  &.ocl {
+    @include mixcontent('Object Constraint Language');
+  }
+
+  &.ocaml,
+  &.ml {
+    @include mixcontent('OCaml');
+  }
+
+  &.objectivec,
+  &.mm,
+  &.objc,
+  &.obj-c {
+    @include mixcontent('Objective C');
+  }
+
+  &.glsl {
+    @include mixcontent('OpenGL Shading Language');
+  }
+
+  &.openscad,
+  &.scad {
+    @include mixcontent('OpenSCAD');
+  }
+
+  &.ruleslanguage {
+    @include mixcontent('Oracle Rules Language');
+  }
+
+  &.oxygene {
+    @include mixcontent('Oxygene');
+  }
+
+  &.pf {
+    @include mixcontent('PF');
+  }
+
+  &.php {
+    @include mixcontent('PHP');
+  }
+
+  &.papyrus,
+  &.psc {
+    @include mixcontent('Papyrus');
+  }
+
+  &.parser3 {
+    @include mixcontent('Parser3');
+  }
+
+  &.perl,
+  &.pl,
+  &.pm {
+    @include mixcontent('Perl');
+  }
+
+  &.phix {
+    @include mixcontent('Phix');
+  }
+
+  &.pine,
+  &.pinescript {
+    @include mixcontent('Pine Script');
+  }
+
+  &.plaintext,
+  &.txt,
+  &.text {
+    @include mixcontent('Plaintext');
+  }
+
+  &.pony {
+    @include mixcontent('Pony');
+  }
+
+  &.pgsql,
+  &.postgres,
+  &.postgresql {
+    @include mixcontent('PostgreSQL & PL/pgSQL');
+  }
+
+  &.powershell,
+  &.ps,
+  &.ps1 {
+    @include mixcontent('PowerShell');
+  }
+
+  &.processing {
+    @include mixcontent('Processing');
+  }
+
+  &.prolog {
+    @include mixcontent('Prolog');
+  }
+
+  &.properties {
+    @include mixcontent('Properties');
+  }
+
+  &.proto,
+  &.protobuf {
+    @include mixcontent('Protocol Buffers');
+  }
+
+  &.puppet,
+  &.pp {
+    @include mixcontent('Puppet');
+  }
+
+  &.python,
+  &.py,
+  &.gyp {
+    @include mixcontent('Python');
+  }
+
+  &.profile {
+    @include mixcontent('Python profiler results');
+  }
+
+  &.python-repl,
+  &.pycon {
+    @include mixcontent('Python REPL');
+  }
+
+  &.qsharp {
+    @include mixcontent('Q#');
+  }
+
+  &.k,
+  &.kdb {
+    @include mixcontent('Q');
+  }
+
+  &.qml {
+    @include mixcontent('QML');
+  }
+
+  &.r {
+    @include mixcontent('R');
+  }
+
+  &.cshtml,
+  &.razor,
+  &.razor-cshtml {
+    @include mixcontent('Razor CSHTML');
+  }
+
+  &.reasonml,
+  &.re {
+    @include mixcontent('ReasonML');
+  }
+
+  &.redbol,
+  &.rebol,
+  &.red,
+  &.red-system {
+    @include mixcontent('Rebol & Red');
+  }
+
+  &.rib {
+    @include mixcontent('RenderMan RIB');
+  }
+
+  &.rsl {
+    @include mixcontent('RenderMan RSL');
+  }
+
+  &.rescript,
+  &.res {
+    @include mixcontent('ReScript');
+  }
+
+  &.risc,
+  &.riscript {
+    @include mixcontent('RiScript');
+  }
+
+  &.riscv,
+  &.riscvasm {
+    @include mixcontent('RISC-V Assembly');
+  }
+
+  &.graph,
+  &.instances {
+    @include mixcontent('Roboconf');
+  }
+
+  &.robot,
+  &.rf {
+    @include mixcontent('Robot Framework');
+  }
+
+  &.rpm-specfile,
+  &.rpm,
+  &.spec,
+  &.rpm-spec,
+  &.specfile {
+    @include mixcontent('RPM spec files');
+  }
+
+  &.ruby,
+  &.rb,
+  &.gemspec,
+  &.podspec,
+  &.thor,
+  &.irb {
+    @include mixcontent('Ruby');
+  }
+
+  &.rust,
+  &.rs {
+    @include mixcontent('Rust');
+  }
+
+  &.rvt,
+  &.rvt-script {
+    @include mixcontent('RVT Script');
+  }
+
+  &.sas {
+    @include mixcontent('SAS');
+  }
+
+  &.scss {
+    @include mixcontent('SCSS');
+  }
+
+  &.sql {
+    @include mixcontent('SQL');
+  }
+
+  &.p21,
+  &.step,
+  &.stp {
+    @include mixcontent('STEP Part 21');
+  }
+
+  &.scala {
+    @include mixcontent('Scala');
+  }
+
+  &.scheme {
+    @include mixcontent('Scheme');
+  }
+
+  &.scilab,
+  &.sci {
+    @include mixcontent('Scilab');
+  }
+
+  &.sfz {
+    @include mixcontent('SFZ');
+  }
+
+  &.shexc {
+    @include mixcontent('Shape Expressions');
+  }
+
+  &.shell,
+  &.console {
+    @include mixcontent('Shell');
+  }
+
+  &.smali {
+    @include mixcontent('Smali');
+  }
+
+  &.smalltalk,
+  &.st {
+    @include mixcontent('Smalltalk');
+  }
+
+  &.sml,
+  &.ml {
+    @include mixcontent('SML');
+  }
+
+  &.solidity,
+  &.sol {
+    @include mixcontent('Solidity');
+  }
+
+  &.spl {
+    @include mixcontent('Splunk SPL');
+  }
+
+  &.stan,
+  &.stanfuncs {
+    @include mixcontent('Stan');
+  }
+
+  &.stata {
+    @include mixcontent('Stata');
+  }
+
+  &.iecst,
+  &.scl,
+  &.stl,
+  &.structured-text {
+    @include mixcontent('Structured Text');
+  }
+
+  &.stylus,
+  &.styl {
+    @include mixcontent('Stylus');
+  }
+
+  &.subunit {
+    @include mixcontent('SubUnit');
+  }
+
+  &.supercollider,
+  &.sc {
+    @include mixcontent('Supercollider');
+  }
+
+  &.svelte {
+    @include mixcontent('Svelte');
+  }
+
+  &.swift {
+    @include mixcontent('Swift');
+  }
+
+  &.tcl,
+  &.tk {
+    @include mixcontent('Tcl');
+  }
+
+  &.terraform,
+  &.tf,
+  &.hcl {
+    @include mixcontent('Terraform( HCL)');
+  }
+
+  &.tap {
+    @include mixcontent('Test Anything Protocol');
+  }
+
+  &.thrift {
+    @include mixcontent('Thrift');
+  }
+
+  &.toit {
+    @include mixcontent('Toit');
+  }
+
+  &.tp {
+    @include mixcontent('TP');
+  }
+
+  &.tsql {
+    @include mixcontent('Transact-SQL');
+  }
+
+  &.twig,
+  &.craftcms {
+    @include mixcontent('Twig');
+  }
+
+  &.typescript,
+  &.ts,
+  &.tsx,
+  &.mts,
+  &.cts {
+    @include mixcontent('TypeScript');
+  }
+
+  &.unicorn-rails-log {
+    @include mixcontent('Unicorn Rails log');
+  }
+
+  &.unison,
+  &.u {
+    @include mixcontent('Unison');
+  }
+
+  &.vbnet,
+  &.vb {
+    @include mixcontent('VB.Net');
+  }
+
+  &.vba {
+    @include mixcontent('VBA');
+  }
+
+  &.vbscript,
+  &.vbs {
+    @include mixcontent('VBScript');
+  }
+
+  &.vhdl {
+    @include mixcontent('VHDL');
+  }
+
+  &.vala {
+    @include mixcontent('Vala');
+  }
+
+  &.verilog,
+  &.v {
+    @include mixcontent('Verilog');
+  }
+
+  &.vim {
+    @include mixcontent('Vim Script');
+  }
+
+  &.wgsl {
+    @include mixcontent('WGSL');
+  }
+
+  &.xsharp,
+  &.xs,
+  &.prg {
+    @include mixcontent('X#');
+  }
+
+  &.axapta {
+    @include mixcontent('X++');
+  }
+
+  &.x86asm {
+    @include mixcontent('x86 Assembly');
+  }
+
+  &.x86asmatt {
+    @include mixcontent('x86 Assembly (AT&T)');
+  }
+
+  &.xl,
+  &.tao {
+    @include mixcontent('XL');
+  }
+
+  &.xquery,
+  &.xpath,
+  &.xq,
+  &.xqm {
+    @include mixcontent('XQuery');
+  }
+
+  &.yml,
+  &.yaml {
+    @include mixcontent('YAML');
+  }
+
+  &.zenscript,
+  &.zs {
+    @include mixcontent('ZenScript');
+  }
+
+  &.zephir,
+  &.zep {
+    @include mixcontent('Zephir');
+  }
+
+  &.zig {
+    @include mixcontent('Zig');
+  }
+}
+
+pre {
+  font-size: 15px;
+  background-color: var(--secondary-950) !important;
+  font-family: 'mononoki', 'Consolas', 'Roboto Mono', 'Lucida Console', 'Trebuchet MS', 'Courier New', 'Monaco',
+    'courier', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Jhenghei', 'Microsoft YaHei', monospace !important;
+
+  color: var(--primary-700) !important;
+
+  .function .keyword,
+  .constant {
+    color: #0092db !important;
+  }
+
+  .keyword,
+  .attribute {
+    color: #e96900 !important;
+  }
+
+  .number,
+  .literal {
+    color: #ae81ff !important;
+  }
+
+  .tag,
+  .tag .title,
+  .change,
+  .winutils,
+  .flow,
+  .lisp .title,
+  .clojure .built_in,
+  .nginx .title,
+  .tex .special {
+    color: #2973b7 !important;
+  }
+
+  .symbol,
+  .symbol .string,
+  .value,
+  .regexp {
+    color: #42b983 !important;
+  }
+
+  .title {
+    color: #83b917 !important;
+  }
+
+  .tag .value,
+  .string,
+  .subst,
+  .haskell .type,
+  .preprocessor,
+  .ruby .class .parent,
+  .built_in,
+  .sql .aggregate,
+  .django .template_tag,
+  .django .variable,
+  .smalltalk .class,
+  .javadoc,
+  .django .filter .argument,
+  .smalltalk .localvars,
+  .smalltalk .array,
+  .attr_selector,
+  .pseudo,
+  .addition,
+  .stream,
+  .envvar,
+  .apache .tag,
+  .apache .cbracket,
+  .tex .command,
+  .prompt {
+    color: #42b983 !important;
+  }
+
+  .comment,
+  .java .annotation,
+  .python .decorator,
+  .template_comment,
+  .pi,
+  .doctype,
+  .shebang,
+  .apache .sqbracket,
+  .tex .formula {
+    color: #b3b3b3 !important;
+  }
+
+  .deletion {
+    color: #ba4545 !important;
+  }
+
+  .coffeescript .javascript,
+  .javascript .xml,
+  .tex .formula,
+  .xml .javascript,
+  .xml .vbscript,
+  .xml .css,
+  .xml .cdata {
+    opacity: 0.5 !important;
+  }
+}

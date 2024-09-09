@@ -1,0 +1,272 @@
+.content > .post > .post-content > p {
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+#ds-thread,
+#disqus_thread,
+#cloud-tie-wrapper {
+  margin: 0 30px !important;
+}
+
+html {
+  height: 100%;
+  max-height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  line-height: 1.6em;
+}
+
+.clear {
+  clear: both;
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-rendering: optimizeLegibility;
+  line-height: 1;
+  margin: 2rem 0;
+}
+
+h1 {
+  font-size: 2.1rem;
+  line-height: 1.2em;
+}
+
+h2 {
+  font-size: 1.9rem;
+  line-height: 1.2em;
+}
+
+h3 {
+  font-size: 1.75rem;
+}
+
+h4 {
+  font-size: 1.3rem;
+}
+
+h5 {
+  font-size: 1.2rem;
+}
+
+h6 {
+  font-size: 1.1rem;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+p,
+ul,
+ol,
+dl {
+  margin: 1em 0;
+}
+
+ol ol,
+ul ul,
+ul ol,
+ol ul {
+  margin: 0.4em 0;
+}
+
+ol.toclist-child {
+  padding-inline-start: 15px;
+}
+
+ul p,
+ol p,
+li p,
+.content li p,
+blockquote p,
+.content blockquote p,
+.post blockquote p,
+.post li p {
+  margin: 0;
+  overflow: visible;
+}
+
+a img {
+  border: none;
+}
+
+dl {
+  dt {
+    float: left;
+    width: 180px;
+    overflow: hidden;
+    clear: left;
+    text-align: right;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: bold;
+    margin-bottom: 1em;
+  }
+
+  dd {
+    margin-left: 200px;
+    margin-bottom: 1em;
+  }
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid var(--primary-100);
+  margin: 3.2em 0;
+  padding: 0;
+}
+
+blockquote {
+  box-sizing: border-box;
+  margin: 1.6em 0 1.6em 0em;
+  padding: 0 0 0 1.6em;
+  border-left: #f66 0.3em solid;
+  background-color: cssrgba(var(--primary-rgb), 0.03);
+
+  p {
+    margin: 0.8em 0;
+    padding: 1em 0;
+  }
+
+  small {
+    display: inline-block;
+    margin: 0.8em 0 0.8em 1.5em;
+    font-size: 0.9em;
+    color: #ccc;
+
+    &:before {
+      content: '\2014 \00A0';
+    }
+  }
+
+  cite {
+    font-weight: bold;
+
+    a {
+      font-weight: normal;
+    }
+  }
+}
+
+mark {
+  background-color: #ffc336;
+}
+
+code,
+tt {
+  padding: 1px 3px;
+  font-family: Inconsolata, monospace, sans-serif;
+  font-size: 0.95em;
+  white-space: pre-wrap;
+  border: 1px solid var(--primary-200);
+  background-color: var(--secondary-950);
+  transition:
+    background-color 0.8s,
+    border 0.8s;
+  color: #d14;
+  border-radius: 2px;
+}
+
+kbd {
+  display: inline-block;
+  margin-bottom: 0.4em;
+  padding: 1px 8px;
+  border: var(--primary-200) 1px solid;
+  color: var(--primary-700);
+  font-size: 0.9em;
+  font-weight: bold;
+  background: var(--primary-50);
+  border-radius: 4px;
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.2),
+    0 1px 0 0 white inset;
+}
+
+table {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 1em 0;
+  width: 100%;
+  max-width: 100%;
+  border-width: 1px;
+  border-style: solid;
+  background-color: transparent;
+}
+
+table,
+table tr,
+table tr td,
+table tr th {
+  border-color: transparent;
+}
+
+table th {
+  color: var(--primary-700);
+  background-color: rgba(63, 185, 237, 0.15);
+}
+
+tr th {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+tr th,
+tr td {
+  padding: 5px 20px;
+  border-right: 1px solid;
+  font-size: 1rem;
+}
+
+tr th:last-child,
+tr td:last-child {
+  border-right: 0px;
+}
+
+table th {
+  font-weight: bold;
+}
+
+table tbody > tr:nth-child(odd) > td,
+table tbody > tr:nth-child(odd) > th {
+  background-color: var(--secondary-950);
+}
+
+.gist {
+  font-size: 12px;
+
+  table {
+    margin: 0;
+    width: auto;
+
+    pre {
+      font-size: 12px;
+    }
+
+    .line-numbers {
+      font-size: 12px;
+    }
+  }
+}
+
+.katex .katex-html {
+  display: none;
+}
