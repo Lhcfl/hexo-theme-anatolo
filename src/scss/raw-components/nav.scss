@@ -68,7 +68,7 @@
         display: initial;
         margin-left: 30px;
 
-        &.more {
+        &.btn-toggle-more {
           display: none;
         }
       }
@@ -89,14 +89,14 @@
           li {
             display: initial;
           }
-          li.more {
+          li.btn-toggle-more {
             display: none;
           }
         }
         li {
           display: none;
         }
-        li.more {
+        li.btn-toggle-more {
           display: initial;
         }
       }
