@@ -217,31 +217,34 @@ author: "无名氏"
 ```html
 <div
   class="friend-link"
-  avatar="https://头像所在的网址"
-  href="https://友链地址"
-  title="友链标题"
-  description="友链描述"
+  data-avatar="https://头像所在的网址"
+  data-href="https://友链地址"
+  data-title="友链标题"
+  data-description="友链描述"
 ></div>
 ```
 
 来声明一条友链。友链会在访问网站时被动态展开：
 
+相关代码在：
 
-```js
-// Anatolo/source/js/utils/friends-link-generator.js
-`<div class="friend-link-container"><div class="friend-link-box">
-  <aside class="friend-link-avatar">
-    <img src="${escapeHTML(avatar)}" href="${escapeHTML(href)}">
-  </aside>
-  <div class="friend-link-meta">
-    <div class="friend-link-title">
-      <a href="${escapeHTML(href)}">${escapeHTML(title)}</a>
-    </div>
-    <div class="friend-link-description">
-      ${escapeHTML(description)}
+```tsx
+// src/utils/friend-link.tsx
+const friendHTML = ({ avatar, href, title, description }: any) => (
+  <div class="friend-link-container">
+    <div class="friend-link-box">
+      <aside class="friend-link-avatar">
+        <img src={escapeHTML(avatar)} href={escapeHTML(href)} />
+      </aside>
+      <div class="friend-link-meta">
+        <div class="friend-link-title">
+          <a href={escapeHTML(href)}>{escapeHTML(title)}</a>
+        </div>
+        <div class="friend-link-description">{escapeHTML(description)}</div>
+      </div>
     </div>
   </div>
-</div></div>`;
+);
 ```
 
 `avatar` `href` `title` `description` 分别是 友链头像、友链地址、友链标题、友链描述。
