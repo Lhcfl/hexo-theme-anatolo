@@ -1,3 +1,4 @@
+import './scss/color-defination.scss';
 import './scss/blog_basic.scss';
 import './scss/highlight.scss';
 import './scss/style.scss';

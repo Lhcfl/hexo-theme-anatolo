@@ -3,7 +3,7 @@
 keywords: Blog,博客,Hexo
 author: Yourname
 description: A simple and beautiful blog
-defaultTheme: light-mode # light-mode or dark-mode
+defaultTheme: light-mode # light-mode or dark-mode or default
 
 # icon
 # If the is size is incorrect, please edit /source/css/style.styl

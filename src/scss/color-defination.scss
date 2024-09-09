@@ -1,0 +1,48 @@
+@mixin percentageColor($name, $c1, $c2) {
+  @for $i from 1 to 20 {
+    #{--#{$name}-#{$i*50}}: mix($c1, $c2, $i * 5%);
+  }
+}
+
+@mixin genColor($name, $c1, $c2) {
+  #{--#{$name}-rgb}: join($c1, (), comma);
+  #{--#{$name}}: rgb($c1);
+  @include percentageColor($name, rgb($c1), rgb($c2));
+
+  #{--#{$name}-high}: mix(rgb($c1), rgb($c2), 90%);
+  #{--#{$name}-midium}: mix(rgb($c1), rgb($c2), 70%);
+  #{--#{$name}-low-mid}: mix(rgb($c1), rgb($c2), 50%);
+  #{--#{$name}-low}: mix(rgb($c1), rgb($c2), 20%);
+  #{--#{$name}-very-low}: mix(rgb($c1), rgb($c2), 0.05%);
+}
+
+@mixin darkTheme() {
+  $primary: 255 255 255;
+  $secondary: 40 40 40;
+  @include genColor('primary', $primary, $secondary);
+  @include genColor('secondary', $secondary, $primary);
+}
+
+@mixin lightTheme() {
+  $primary: 22 22 22;
+  $secondary: 255 255 255;
+  @include genColor('primary', $primary, $secondary);
+  @include genColor('secondary', $secondary, $primary);
+}
+
+html[theme='dark'] {
+  @include darkTheme();
+}
+
+html[theme='light'] {
+  @include lightTheme();
+}
+
+html[theme='default'] {
+  @include lightTheme();
+}
+@media (prefers-color-scheme: dark) {
+  html[theme='default'] {
+    @include darkTheme();
+  }
+}
