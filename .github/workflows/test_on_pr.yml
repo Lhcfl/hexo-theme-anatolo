@@ -5,7 +5,7 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-  unit_test_and_build_blog:
+  build_unit_test_blog:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
