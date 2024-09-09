@@ -1,6 +1,5 @@
 @charset 'UTF-8';
-
-$site-border: 1px solid var(--primary-100);
+@import 'consts/consts.scss';
 
 /* basic styles ends */
 /* animation starts */
@@ -177,72 +176,7 @@ $site-border: 1px solid var(--primary-100);
   margin-top: 60px;
 }
 
-.page-top {
-  width: 70%;
-  position: fixed;
-  right: 0;
-  z-index: 3;
-  transition:
-    background-color 0.8s,
-    border 0.8s;
-  background-color: var(--secondary);
-  height: 60px;
-  border-bottom: $site-border;
-
-  .nav {
-    list-style: none;
-    padding: 18px 30px;
-    float: left;
-    font-size: 14px;
-
-    li {
-      position: relative;
-      display: initial;
-      padding-right: 20px;
-    }
-
-    a {
-      color: var(--secondary-350);
-    }
-
-    a:hover {
-      color: #4786d6;
-    }
-
-    a.current {
-      color: var(--secondary-350);
-      padding-bottom: 20px;
-      border-bottom: 2px solid #4786d6;
-    }
-  }
-
-  .information {
-    float: right;
-    padding-top: 12px;
-    padding-right: 20px;
-
-    .avatar {
-      float: right;
-
-      img {
-        width: 32px;
-        height: 32px;
-        border-radius: 300px;
-      }
-    }
-
-    .nav_right_btn {
-      float: left;
-      padding-top: 5px;
-      margin-right: 0px;
-
-      li {
-        display: initial;
-        padding-right: 30px;
-      }
-    }
-  }
-}
+@import 'raw-components/nav.scss';
 
 .sidebar {
   width: 30%;
@@ -920,7 +854,7 @@ a.btn {
   display: none;
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: $bp-mobile-view) {
   .sidebar {
     width: 100%;
     height: auto;
@@ -943,35 +877,6 @@ a.btn {
         }
       }
     }
-  }
-
-  .page-top {
-    width: 100%;
-    white-space: nowrap;
-    overflow-x: scroll;
-    overflow-y: hidden;
-
-    .information {
-      transition: background-color 0.8s;
-      background-color: var(--secondary);
-      position: absolute;
-      right: 0;
-
-      .nav_right_btn {
-        display: none;
-      }
-    }
-
-    .information:hover {
-      .nav_right_btn {
-        display: block;
-      }
-    }
-  }
-
-  .page-top::-webkit-scrollbar {
-    -webkit-appearance: none;
-    width: 2px;
   }
 
   .post-title h3 {

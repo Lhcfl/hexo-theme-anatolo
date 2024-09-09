@@ -9,17 +9,18 @@
 
   .information
     .nav_right_btn
+      if theme.rightbtn.back || theme.rightbtn.search || theme.rightbtn.darkLightToggle
+        li.more
+          i.fa.fa-ellipsis
       if theme.rightbtn.back
-        li
-          if is_post()
+        if is_post()
+          li.btn-go-back
             a.fa.fa-chevron-left(onclick="window.history.go(-1)") 
-          else
-            a.fa.fa-chevron-left(onclick="window.history.go(-1)", style="display: none") 
       if theme.rightbtn.search
-        li
+        li.btn-search
           a.fa.fa-search(onclick="Anatolo.search.openWindow();")
       if theme.rightbtn.darkLightToggle
-        li
+        li.btn-toggle-theme
           a.far.fa-sun(onclick="Anatolo.darkLightToggle();")
     .avatar
       if theme.rightbtn.avatar

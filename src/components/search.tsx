@@ -135,7 +135,7 @@ export class AnatoloSearch extends Component {
         <header>
           <i class={`fa fa-${icon}`}></i>
           <span class="ins-title">{title != null && title !== '' ? title : this.config.translation['untitled']}</span>
-          {slug ? <span class="ins-slug">{slug}</span> : null}
+          {slug && slug !== title ? <span class="ins-slug">{slug}</span> : null}
         </header>
         {preview ? <p class="ins-search-preview">{preview}</p> : null}
       </div>
