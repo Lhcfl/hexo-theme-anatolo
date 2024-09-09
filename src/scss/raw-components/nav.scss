@@ -84,20 +84,20 @@
   @media screen and (max-width: $bp-small-width-view) {
     .information {
       background-color: var(--secondary);
-      .nav_right_btn li {
-        display: none;
-        &.more {
-          display: block;
-        }
-      }
-      &:hover {
-        right: 0;
-        position: absolute;
-        .nav_right_btn li {
-          display: initial;
-          &.more {
+      .nav_right_btn {
+        &.expanded {
+          li {
+            display: initial;
+          }
+          li.more {
             display: none;
           }
+        }
+        li {
+          display: none;
+        }
+        li.more {
+          display: initial;
         }
       }
     }
