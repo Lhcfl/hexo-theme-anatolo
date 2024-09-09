@@ -20,11 +20,6 @@ Anatolo 还在[Anatole主题](https://github.com/Ben02/hexo-theme-Anatole)基础
 
 码云功能和一些中国特色功能来自 [Anatole-core](https://github.com/mrcore/hexo-theme-Anatole-Core)
 
-## Todo List
-
-- 使用基于json的Ajax
-- 点击头像弹出的菜单没有动画且过于隐蔽
-
 ## 改进
 
 - 引入了现代化前端打包器 Rollup.js, Typescript 与 TSX
@@ -49,8 +44,10 @@ Anatolo 还在[Anatole主题](https://github.com/Ben02/hexo-theme-Anatole)基础
 
 - 原主题的葡萄牙语支持无法更新
 - TOC放置可能不够美观
-- 当Nav栏放置过多链接时可能导致右侧按钮下移
-- 暗黑模式暂只支持Gittalk，如有需要请自行PR
+
+## Won't fix
+
+- 暗黑模式的评论区只对 Gittalk 有支持，如有需要请自行PR
 
 ## 使用
 
