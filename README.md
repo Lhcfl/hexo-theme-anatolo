@@ -4,9 +4,7 @@
 
 [博客样例（作者博客）](https://lhcfl.github.io)
 
-[国内镜像](https://gitee.com/Lhcfl/hexo-theme-anatolo)
-
-- [主题文档 Theme document](https://lhcfl.github.io/Anatolodemo/tags/Anatolo-Tutorial/)
+[主题文档 Theme document](https://lhcfl.github.io/Anatolodemo/tags/Anatolo-Tutorial/)
 
 ## 关于主题
 

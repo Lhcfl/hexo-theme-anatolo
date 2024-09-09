@@ -30,14 +30,6 @@
   @include genColor('secondary', $secondary, $primary);
 }
 
-html[theme='dark'] {
-  @include darkTheme();
-}
-
-html[theme='light'] {
-  @include lightTheme();
-}
-
 html[theme='default'] {
   @include lightTheme();
 }
@@ -45,4 +37,12 @@ html[theme='default'] {
   html[theme='default'] {
     @include darkTheme();
   }
+}
+
+html[theme='dark'] {
+  @include darkTheme();
+}
+
+html[theme='light'] {
+  @include lightTheme();
 }
