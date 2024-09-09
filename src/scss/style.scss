@@ -638,6 +638,9 @@ $site-border: 1px solid var(--primary-100);
 
   .weibo {
     background-color: #ed6243;
+    a {
+      color: #fff;
+    }
 
     &:hover {
       background-color: #9c2409;
@@ -646,6 +649,9 @@ $site-border: 1px solid var(--primary-100);
 
   .twitter {
     background-color: #59c0fd;
+    a {
+      color: #fff;
+    }
 
     &:hover {
       background-color: #2b81b3;
@@ -654,6 +660,9 @@ $site-border: 1px solid var(--primary-100);
 
   .mastodon {
     background-color: #6d2fdf;
+    a {
+      color: #fff;
+    }
 
     &:hover {
       background-color: #4003b1;
