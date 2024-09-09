@@ -4,9 +4,10 @@
     "private": true,
     "scripts": {
         "format:stylus": "stylus-supremacy format ./source/css/**/*.styl -r --options .supermacy.yml",
-        "format:pretty": "prettier --write ./{includes,languages,layout,scripts,source,src}/**/*.{pug,js,css,ts,tsx,jsx}",
+        "format:pretty": "prettier --write ./layout/**/*.pug",
+        "format:biome": "biome format --write includes languages scripts source src",
         "lint": "eslint . --fix",
-        "format": "pnpm format:stylus && pnpm format:pretty",
+        "format": "pnpm format:stylus && pnpm format:biome && pnpm format:pretty",
         "build": "rollup -c ./rollup.config.mjs"
     },
     "dependencies": {
@@ -17,6 +18,7 @@
         "typescript": "^5.5.4"
     },
     "devDependencies": {
+        "@biomejs/biome": "1.8.3",
         "@prettier/plugin-pug": "^3.0.0",
         "@swc/core": "^1.7.23",
         "eslint": "^9.4.0",

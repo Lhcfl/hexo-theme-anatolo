@@ -204,10 +204,16 @@ export class AnatoloSearch extends Component {
     Fuse.config.ignoreLocation = true;
     Fuse.config.includeMatches = true;
 
-    this.fuses.posts = new Fuse(data.posts, { keys: ['title', 'text', 'link'] });
-    this.fuses.pages = new Fuse(data.pages, { keys: ['title', 'text', 'link'] });
+    this.fuses.posts = new Fuse(data.posts, {
+      keys: ['title', 'text', 'link'],
+    });
+    this.fuses.pages = new Fuse(data.pages, {
+      keys: ['title', 'text', 'link'],
+    });
     this.fuses.tags = new Fuse(data.tags, { keys: ['name', 'slug', 'link'] });
-    this.fuses.categories = new Fuse(data.categories, { keys: ['name', 'slug', 'link'] });
+    this.fuses.categories = new Fuse(data.categories, {
+      keys: ['name', 'slug', 'link'],
+    });
 
     this.fuse_ok.value = true;
   }
