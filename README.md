@@ -56,7 +56,7 @@ Anatolo 还在[Anatole主题](https://github.com/Ben02/hexo-theme-Anatole)基础
 克隆本仓库并安装依赖：
 
 ```bash
-git clone https://gitee.com/Lhcfl/hexo-theme-anatolo.git themes/Anatolo
+git clone https://github.com/Lhcfl/hexo-theme-anatolo.git themes/Anatolo
 cd themes/Anatolo
 pnpm i # 必须安装依赖
 ```
