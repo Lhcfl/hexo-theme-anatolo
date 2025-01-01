@@ -2,8 +2,6 @@
 
 [实时更新自动demo](https://lhcfl.github.io/Anatolodemo)
 
-[博客样例（作者博客）](https://lhcfl.github.io)
-
 [主题文档 Theme document](https://lhcfl.github.io/Anatolodemo/tags/Anatolo-Tutorial/)
 
 ## 关于主题
