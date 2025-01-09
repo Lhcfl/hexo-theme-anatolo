@@ -7,11 +7,11 @@ export function make_friends_list() {
       <div class="friend-link-container">
         <div class="friend-link-box">
           <aside class="friend-link-avatar">
-            <img src={escapeHTML(avatar)} href={escapeHTML(href)} />
+            <img src={avatar} href={href} />
           </aside>
           <div class="friend-link-meta">
             <div class="friend-link-title">
-              <a href={escapeHTML(href)}>{escapeHTML(title)}</a>
+              <a href={href}>{escapeHTML(title)}</a>
             </div>
             <div class="friend-link-description">{escapeHTML(description)}</div>
           </div>
