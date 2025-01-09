@@ -4,6 +4,10 @@
 
 [主题文档 Theme document](https://lhcfl.github.io/Anatolodemo/tags/Anatolo-Tutorial/)
 
+> [!warning]
+> This theme has entered maintainance mode
+> 该主题已经进入 maintainance mode，这意味着除了修复 bug 之外，不会对该主题进行大范围的修改和新功能的添加。
+
 ## 关于主题
 
 基于ben02移植的[Anatole主题](https://github.com/Ben02/hexo-theme-Anatole)进行了前端重构。
@@ -37,11 +41,6 @@ Anatolo 还在[Anatole主题](https://github.com/Ben02/hexo-theme-Anatole)基础
 - 使用Ajax来切换页面，减少加载的视觉噪音
 - 移动端自动scroll页面，防止过多纠结于头像
 - 允许自动化生成友链
-
-## 已知bug ~~（feature）~~
-
-- 原主题的葡萄牙语支持无法更新
-- TOC放置可能不够美观
 
 ## Won't fix
 
