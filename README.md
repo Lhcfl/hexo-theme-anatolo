@@ -24,7 +24,7 @@ Anatolo 还在[Anatole主题](https://github.com/Ben02/hexo-theme-Anatole)基础
 
 ## 改进
 
-- 引入了现代化前端打包器 Rollup.js, Typescript 与 TSX
+- 引入了现代化前端打包器 Rolldown.js, Typescript 与 TSX
 - 暗黑模式支持
 - 增加了文章概要的选项
 - 增加了多语言支持
@@ -97,7 +97,7 @@ pnpm i
 - `layout` 主题使用的模板，在服务端（也就是 `hexo g`）渲染成最后的 HTML
 - `scripts`: 主题内置的 Hexo 脚本
 - `source`: 主题需要的HTML资产
-- `src`: 主题前端相关的 typescript 脚本。这些脚本会被 `rollup` 打包并压缩成一个 `js/complied/bundle.js`
+- `src`: 主题前端相关的 typescript 脚本。这些脚本会被 `rolldown` 打包并压缩成一个 `js/complied/bundle.js`
 
 ### 代码格式化
 

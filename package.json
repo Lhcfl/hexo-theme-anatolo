@@ -7,13 +7,13 @@
     "format:biome": "biome format --write includes languages scripts source src .",
     "lint": "eslint . --fix",
     "format": "pnpm format:biome && pnpm format:pretty",
-    "watch": "rollup -w -c ./rollup.config.mjs",
-    "build": "rollup -c ./rollup.config.mjs"
+    "watch": "rolldown -w -c",
+    "build": "rolldown -c"
   },
   "dependencies": {
     "@rollup/plugin-node-resolve": "^15.3.1",
     "hexo-renderer-pug": "^0.0.5",
-    "rollup": "^4.62.5",
+    "rolldown": "^1.2.5",
     "rollup-plugin-sass": "^1.15.3",
     "typescript": "^5.9.3"
   },
