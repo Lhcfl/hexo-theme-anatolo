@@ -1,8 +1,8 @@
 # hexo-theme-Anatolo
 
-[实时更新自动demo](https://lhcfl.github.io/Anatolodemo)
+[实时更新自动demo](https://lhcfl.github.io/hexo-theme-anatolo)
 
-[主题文档 Theme document](https://lhcfl.github.io/Anatolodemo/tags/Anatolo-Tutorial/)
+[主题文档 Theme document](https://lhcfl.github.io/hexo-theme-anatolo/tags/Anatolo-Tutorial/)
 
 > [!warning]
 > This theme has entered maintainance mode
