@@ -1,6 +1,6 @@
 import resolve from '@rollup/plugin-node-resolve';
 import sass from 'rollup-plugin-sass';
-import { defineConfig } from 'rollup';
+import { defineConfig } from 'rolldown';
 import swc from 'unplugin-swc';
 
 export default defineConfig([
@@ -14,7 +14,7 @@ export default defineConfig([
       format: 'umd',
     },
     plugins: [
-      resolve(), // so Rollup can find `ms`
+      resolve(), // so Rolldown can find `ms`
       swc.rollup({
         minify: true,
         jsc: {

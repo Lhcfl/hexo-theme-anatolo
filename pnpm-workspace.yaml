@@ -1,0 +1,5 @@
+allowBuilds:
+  '@biomejs/biome': true
+  '@parcel/watcher': true
+  '@swc/core': true
+  core-js: true
