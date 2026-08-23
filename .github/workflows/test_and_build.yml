@@ -40,12 +40,13 @@ jobs:
         run: |
           cd ~/unit_test
           npx hexo g -b
+          cp -r public /home/runner/work/hexo-theme-anatolo/hexo-theme-anatolo/
 
       - name: Upload static files as artifact
         id: deployment
         uses: actions/upload-pages-artifact@v5
         with:
-          path: ~/unit_test/public
+          path: public/
           
 
   # Deployment job
