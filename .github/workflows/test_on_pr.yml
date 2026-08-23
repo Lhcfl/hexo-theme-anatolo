@@ -21,13 +21,15 @@ jobs:
           git clone https://github.com/hexojs/hexo-theme-unit-test.git ~/unit_test
           mkdir -p ~/unit_test/themes/Anatolo
           cp -r ./* ~/unit_test/themes/Anatolo/
+          cp -r ./.github/asserts/* ~/unit_test/themes/Anatolo/
+
           cd ~/unit_test/themes/Anatolo
           pnpm i
-          cd /home/runner/work/hexo-theme-anatolo/hexo-theme-anatolo
-          cp -r ./.github/asserts/* ~/unit_test/themes/hexo-theme-anatolo/
+
           cd ~/unit_test
           npm install
           npm install hexo-renderer-pug --save
+
           npx hexo new "Anatolo简介"
           cat /home/runner/work/hexo-theme-anatolo/hexo-theme-anatolo/README.md >> ./source/_posts/Anatolo简介.md
 
