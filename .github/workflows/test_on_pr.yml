@@ -16,7 +16,7 @@ jobs:
           node-version: 20
           cache: pnpm
 
-      - name: Configure Hexo Unit Test
+      - name: Configure Hexo Unit Test # 配置 Hexo 单元测试
         run: |
           git clone https://github.com/hexojs/hexo-theme-unit-test.git ~/unit_test
           mkdir -p ~/unit_test/themes/Anatolo
@@ -24,13 +24,10 @@ jobs:
           cd ~/unit_test/themes/Anatolo
           pnpm i
           cd /home/runner/work/hexo-theme-anatolo/hexo-theme-anatolo
-          cp ./.github/asserts/anatolo_config.yml ~/unit_test/themes/Anatolo/_config.yml
-          cp ./.github/asserts/hexo_config.yml ~/unit_test/_config.yml
-          cp ./.github/asserts/_posts/* ~/unit_test/source/_posts/
+          cp -r ./.github/asserts/* ~/unit_test/themes/hexo-theme-anatolo/
           cd ~/unit_test
           npm install
           npm install hexo-renderer-pug --save
-          npm install hexo-renderer-stylus --save
           npx hexo new "Anatolo简介"
           cat /home/runner/work/hexo-theme-anatolo/hexo-theme-anatolo/README.md >> ./source/_posts/Anatolo简介.md
 

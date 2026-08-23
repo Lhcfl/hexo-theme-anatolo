@@ -8,30 +8,16 @@ on:
       - main
 
 jobs:
-  build_and_push_unit_test_blog:
+  build_unit_test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Install pnpm
-        uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
+        uses: pnpm/setup@v2
+      - uses: actions/setup-node@v7
         with:
-          node-version: 20
+          node-version: 26
           cache: pnpm
-
-      - name: Configure Git # 配置Git
-        env:
-          DEPLOY_PRI: ${{ secrets.DEPLOY_PRI }}
-          GIT_USERNAME: ${{ github.repository_owner }}
-          GIT_EMAIL: ${{ github.repository_owner }}@user.github.com
-        run: |
-          sudo timedatectl set-timezone "Asia/Shanghai"
-          mkdir -p ~/.ssh/
-          echo "$DEPLOY_PRI" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-          git config --global user.name $GIT_USERNAME
-          git config --global user.email $GIT_EMAIL
 
       - name: Configure Hexo Unit Test # 配置 Hexo 单元测试
         run: |
@@ -41,28 +27,33 @@ jobs:
           cd ~/unit_test/themes/Anatolo
           pnpm i
           cd /home/runner/work/hexo-theme-anatolo/hexo-theme-anatolo
-          cp ./.github/asserts/anatolo_config.yml ~/unit_test/themes/Anatolo/_config.yml
-          cp ./.github/asserts/hexo_config.yml ~/unit_test/_config.yml
-          cp ./.github/asserts/_posts/* ~/unit_test/source/_posts/
+          cp -r ./.github/asserts/* ~/unit_test/themes/hexo-theme-anatolo/
           cd ~/unit_test
           npm install
           npm install hexo-renderer-pug --save
-          npm install hexo-renderer-stylus --save
           npx hexo new "Anatolo简介"
           cat /home/runner/work/hexo-theme-anatolo/hexo-theme-anatolo/README.md >> ./source/_posts/Anatolo简介.md
 
-      - name: Generate Test # 生成 Hexo 单元测试
+      - name: Generate Hexo Unit Test
         run: |
           cd ~/unit_test
           npx hexo g -b
 
-      - name: Commit And Push Blog # 提交到Git仓库
-        env:
-          GIT_URL: 'git@github.com:Lhcfl/Anatolodemo.git'
-        run: |
-          cd ~/unit_test/public
-          git init
-          git remote add origin $GIT_URL
-          git add -A
-          git commit -m "Auto generated."
-          git push origin HEAD:master --force
+      - name: Upload static files as artifact
+        id: deployment
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: ~/unit_test/public
+          
+
+  # Deployment job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{steps.deployment.outputs.page_url}}
+    runs-on: ubuntu-latest
+    needs: build_unit_test
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
